@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMockResharperPlugin", "IMockResharperPlugin\IMockResharperPlugin.csproj", "{BB2B42E0-4D6D-4380-AD8E-BC3D6C83F9B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB2B42E0-4D6D-4380-AD8E-BC3D6C83F9B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB2B42E0-4D6D-4380-AD8E-BC3D6C83F9B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB2B42E0-4D6D-4380-AD8E-BC3D6C83F9B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB2B42E0-4D6D-4380-AD8E-BC3D6C83F9B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD8B8553-7E0C-40E9-B3E0-D474FACE2F85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD8B8553-7E0C-40E9-B3E0-D474FACE2F85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD8B8553-7E0C-40E9-B3E0-D474FACE2F85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD8B8553-7E0C-40E9-B3E0-D474FACE2F85}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B170F0F-790B-445C-A029-6FC2A35B655F}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>   
+    
+    <metadata>        
+        <id>Fyzxs.IMockResharperPlugin</id>
+        <version>0.0.1</version>
+        <authors>Fyzxs</authors>
+        <owners>Fyzxs</owners>
+        <title>IMock for ReSharper 2017.3</title>   
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Plugin to automate creation of the Mock/Builder pair</description>
+                       
+        <dependencies>
+            <dependency id="Wave" version="[11.0.0]"/>  
+        </dependencies>
+                       
+    </metadata>      
+         
+    <files>
+      <file src="bin\Debug\Fyzxs.IMockResharperPlugin.dll" target="dotFiles\" />
+      <file src="bin\Debug\Fyzxs.IMockResharperPlugin.pdb" target="dotFiles\" />
+    </files>
+               
+</package>

@@ -2,7 +2,7 @@
 
 namespace InterfaceMocks
 {
-    public abstract class MockMethodBase<T>
+    public abstract class MockMethodBase
     {
         private readonly string _name;
 

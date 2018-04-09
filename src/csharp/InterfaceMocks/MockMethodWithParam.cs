@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace InterfaceMocks
 {
-    public class MockMethodWithParam<TParam> : MockMethodBase<TParam>, IMockMethodWithParam<TParam>
+    public class MockMethodWithParam<TParam> : MockMethodBase, IMockMethodWithParam<TParam>
     {
         private readonly string _name;
         private Action[] _actions;

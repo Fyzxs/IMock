@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace InterfaceMocks
 {
-    public class MockMethodWithResponse<TResponse> : MockMethodBase<TResponse>, IMockMethodWithResponse<TResponse>
+    public class MockMethodWithResponse<TResponse> : MockMethodBase, IMockMethodWithResponse<TResponse>
     {
         private Func<TResponse>[] _funcs;
         private int _funcIndex;

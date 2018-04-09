@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using InterfaceMocks;
 using InterfaceMocksTests.Mocks;
+using InterfaceMocksTests.Tools;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace InterfaceMocksTests
             MockMockMethodWithParam<string> mockMockMethodWithParam = new MockMockMethodWithParam<string>.Builder().Invoke().Build();
             MockMockMethodWithResponse<bool> mockMockMethodWithResponse = new MockMockMethodWithResponse<bool>.Builder().Invoke(true).Build();
 
-            MockMethodWithParamAndResponse<string, bool> subject = new MockMethodWithParamAndResponse<string, bool>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse);
+            MockMethodWithParamAndResponse<string, bool> subject = new ReflectionObject<MockMethodWithParamAndResponse<string, bool>>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse).Object();
 
             // Act
             bool actual = subject.Invoke("expected");
@@ -32,7 +33,7 @@ namespace InterfaceMocksTests
             MockMockMethodWithParam<string> mockMockMethodWithParam = new MockMockMethodWithParam<string>.Builder().Invoke().Build();
             MockMockMethodWithResponse<bool> mockMockMethodWithResponse = new MockMockMethodWithResponse<bool>.Builder().Invoke(false).Build();
 
-            MockMethodWithParamAndResponse<string, bool> subject = new MockMethodWithParamAndResponse<string, bool>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse);
+            MockMethodWithParamAndResponse<string, bool> subject = new ReflectionObject<MockMethodWithParamAndResponse<string, bool>>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse).Object();
 
             // Act
             bool actual = subject.Invoke("expected");
@@ -48,7 +49,7 @@ namespace InterfaceMocksTests
             MockMockMethodWithParam<string> mockMockMethodWithParam = new MockMockMethodWithParam<string>.Builder().Invoke().Build();
             MockMockMethodWithResponse<bool> mockMockMethodWithResponse = new MockMockMethodWithResponse<bool>.Builder().Invoke(true).Build();
 
-            MockMethodWithParamAndResponse<string, bool> subject = new MockMethodWithParamAndResponse<string, bool>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse);
+            MockMethodWithParamAndResponse<string, bool> subject = new ReflectionObject<MockMethodWithParamAndResponse<string, bool>>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse).Object();
 
             // Act
             bool actual = await subject.InvokeTask("expected");
@@ -64,7 +65,7 @@ namespace InterfaceMocksTests
             MockMockMethodWithParam<string> mockMockMethodWithParam = new MockMockMethodWithParam<string>.Builder().Invoke().Build();
             MockMockMethodWithResponse<bool> mockMockMethodWithResponse = new MockMockMethodWithResponse<bool>.Builder().Invoke(false).Build();
 
-            MockMethodWithParamAndResponse<string, bool> subject = new MockMethodWithParamAndResponse<string, bool>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse);
+            MockMethodWithParamAndResponse<string, bool> subject = new ReflectionObject<MockMethodWithParamAndResponse<string, bool>>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse).Object();
 
             // Act
             bool actual = await subject.InvokeTask("expected");
@@ -80,7 +81,7 @@ namespace InterfaceMocksTests
             MockMockMethodWithParam<string> mockMockMethodWithParam = new MockMockMethodWithParam<string>.Builder().AssertCustom().Build();
             MockMockMethodWithResponse<bool> mockMockMethodWithResponse = new MockMockMethodWithResponse<bool>.Builder().Build();
 
-            MockMethodWithParamAndResponse<string, bool> subject = new MockMethodWithParamAndResponse<string, bool>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse);
+            MockMethodWithParamAndResponse<string, bool> subject = new ReflectionObject<MockMethodWithParamAndResponse<string, bool>>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse).Object();
 
 
             // Act
@@ -97,7 +98,7 @@ namespace InterfaceMocksTests
             MockMockMethodWithParam<string> mockMockMethodWithParam = new MockMockMethodWithParam<string>.Builder().AssertInvokedWith().Build();
             MockMockMethodWithResponse<bool> mockMockMethodWithResponse = new MockMockMethodWithResponse<bool>.Builder().Build();
 
-            MockMethodWithParamAndResponse<string, bool> subject = new MockMethodWithParamAndResponse<string, bool>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse);
+            MockMethodWithParamAndResponse<string, bool> subject = new ReflectionObject<MockMethodWithParamAndResponse<string, bool>>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse).Object();
 
 
             // Act
@@ -115,7 +116,7 @@ namespace InterfaceMocksTests
             MockMockMethodWithParam<string> mockMockMethodWithParam = new MockMockMethodWithParam<string>.Builder().UpdateInvocation().Build();
             MockMockMethodWithResponse<bool> mockMockMethodWithResponse = new MockMockMethodWithResponse<bool>.Builder().UpdateInvocationWithTResponse().Build();
 
-            MockMethodWithParamAndResponse<string, bool> subject = new MockMethodWithParamAndResponse<string, bool>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse);
+            MockMethodWithParamAndResponse<string, bool> subject = new ReflectionObject<MockMethodWithParamAndResponse<string, bool>>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse).Object();
 
             // Act
             subject.UpdateInvocation(expected);
@@ -132,7 +133,7 @@ namespace InterfaceMocksTests
             MockMockMethodWithParam<string> mockMockMethodWithParam = new MockMockMethodWithParam<string>.Builder().UpdateInvocation().Build();
             MockMockMethodWithResponse<bool> mockMockMethodWithResponse = new MockMockMethodWithResponse<bool>.Builder().UpdateInvocationWithFunc().Build();
 
-            MockMethodWithParamAndResponse<string, bool> subject = new MockMethodWithParamAndResponse<string, bool>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse);
+            MockMethodWithParamAndResponse<string, bool> subject = new ReflectionObject<MockMethodWithParamAndResponse<string, bool>>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse).Object();
 
             // Act
             subject.UpdateInvocation(() => true);
@@ -141,6 +142,7 @@ namespace InterfaceMocksTests
             mockMockMethodWithParam.AssertUpdateInvocationInvoked();
             mockMockMethodWithResponse.AssertUpdateInvocationFuncInvoked();
         }
+
 
         //todo:Funcational tests which esnures we test the UpdateInvocation + Invoke/InvokeTask temporal pairing that exist in MockMethodWithParamAndResponse
     }

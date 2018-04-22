@@ -12,23 +12,26 @@ using System;
 namespace Fyzxs.IMockResharperPlugin
 {
     [ContextAction(Name = "CreateMock", Description = "Create Mock Builder for an Interface", Group = "C#")]
-    public class MockCreationContextAction : ContextActionBase
+    public class MockCreateContextAction : ContextActionBase
     {
         [NotNull]
         private readonly ICSharpContextActionDataProvider _dataProvider;
 
-        public MockCreationContextAction([NotNull] ICSharpContextActionDataProvider dataProvider) => _dataProvider = dataProvider;
+        public MockCreateContextAction([NotNull] ICSharpContextActionDataProvider dataProvider) => _dataProvider = dataProvider;
 
         protected override Action<ITextControl> ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
         {
-            IClassLikeDeclaration theInterface = ((IClassLikeDeclaration)_dataProvider.GetSelectedElement<IInterfaceDeclaration>()).NotNull();
-            ITypeElement typeElement = theInterface.DeclaredElement;
+            IInterfaceDeclaration theInterface = _dataProvider.GetSelectedElement<IInterfaceDeclaration>().NotNull();
+            IInterface typeElement = theInterface.DeclaredElement;
             string typeParameters = typeElement.TypeParameters.AggregateString(",", (builder, parameter) => builder.Append(parameter.ShortName));
             if (typeElement.TypeParameters.Count != 0) typeParameters = "<" + typeParameters + ">";
             string interfaceName = typeElement.ShortName;
             string className = $"Mock{interfaceName.Substring(1)}";
             IClassLikeDeclaration classDeclaration = (IClassLikeDeclaration)_dataProvider.ElementFactory.CreateTypeMemberDeclaration($"public partial class {className}{typeParameters} : {interfaceName}{typeParameters} {{}}");
-            return new BuildMockClassContents().ExecutePsiTransaction(_dataProvider, solution, classDeclaration, theInterface);
+
+            ICSharpTypeAndNamespaceHolderDeclaration holderDeclaration = _dataProvider.PsiFile;
+            classDeclaration = (IClassLikeDeclaration)holderDeclaration.AddTypeDeclarationAfter(classDeclaration, theInterface);
+            return new BuildMockClassContents().ExecutePsiTransaction(_dataProvider, solution, classDeclaration, theInterface.DeclaredElement);
         }
 
         public override string Text => "Create Mock";

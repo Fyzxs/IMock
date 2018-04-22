@@ -1,11 +1,12 @@
-﻿using JetBrains.ReSharper.Psi.CSharp.Tree;
+﻿using JetBrains.ReSharper.Psi;
 
-namespace Fyzxs.IMockResharperPlugin.MockClassVariables {
+namespace Fyzxs.IMockResharperPlugin.MockClassVariables
+{
     public abstract class MockVariable : IVariable
     {
         private readonly IMethodName _methodName;
         private readonly IMockClass _mockClass;
-        protected MockVariable(IMethodDeclaration methodDeclaration, IClassLikeDeclaration theInterface) :
+        protected MockVariable(IMethod methodDeclaration, IInterface theInterface) :
             this(new MethodName(methodDeclaration, theInterface), new MockClass(theInterface))
         { }
 

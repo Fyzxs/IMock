@@ -1,4 +1,4 @@
-﻿using JetBrains.ReSharper.Psi.CSharp.Tree;
+﻿using JetBrains.ReSharper.Psi;
 
 namespace Fyzxs.IMockResharperPlugin.MockClassVariables
 {
@@ -6,11 +6,11 @@ namespace Fyzxs.IMockResharperPlugin.MockClassVariables
     {
         private readonly IResponseType _responseType;
 
-        public MockMethodWithResponseVariable(IMethodDeclaration methodDeclaration, IClassLikeDeclaration theInterface) :
+        public MockMethodWithResponseVariable(IMethod methodDeclaration, IInterface theInterface) :
             this(methodDeclaration, theInterface, new ResponseType(methodDeclaration))
         { }
 
-        public MockMethodWithResponseVariable(IMethodDeclaration methodDeclaration, IClassLikeDeclaration theInterface, IResponseType responseType) :
+        public MockMethodWithResponseVariable(IMethod methodDeclaration, IInterface theInterface, IResponseType responseType) :
             base(methodDeclaration, theInterface) => _responseType = responseType;
 
         protected override string TypeDeclaration() => $"MockMethodWithResponse<{_responseType.Type()}>";

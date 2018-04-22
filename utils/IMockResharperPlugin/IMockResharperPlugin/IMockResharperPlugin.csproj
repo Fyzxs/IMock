@@ -247,7 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildMockClassContents.cs" />
-    <Compile Include="MockCreationContextAction.cs" />
+    <Compile Include="MockCreateContextAction.cs" />
     <Compile Include="FluentTypes\Bools\And.cs" />
     <Compile Include="FluentTypes\Bools\Bool.cs" />
     <Compile Include="FluentTypes\Bools\BoolOf.cs" />
@@ -275,7 +275,6 @@
     <Compile Include="MockClassVariables\IMethodArgs.cs" />
     <Compile Include="MockClassVariables\IMethodName.cs" />
     <Compile Include="MockClassVariables\IResponseType.cs" />
-    <Compile Include="MockClassVariables\ISignature.cs" />
     <Compile Include="MockClassVariables\IVariable.cs" />
     <Compile Include="MockClassVariables\MethodArgs.cs" />
     <Compile Include="MockClassVariables\MethodName.cs" />

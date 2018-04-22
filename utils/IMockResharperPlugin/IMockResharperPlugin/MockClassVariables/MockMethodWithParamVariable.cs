@@ -1,4 +1,4 @@
-﻿using JetBrains.ReSharper.Psi.CSharp.Tree;
+﻿using JetBrains.ReSharper.Psi;
 
 namespace Fyzxs.IMockResharperPlugin.MockClassVariables
 {
@@ -6,11 +6,11 @@ namespace Fyzxs.IMockResharperPlugin.MockClassVariables
     {
         private readonly IMethodArgs _methodArgs;
 
-        public MockMethodWithParamVariable(IMethodDeclaration methodDeclaration, IClassLikeDeclaration theInterface) :
+        public MockMethodWithParamVariable(IMethod methodDeclaration, IInterface theInterface) :
             this(methodDeclaration, theInterface, new MethodArgs(methodDeclaration))
         { }
 
-        public MockMethodWithParamVariable(IMethodDeclaration methodDeclaration, IClassLikeDeclaration theInterface, IMethodArgs methodArgs) :
+        public MockMethodWithParamVariable(IMethod methodDeclaration, IInterface theInterface, IMethodArgs methodArgs) :
             base(methodDeclaration, theInterface) => _methodArgs = methodArgs;
 
         protected override string TypeDeclaration() => $"MockMethodWithParam<{_methodArgs.Types()}>";

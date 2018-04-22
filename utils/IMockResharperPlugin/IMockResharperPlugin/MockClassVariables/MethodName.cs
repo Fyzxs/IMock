@@ -1,32 +1,31 @@
-﻿using System.Linq;
-using Fyzxs.IMockResharperPlugin.FluentTypes.Texts;
+﻿using Fyzxs.IMockResharperPlugin.FluentTypes.Texts;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.Util;
+using System.Linq;
 
 namespace Fyzxs.IMockResharperPlugin.MockClassVariables
 {
     public class MethodName : IMethodName
     {
-        private readonly IMethodDeclaration _methodDeclaration;
-        private readonly IClassLikeDeclaration _theInterface;
+        private readonly IMethod _method;
+        private readonly IInterface _theInterface;
         private readonly PsiLanguageType _languageType = Languages.Instance.GetLanguageByName("CSHARP");
 
-        public MethodName(IMethodDeclaration methodDeclaration, IClassLikeDeclaration theInterface)
+        public MethodName(IMethod method, IInterface theInterface)
         {
-            _methodDeclaration = methodDeclaration;
+            _method = method;
             _theInterface = theInterface;
         }
 
-        public string Actual() => _methodDeclaration.DeclaredName;
+        public string Actual() => _method.ShortName;
         public string Unique() => Actual() + Suffix();
-        public string CamelCaseUnique() => new CamelCaseText(new TextOf(Unique()));
+        public string CamelCaseUnique() => new TextOf(Unique()).CamelCase();
 
         private string Suffix()
         {
-            string sameNameSuffix = _methodDeclaration.Params.ParameterDeclarations
-                .AggregateString("", (builder, param) => builder.Append(param.Type.GetPresentableName(_languageType)));
-            bool hasSameName = _theInterface.MethodDeclarations.Count(m => m.DeclaredName == _methodDeclaration.DeclaredName) > 1;
+            string sameNameSuffix = _method.Parameters
+                .AggregateString("", (builder, param) => builder.Append(new UppercaseFirstText(new TextOf(param.Type.GetPresentableName(_languageType)))));
+            bool hasSameName = _theInterface.Methods.Count(m => m.ShortName == _method.ShortName) > 1;
             string suffix = hasSameName
                 ? sameNameSuffix
                 : "";
@@ -38,7 +37,7 @@ namespace Fyzxs.IMockResharperPlugin.MockClassVariables
     {
         private readonly IMethodName _methodName;
 
-        public MockActionBuilderMethods(IMethodDeclaration methodDeclaration, IClassLikeDeclaration theInterface) :
+        public MockActionBuilderMethods(IMethod methodDeclaration, IInterface theInterface) :
             this(new MethodName(methodDeclaration, theInterface))
         { }
 
@@ -58,7 +57,7 @@ namespace Fyzxs.IMockResharperPlugin.MockClassVariables
         private readonly IMethodName _methodName;
         private readonly IResponseType _responseType;
 
-        public MockResponseBuilderMethods(IMethodDeclaration methodDeclaration, IClassLikeDeclaration theInterface) :
+        public MockResponseBuilderMethods(IMethod methodDeclaration, IInterface theInterface) :
             this(new MethodName(methodDeclaration, theInterface), new ResponseType(methodDeclaration))
         { }
 

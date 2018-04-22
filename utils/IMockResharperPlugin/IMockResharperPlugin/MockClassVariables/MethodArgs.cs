@@ -1,19 +1,18 @@
-﻿using System;
-using System.Text;
-using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Tree;
+﻿using JetBrains.ReSharper.Psi;
 using JetBrains.Util;
+using System;
+using System.Text;
 
-namespace Fyzxs.IMockResharperPlugin.MockClassVariables {
+namespace Fyzxs.IMockResharperPlugin.MockClassVariables
+{
     public class MethodArgs : IMethodArgs
     {
-        private readonly IMethodDeclaration _methodDeclaration;
+        private readonly IMethod _methodDeclaration;
         private readonly PsiLanguageType _languageType = Languages.Instance.GetLanguageByName("CSHARP");
 
-        public MethodArgs(IMethodDeclaration methodDeclaration) => _methodDeclaration = methodDeclaration;
+        public MethodArgs(IMethod methodDeclaration) => _methodDeclaration = methodDeclaration;
 
-        public string Definition() => AggregateString((builder, param) => builder.Append($"{ParamName(param)} {param.DeclaredName}"));
+        public string Definition() => AggregateString((builder, param) => builder.Append($"{ParamName(param)} {param.ShortName}"));
 
         public string Types() => MultipleParams() ? TupleDefinition() : TypeDefinition();
 
@@ -27,13 +26,13 @@ namespace Fyzxs.IMockResharperPlugin.MockClassVariables {
 
         private string TupleDefinition() => $"Tuple<{TypeDefinition()}>";
 
-        private bool MultipleParams() => 1 < _methodDeclaration.Params.ParameterDeclarations.Count;
+        private bool MultipleParams() => 1 < _methodDeclaration.Parameters.Count;
 
-        private string SingleArgValues() => AggregateString((builder, param) => builder.Append(param.DeclaredName));
+        private string SingleArgValues() => AggregateString((builder, param) => builder.Append(param.ShortName));
 
-        private string AggregateString(Func<StringBuilder, ICSharpParameterDeclaration, StringBuilder> func) =>
-            _methodDeclaration.Params.ParameterDeclarations.AggregateString(", ", func);
+        private string AggregateString(Func<StringBuilder, IParameter, StringBuilder> func) =>
+            _methodDeclaration.Parameters.AggregateString(", ", func);
 
-        private string ParamName(ITypeOwnerDeclaration param) => param.Type.GetPresentableName(_languageType);
+        private string ParamName(ITypeOwner param) => param.Type.GetPresentableName(_languageType);
     }
 }

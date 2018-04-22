@@ -9,9 +9,6 @@ namespace InterfaceMocksTests
     [TestClass]
     public class MockMethodWithResponseTests
     {
-
-        //**** Invoke ****
-
         [TestMethod, TestCategory("unit")]
         public void Invoke_ShouldThrowExceptionWithMethodNameIfInvocationNotUpdated()
         {
@@ -95,8 +92,6 @@ namespace InterfaceMocksTests
             // Assert
             actual.Should().ThrowExactly<Exception>().WithMessage("I throw this");
         }
-
-        //**** InvokeTask ****
 
         [TestMethod, TestCategory("unit")]
         public void InvokeTask_ShouldThrowExceptionWithMethodNameIfInvocationNotUpdated()

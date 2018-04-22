@@ -36,6 +36,7 @@ namespace CoreDebugSolution
         string SameNameDifParams(int one);
         string SameNameDifParams(double one);
         //END EdgeCases
+        //object NewMethod();
     }
 
     public partial class MockAllVariations<T> : IAllVariations<T> {
@@ -52,8 +53,8 @@ namespace CoreDebugSolution
         private MockMethodWithResponse<double> _responseTaskType;
         private MockMethodWithParamAndResponse<int, string> _paramTypeResponseTaskType;
         private MockMethodWithParamAndResponse<Tuple<char, string, IExample>, int> _paramTupleResponseType;
-        private MockMethodWithParamAndResponse<int, string> _sameNameDifParamsint;
-        private MockMethodWithParamAndResponse<double, string> _sameNameDifParamsdouble;
+        private MockMethodWithParamAndResponse<int, string> _sameNameDifParamsInt;
+        private MockMethodWithParamAndResponse<double, string> _sameNameDifParamsDouble;
         private MockAllVariations() { }
         public void VoidVoid() => _voidVoid.Invoke();
         public Task ResponseTaskVoid() => _responseTaskVoid.InvokeTask();
@@ -68,8 +69,8 @@ namespace CoreDebugSolution
         public Task<double> ResponseTaskType() => _responseTaskType.InvokeTask();
         public Task<string> ParamTypeResponseTaskType(int incoming) => _paramTypeResponseTaskType.InvokeTask(incoming);
         public int ParamTupleResponseType(char c, string yeppers, IExample longer) => _paramTupleResponseType.Invoke(new Tuple<char, string, IExample>(c, yeppers, longer));
-        public string SameNameDifParams(int one) => _sameNameDifParamsint.Invoke(one);
-        public string SameNameDifParams(double one) => _sameNameDifParamsdouble.Invoke(one);
+        public string SameNameDifParams(int one) => _sameNameDifParamsInt.Invoke(one);
+        public string SameNameDifParams(double one) => _sameNameDifParamsDouble.Invoke(one);
 
         public class Builder {
             private readonly MockMethod _voidVoid = new MockMethod("MockAllVariations#VoidVoid");
@@ -85,8 +86,8 @@ namespace CoreDebugSolution
             private readonly MockMethodWithResponse<double> _responseTaskType = new MockMethodWithResponse<double>("MockAllVariations#ResponseTaskType");
             private readonly MockMethodWithParamAndResponse<int, string> _paramTypeResponseTaskType = new MockMethodWithParamAndResponse<int, string>("MockAllVariations#ParamTypeResponseTaskType");
             private readonly MockMethodWithParamAndResponse<Tuple<char, string, IExample>, int> _paramTupleResponseType = new MockMethodWithParamAndResponse<Tuple<char, string, IExample>, int>("MockAllVariations#ParamTupleResponseType");
-            private readonly MockMethodWithParamAndResponse<int, string> _sameNameDifParamsint = new MockMethodWithParamAndResponse<int, string>("MockAllVariations#SameNameDifParamsint");
-            private readonly MockMethodWithParamAndResponse<double, string> _sameNameDifParamsdouble = new MockMethodWithParamAndResponse<double, string>("MockAllVariations#SameNameDifParamsdouble");
+            private readonly MockMethodWithParamAndResponse<int, string> _sameNameDifParamsInt = new MockMethodWithParamAndResponse<int, string>("MockAllVariations#SameNameDifParamsInt");
+            private readonly MockMethodWithParamAndResponse<double, string> _sameNameDifParamsDouble = new MockMethodWithParamAndResponse<double, string>("MockAllVariations#SameNameDifParamsDouble");
 
             public MockAllVariations<T> Build()
             {
@@ -105,8 +106,8 @@ namespace CoreDebugSolution
                     _responseTaskType = _responseTaskType,
                     _paramTypeResponseTaskType = _paramTypeResponseTaskType,
                     _paramTupleResponseType = _paramTupleResponseType,
-                    _sameNameDifParamsint = _sameNameDifParamsint,
-                    _sameNameDifParamsdouble = _sameNameDifParamsdouble
+                    _sameNameDifParamsInt = _sameNameDifParamsInt,
+                    _sameNameDifParamsDouble = _sameNameDifParamsDouble
                 };
             }
 
@@ -266,29 +267,41 @@ namespace CoreDebugSolution
                 return this;
             }
 
-            public Builder SameNameDifParamsint(params string[] responseValues)
+            public Builder SameNameDifParamsInt(params string[] responseValues)
             {
-                _sameNameDifParamsint.UpdateInvocation(responseValues);
+                _sameNameDifParamsInt.UpdateInvocation(responseValues);
                 return this;
             }
 
-            public Builder SameNameDifParamsint(params Func<string>[] responseValues)
+            public Builder SameNameDifParamsInt(params Func<string>[] responseValues)
             {
-                _sameNameDifParamsint.UpdateInvocation(responseValues);
+                _sameNameDifParamsInt.UpdateInvocation(responseValues);
                 return this;
             }
 
-            public Builder SameNameDifParamsdouble(params string[] responseValues)
+            public Builder SameNameDifParamsDouble(params string[] responseValues)
             {
-                _sameNameDifParamsdouble.UpdateInvocation(responseValues);
+                _sameNameDifParamsDouble.UpdateInvocation(responseValues);
                 return this;
             }
 
-            public Builder SameNameDifParamsdouble(params Func<string>[] responseValues)
+            public Builder SameNameDifParamsDouble(params Func<string>[] responseValues)
             {
-                _sameNameDifParamsdouble.UpdateInvocation(responseValues);
+                _sameNameDifParamsDouble.UpdateInvocation(responseValues);
                 return this;
             }
         }
+
+        public void AssertVoidVoidInvoked() => _voidVoid.AssertInvoked();
+        public void AssertResponseTaskVoidInvoked() => _responseTaskVoid.AssertInvoked();
+        public void AssertParamTypeInvokedWith(double justOne) => _paramType.AssertInvokedWith(justOne);
+        public void AssertParamGenericInvokedWith(T justOne) => _paramGeneric.AssertInvokedWith(justOne);
+        public void AssertParamTypeResponseTaskInvokedWith(double justOne) => _paramTypeResponseTask.AssertInvokedWith(justOne);
+        public void AssertParamTupleInvokedWith(string justOne, int singleInt) => _paramTuple.AssertInvokedWith(new Tuple<string, int>(justOne, singleInt));
+        public void AssertParamTypeGenericInvokedWith(string justOne, T oneT) => _paramTypeGeneric.AssertInvokedWith(new Tuple<string, T>(justOne, oneT));
+        public void AssertResponseGenericInvoked() => _responseGeneric.AssertInvoked();
+        public void AssertResponseTypeInvoked() => _responseType.AssertInvoked();
+        public void AssertResponseTaskGenericInvoked() => _responseTaskGeneric.AssertInvoked();
+        public void AssertResponseTaskTypeInvoked() => _responseTaskType.AssertInvoked();
     }
 }

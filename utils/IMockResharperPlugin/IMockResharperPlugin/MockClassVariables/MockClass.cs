@@ -1,14 +1,14 @@
-﻿using JetBrains.ReSharper.Psi.CSharp.Tree;
+﻿using JetBrains.ReSharper.Psi;
 
 namespace Fyzxs.IMockResharperPlugin.MockClassVariables
 {
     public class MockClass : IMockClass
     {
-        private readonly IClassLikeDeclaration _theInterface;
+        private readonly IInterface _theInterface;
 
-        public MockClass(IClassLikeDeclaration theInterface) => _theInterface = theInterface;
+        public MockClass(IInterface theInterface) => _theInterface = theInterface;
 
-        public string Name() => $"Mock{_theInterface.DeclaredElement.ShortName.Substring(1)}";
+        public string Name() => $"Mock{_theInterface.ShortName.Substring(1)}";
     }
 
     public interface IMockClass

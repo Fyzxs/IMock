@@ -10,7 +10,7 @@ namespace InterfaceMocksTests
     public class MockMethodTests
     {
         [TestMethod, TestCategory("unit")]
-        public void InvokeShouldThrowExceptionWithMethodNameIfInvocationNotUpdated()
+        public void Invoke_ShouldThrowExceptionWithMethodNameIfInvocationNotUpdated()
         {
             // Arrange
             MockMethod subject = new MockMethod("methodName");
@@ -23,7 +23,7 @@ namespace InterfaceMocksTests
         }
 
         [TestMethod, TestCategory("unit")]
-        public void InvokeShouldNotThrowExceptionIfInvocationUpdated()
+        public void Invoke_ShouldNotThrowExceptionIfInvocationUpdated()
         {
             // Arrange
             MockMethod subject = new MockMethod("methodName");
@@ -37,7 +37,23 @@ namespace InterfaceMocksTests
         }
 
         [TestMethod, TestCategory("unit")]
-        public void InvokeTaskShouldThrowExceptionWithMethodNameIfInvocationNotUpdated()
+        public void Invoke_ShouldHaveMultipleInvocations()
+        {
+            // Arrange
+            MockMethod subject = new MockMethod("methodName");
+            subject.UpdateInvocation(() => { }, () => throw new Exception("Second Invocation"));
+
+            // Act
+            Action actual = () => subject.Invoke();
+            Action thrower = () => subject.Invoke();
+
+            // Assert
+            actual.Should().NotThrow();
+            thrower.Should().ThrowExactly<Exception>().WithMessage("Second Invocation");
+        }
+
+        [TestMethod, TestCategory("unit")]
+        public void InvokeTask_ShouldThrowExceptionWithMethodNameIfInvocationNotUpdated()
         {
             // Arrange
             MockMethod subject = new MockMethod("methodName");
@@ -50,7 +66,7 @@ namespace InterfaceMocksTests
         }
 
         [TestMethod, TestCategory("unit")]
-        public void InvokeTaskShouldNotThrowExceptionIfInvocationUpdated()
+        public void InvokeTask_ShouldNotThrowExceptionIfInvocationUpdated()
         {
             // Arrange
             MockMethod subject = new MockMethod("methodName");
@@ -61,6 +77,21 @@ namespace InterfaceMocksTests
 
             // Assert
             actual.Should().NotThrow();
+        }
+        [TestMethod, TestCategory("unit")]
+        public void InvokeTask_ShouldHaveMultipleInvocations()
+        {
+            // Arrange
+            MockMethod subject = new MockMethod("methodName");
+            subject.UpdateInvocation(() => { }, () => throw new Exception("Second Invocation"));
+
+            // Act
+            Func<Task> actual = async () => await subject.InvokeTask();
+            Func<Task> thrower = async () => await subject.InvokeTask();
+
+            // Assert
+            actual.Should().NotThrow();
+            thrower.Should().ThrowExactly<Exception>().WithMessage("Second Invocation");
         }
 
     }

@@ -11,7 +11,7 @@
         <description>Plugin to automate creation of the Mock/Builder pair</description>
                        
         <dependencies>
-            <dependency id="Wave" version="[11.0.0]"/>  
+            <dependency id="Wave" version="[12.0.0]"/>  
         </dependencies>
                        
     </metadata>      

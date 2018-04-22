@@ -21,8 +21,8 @@ namespace Fyzxs.IMockResharperPlugin.MockClassVariables
             _methodArgs = methodArgs;
         }
         public string Signature() =>
-            $"public {ResponseType()} {_methodName.Actual()}({_methodArgs.Definition()}) => " +
-            $"_{_methodName.CamelCaseUnique()}.{InvokeMethod()}({_methodArgs.InvokedArgs()});";
+            $"public {ResponseType()} {_methodName.Actual()}() => " +
+            $"_{_methodName.CamelCaseUnique()}.{InvokeMethod()}();";
 
         private string InvokeMethod() => "Invoke" + (IsAnyTask(_methodDeclaration.Type) ? "Task" : "");
         private bool IsAnyTask(IType type) => type.IsTask() || type.IsGenericTask();

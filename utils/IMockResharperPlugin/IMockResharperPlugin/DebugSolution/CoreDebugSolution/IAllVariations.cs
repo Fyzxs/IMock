@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
+using InterfaceMocks;
 
-
-namespace DebugSolution.Sample
+namespace CoreDebugSolution
 {
-    public interface IFoozzing<T>
+    public interface IExample
+    {
+        MockMethod KeepsReference();
+    }
+
+    public interface IAllVariations<T>
     {
         //BEG MockMethod
         void VoidVoid();
@@ -25,7 +30,7 @@ namespace DebugSolution.Sample
         //END MockMethodWithResponse
         //BEG MockMethodWithParamAndResponse
         Task<string> ParamTypeResponseTaskType(int incoming);
-        int ParamTupleResponseType(char c, string yeppers, IFooz longer);
+        int ParamTupleResponseType(char c, string yeppers, IExample longer);
         //END MockMethodWithParamAndResponse
         //BEG EdgeCases
         string SameNameDifParams(int one);
@@ -33,7 +38,7 @@ namespace DebugSolution.Sample
         //END EdgeCases
     }
 
-    public partial class MockFoozzing<T> : IFoozzing<T> {
+    public partial class MockAllVariations<T> : IAllVariations<T> {
         private MockMethod _voidVoid;
         private MockMethod _responseTaskVoid;
         private MockMethodWithParam<double> _paramType;
@@ -46,10 +51,10 @@ namespace DebugSolution.Sample
         private MockMethodWithResponse<T> _responseTaskGeneric;
         private MockMethodWithResponse<double> _responseTaskType;
         private MockMethodWithParamAndResponse<int, string> _paramTypeResponseTaskType;
-        private MockMethodWithParamAndResponse<Tuple<char, string, IFooz>, int> _paramTupleResponseType;
+        private MockMethodWithParamAndResponse<Tuple<char, string, IExample>, int> _paramTupleResponseType;
         private MockMethodWithParamAndResponse<int, string> _sameNameDifParamsint;
         private MockMethodWithParamAndResponse<double, string> _sameNameDifParamsdouble;
-        private MockFoozzing() { }
+        private MockAllVariations() { }
         public void VoidVoid() => _voidVoid.Invoke();
         public Task ResponseTaskVoid() => _responseTaskVoid.InvokeTask();
         public void ParamType(double justOne) => _paramType.Invoke(justOne);
@@ -62,30 +67,30 @@ namespace DebugSolution.Sample
         public Task<T> ResponseTaskGeneric() => _responseTaskGeneric.InvokeTask();
         public Task<double> ResponseTaskType() => _responseTaskType.InvokeTask();
         public Task<string> ParamTypeResponseTaskType(int incoming) => _paramTypeResponseTaskType.InvokeTask(incoming);
-        public int ParamTupleResponseType(char c, string yeppers, IFooz longer) => _paramTupleResponseType.Invoke(new Tuple<char, string, IFooz>(c, yeppers, longer));
+        public int ParamTupleResponseType(char c, string yeppers, IExample longer) => _paramTupleResponseType.Invoke(new Tuple<char, string, IExample>(c, yeppers, longer));
         public string SameNameDifParams(int one) => _sameNameDifParamsint.Invoke(one);
         public string SameNameDifParams(double one) => _sameNameDifParamsdouble.Invoke(one);
 
         public class Builder {
-            private readonly MockMethod _voidVoid = new MockMethod("MockFoozzing#VoidVoid");
-            private readonly MockMethod _responseTaskVoid = new MockMethod("MockFoozzing#ResponseTaskVoid");
-            private readonly MockMethodWithParam<double> _paramType = new MockMethodWithParam<double>("MockFoozzing#ParamType");
-            private readonly MockMethodWithParam<T> _paramGeneric = new MockMethodWithParam<T>("MockFoozzing#ParamGeneric");
-            private readonly MockMethodWithParam<double> _paramTypeResponseTask = new MockMethodWithParam<double>("MockFoozzing#ParamTypeResponseTask");
-            private readonly MockMethodWithParam<Tuple<string, int>> _paramTuple = new MockMethodWithParam<Tuple<string, int>>("MockFoozzing#ParamTuple");
-            private readonly MockMethodWithParam<Tuple<string, T>> _paramTypeGeneric = new MockMethodWithParam<Tuple<string, T>>("MockFoozzing#ParamTypeGeneric");
-            private readonly MockMethodWithResponse<T> _responseGeneric = new MockMethodWithResponse<T>("MockFoozzing#ResponseGeneric");
-            private readonly MockMethodWithResponse<string> _responseType = new MockMethodWithResponse<string>("MockFoozzing#ResponseType");
-            private readonly MockMethodWithResponse<T> _responseTaskGeneric = new MockMethodWithResponse<T>("MockFoozzing#ResponseTaskGeneric");
-            private readonly MockMethodWithResponse<double> _responseTaskType = new MockMethodWithResponse<double>("MockFoozzing#ResponseTaskType");
-            private readonly MockMethodWithParamAndResponse<int, string> _paramTypeResponseTaskType = new MockMethodWithParamAndResponse<int, string>("MockFoozzing#ParamTypeResponseTaskType");
-            private readonly MockMethodWithParamAndResponse<Tuple<char, string, IFooz>, int> _paramTupleResponseType = new MockMethodWithParamAndResponse<Tuple<char, string, IFooz>, int>("MockFoozzing#ParamTupleResponseType");
-            private readonly MockMethodWithParamAndResponse<int, string> _sameNameDifParamsint = new MockMethodWithParamAndResponse<int, string>("MockFoozzing#SameNameDifParamsint");
-            private readonly MockMethodWithParamAndResponse<double, string> _sameNameDifParamsdouble = new MockMethodWithParamAndResponse<double, string>("MockFoozzing#SameNameDifParamsdouble");
+            private readonly MockMethod _voidVoid = new MockMethod("MockAllVariations#VoidVoid");
+            private readonly MockMethod _responseTaskVoid = new MockMethod("MockAllVariations#ResponseTaskVoid");
+            private readonly MockMethodWithParam<double> _paramType = new MockMethodWithParam<double>("MockAllVariations#ParamType");
+            private readonly MockMethodWithParam<T> _paramGeneric = new MockMethodWithParam<T>("MockAllVariations#ParamGeneric");
+            private readonly MockMethodWithParam<double> _paramTypeResponseTask = new MockMethodWithParam<double>("MockAllVariations#ParamTypeResponseTask");
+            private readonly MockMethodWithParam<Tuple<string, int>> _paramTuple = new MockMethodWithParam<Tuple<string, int>>("MockAllVariations#ParamTuple");
+            private readonly MockMethodWithParam<Tuple<string, T>> _paramTypeGeneric = new MockMethodWithParam<Tuple<string, T>>("MockAllVariations#ParamTypeGeneric");
+            private readonly MockMethodWithResponse<T> _responseGeneric = new MockMethodWithResponse<T>("MockAllVariations#ResponseGeneric");
+            private readonly MockMethodWithResponse<string> _responseType = new MockMethodWithResponse<string>("MockAllVariations#ResponseType");
+            private readonly MockMethodWithResponse<T> _responseTaskGeneric = new MockMethodWithResponse<T>("MockAllVariations#ResponseTaskGeneric");
+            private readonly MockMethodWithResponse<double> _responseTaskType = new MockMethodWithResponse<double>("MockAllVariations#ResponseTaskType");
+            private readonly MockMethodWithParamAndResponse<int, string> _paramTypeResponseTaskType = new MockMethodWithParamAndResponse<int, string>("MockAllVariations#ParamTypeResponseTaskType");
+            private readonly MockMethodWithParamAndResponse<Tuple<char, string, IExample>, int> _paramTupleResponseType = new MockMethodWithParamAndResponse<Tuple<char, string, IExample>, int>("MockAllVariations#ParamTupleResponseType");
+            private readonly MockMethodWithParamAndResponse<int, string> _sameNameDifParamsint = new MockMethodWithParamAndResponse<int, string>("MockAllVariations#SameNameDifParamsint");
+            private readonly MockMethodWithParamAndResponse<double, string> _sameNameDifParamsdouble = new MockMethodWithParamAndResponse<double, string>("MockAllVariations#SameNameDifParamsdouble");
 
-            public MockFoozzing<T> Build()
+            public MockAllVariations<T> Build()
             {
-                return new MockFoozzing<T>
+                return new MockAllVariations<T>
                 {
                     _voidVoid = _voidVoid,
                     _responseTaskVoid = _responseTaskVoid,
@@ -286,6 +291,4 @@ namespace DebugSolution.Sample
             }
         }
     }
-
-    public interface ISolitar { }
 }

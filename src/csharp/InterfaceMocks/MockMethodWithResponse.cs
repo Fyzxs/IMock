@@ -1,20 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace InterfaceMocks
 {
     public class MockMethodWithResponse<TResponse> : MockMethodBase, IMockMethodWithResponse<TResponse>
     {
-        private Func<TResponse>[] _funcs;
-        private int _funcIndex;
+        private readonly IStickyLastList<Func<TResponse>> _funcs;
 
-        public MockMethodWithResponse(string name) : base(name) => _funcs = new Func<TResponse>[] { () => throw new TestException(name) };
+        public MockMethodWithResponse(string name) : base(name) => _funcs = new StickyLastList<Func<TResponse>>(() => throw new TestException(name));
 
         public void UpdateInvocation(params TResponse[] valuesToReturn) => UpdateInvocation(FuncWrapper(valuesToReturn));
 
-        private static Func<TResponse>[] FuncWrapper(TResponse[] valuesToReturn)
+        public void UpdateInvocation(params Func<TResponse>[] funcs) => _funcs.SetTo(funcs);
+
+        public TResponse Invoke()
         {
-            int length = valuesToReturn.Length;
+            InvokedCount++;
+            return _funcs.Next()();
+        }
+
+        public Task<TResponse> InvokeTask() => Task.FromResult(Invoke());
+
+        private Func<TResponse>[] FuncWrapper(IReadOnlyList<TResponse> valuesToReturn)
+        {
+            int length = valuesToReturn.Count;
             Func<TResponse>[] funcs = new Func<TResponse>[length];
 
             for (int index = 0; index < length; index++)
@@ -25,23 +35,6 @@ namespace InterfaceMocks
             return funcs;
         }
 
-        private TResponse ExecuteFunc()
-        {
-            int length = _funcs.Length;
-            if (length <= _funcIndex) return _funcs[length - 1]();
-
-            return _funcs[_funcIndex++]();
-        }
-
-        public void UpdateInvocation(params Func<TResponse>[] funcs) => _funcs = funcs;
-
-        public TResponse Invoke()
-        {
-            InvokedCount++;
-            return ExecuteFunc();
-        }
-
-        public Task<TResponse> InvokeTask() => Task.FromResult(Invoke());
     }
 
     public interface IMockMethodWithResponse<TResponse>

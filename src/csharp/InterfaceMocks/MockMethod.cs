@@ -5,35 +5,21 @@ namespace InterfaceMocks
 {
     public class MockMethod : MockMethodBase
     {
-        private Action[] _actions;
-        private int _actionIndex;
+        private readonly IStickyLastList<Action> _lambdas;
 
-        public MockMethod(string name) : base(name) => _actions = new Action[] { () => throw new TestException(name) };
+        public MockMethod(string name) : base(name) => _lambdas = new StickyLastList<Action>(() => throw new TestException(name));
 
         public void UpdateInvocation() => UpdateInvocation(() => { });
 
-        public void UpdateInvocation(params Action[] actions) => _actions = actions;
+        public void UpdateInvocation(params Action[] actions) => _lambdas.SetTo(actions);
 
         public void Invoke()
         {
+            _lambdas.Next()();
             InvokedCount++;
-            ExecuteAction();
         }
 
-        public Task InvokeTask()
-        {
-            return Task.Run(() => { Invoke(); });
-        }
-
-        private void ExecuteAction()
-        {
-            if (_actions.Length == _actionIndex)
-            {
-                _actions[_actions.Length - 1]();
-                return;
-            }
-
-            _actions[_actionIndex++]();
-        }
+        public Task InvokeTask() => Task.Run(() => { Invoke(); });
     }
+
 }

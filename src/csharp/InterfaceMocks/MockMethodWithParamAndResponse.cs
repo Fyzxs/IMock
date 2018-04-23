@@ -3,14 +3,14 @@ using System.Threading.Tasks;
 
 namespace InterfaceMocks
 {
-    public class MockMethodWithParamAndResponse<TParam, TResponse> : MockMethodBase<TResponse>
+    public class MockMethodWithParamAndResponse<TParam, TResponse> : MockMethodBase
     {
         private readonly IMockMethodWithParam<TParam> _paramMethod;
         private readonly IMockMethodWithResponse<TResponse> _responseMethod;
 
         public MockMethodWithParamAndResponse(string name) : this(name, new MockMethodWithParam<TParam>(name), new MockMethodWithResponse<TResponse>(name)) { }
 
-        public MockMethodWithParamAndResponse(string name, IMockMethodWithParam<TParam> paramMethod, IMockMethodWithResponse<TResponse> responseMethod) : base(name)
+        private MockMethodWithParamAndResponse(string name, IMockMethodWithParam<TParam> paramMethod, IMockMethodWithResponse<TResponse> responseMethod) : base(name)
         {
             _paramMethod = paramMethod;
             _responseMethod = responseMethod;

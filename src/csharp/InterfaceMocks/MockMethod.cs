@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace InterfaceMocks
 {
-    public class MockMethod : MockMethodBase<Task>
+    public class MockMethod : MockMethodBase
     {
         private Action[] _actions;
         private int _actionIndex;

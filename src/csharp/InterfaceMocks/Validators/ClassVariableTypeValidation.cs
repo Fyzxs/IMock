@@ -4,6 +4,16 @@ namespace InterfaceMocks.Validators
 {
     /// <summary>
     /// Perform type validation against the private variables of a class.
+    /// <example>
+    /// Usage for variables in class:
+    /// <code>
+    /// new ClassVariableTypeValidation().Add&lt;ExpectedType>("_someVariableName").Add&lt;ExpectedOtherTyper>("_variableName").AssertExpectedVariables(new HeadOfChainBeingTested());
+    /// </code>
+    /// Usage for variables in super type:
+    /// <code>
+    /// new ClassVariableTypeValidation().Add&lt;ExpectedType>("_someVariableName").Add&lt;ExpectedOtherTyper>("_variableName").AssertExpectedVariables&lt;SuperType>(new ClassUnderTest());
+    /// </code>
+    /// </example>
     /// </summary>
     public sealed class ClassVariableTypeValidation
     {

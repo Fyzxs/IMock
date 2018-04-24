@@ -2,9 +2,7 @@
 
 namespace InterfaceMocks.Library
 {
-    /// <summary>
-    /// A class to count. This is thread safe through use of the <see cref="Interlocked"/>.
-    /// </summary>
+    /// <inheritdoc/>
     internal class Counter : ICounter
     {
         private long _count;
@@ -16,6 +14,9 @@ namespace InterfaceMocks.Library
         public void Increment() => Interlocked.Increment(ref _count);
     }
 
+    /// <summary>
+    /// A class to count. This is thread safe through use of the <see cref="Interlocked"/>.
+    /// </summary>
     internal interface ICounter
     {
         /// <summary>

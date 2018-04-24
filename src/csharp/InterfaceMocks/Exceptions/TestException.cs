@@ -2,7 +2,6 @@
 
 namespace InterfaceMocks.Exceptions
 {
-    /// <inheritdoc />
     /// <summary>
     /// <see cref="T:System.Exception" /> thrown when test configuration is incorrect.
     /// </summary>
@@ -10,7 +9,6 @@ namespace InterfaceMocks.Exceptions
     {
         private readonly string _method;
 
-        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="Exception"/> class.
         /// </summary>

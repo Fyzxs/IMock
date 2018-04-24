@@ -7,6 +7,12 @@ namespace InterfaceMocks.Validators
 {
     /// <summary>
     /// Perform type validation against the expected link order in a Chain of Responsibility implementation.
+    /// <example>
+    /// Usage:
+    /// <code>
+    /// new ChainValidation().Add&lt;ExpectedClass>().Add&lt;ExpectedOther>("_variableName").AssertExpectedChain(new HeadOfChainBeingTested());
+    /// </code>
+    /// </example>
     /// </summary>
     public sealed class ChainValidation
     {

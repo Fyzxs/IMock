@@ -2,20 +2,36 @@
 
 namespace InterfaceMocks.Validators
 {
-    public class ClassVariableTypeValidation
+    /// <summary>
+    /// Perform type validation against the private variables of a class.
+    /// </summary>
+    public sealed class ClassVariableTypeValidation
     {
         private readonly List<ValidationInfo> _validationInfo;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClassVariableTypeValidation"/> class.
+        /// </summary>
         public ClassVariableTypeValidation() : this(new List<ValidationInfo>()) { }
 
-        public ClassVariableTypeValidation(List<ValidationInfo> validationInfo) => _validationInfo = validationInfo;
+        private ClassVariableTypeValidation(List<ValidationInfo> validationInfo) => _validationInfo = validationInfo;
 
+        /// <summary>
+        /// Adds the next class of the chain to be validated.
+        /// </summary>
+        /// <typeparam name="T">The class expected to be next in the chain.</typeparam>
+        /// <param name="name">The name of the private variable the instance is held in.</param>
+        /// <returns>This instance of ChainValidation</returns>
         public ClassVariableTypeValidation Add<T>(string name)
         {
             _validationInfo.Add(new ValidationInfo(name, typeof(T)));
             return this;
         }
 
+        /// <summary>
+        /// Validates the variables specified through the <see cref="Add{T}"/> method.
+        /// </summary>
+        /// <param name="classToValidate">The instance to start validation against.</param>
         public void AssertExpectedVariables(object classToValidate)
         {
             foreach (ValidationInfo info in _validationInfo)
@@ -24,6 +40,10 @@ namespace InterfaceMocks.Validators
             }
         }
 
+        /// <summary>
+        /// Validates the variables in the super type <see cref="T"/> specified through the <see cref="Add{T}"/> method.
+        /// </summary>
+        /// <param name="classToValidate">The instance to start validation against.</param>
         public void AssertExpectedVariables<T>(object classToValidate)
         {
             foreach (ValidationInfo info in _validationInfo)

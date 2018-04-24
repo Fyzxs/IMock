@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace InterfaceMocks
 {
-    public class MockMethodWithParamAndResponse<TParam, TResponse> : MockMethodBase
+    public sealed class MockMethodWithParamAndResponse<TParam, TResponse> : MockMethodBase
     {
         private readonly IMockMethodWithParam<TParam> _paramMethod;
         private readonly IMockMethodWithResponse<TResponse> _responseMethod;

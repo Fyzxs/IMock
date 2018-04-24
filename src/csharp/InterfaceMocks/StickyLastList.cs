@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace InterfaceMocks
 {
-    public class StickyLastList<T> : IStickyLastList<T>
+    public sealed class StickyLastList<T> : IStickyLastList<T>
     {
         private readonly IList<T> _items;
         private int _actionIndex;

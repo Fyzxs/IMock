@@ -1,20 +1,23 @@
-﻿using System;
+﻿using InterfaceMocks.Exceptions;
+using System;
 using System.Threading.Tasks;
 
 namespace InterfaceMocks
 {
-    public class MockMethodWithParam<TParam> : MockMethodBase, IMockMethodWithParam<TParam>
+    public sealed class MockMethodWithParam<TParam> : MockMethodBase, IMockMethodWithParam<TParam>
     {
         private readonly string _name;
         private readonly IStickyLastList<Action> _lambdas;
         private readonly IStickyLastList<TParam> _values;
+        private readonly IAsserter _asserter;
 
-        public MockMethodWithParam(string name) : this(name, new StickyLastList<Action>(() => throw new TestException(name)), new StickyLastList<TParam>()) { }
-        public MockMethodWithParam(string name, IStickyLastList<Action> lambdas, IStickyLastList<TParam> values) : base(name)
+        public MockMethodWithParam(string name) : this(name, new StickyLastList<Action>(() => throw new TestException(name)), new StickyLastList<TParam>(), new Asserter()) { }
+        private MockMethodWithParam(string name, IStickyLastList<Action> lambdas, IStickyLastList<TParam> values, IAsserter asserter) : base(name)
         {
             _name = name;
             _lambdas = lambdas;
             _values = values;
+            _asserter = asserter;
         }
 
         public void UpdateInvocation() => UpdateInvocation(() => { });
@@ -42,7 +45,7 @@ namespace InterfaceMocks
         public void AssertInvokedWith(TParam expected)
         {
             TParam actual = GetValueInOrderOfExecution();
-            AssertIf(actual.Equals(expected), $"Expected {_name} to be invoked with {expected} but was actually invoked with {actual}");
+            _asserter.AssertIf(actual.Equals(expected), $"Expected {_name} to be invoked with {expected} but was actually invoked with {actual}");
         }
     }
 

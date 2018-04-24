@@ -1,9 +1,13 @@
-﻿using System;
+﻿using InterfaceMocks.Exceptions;
+using System;
 using System.Threading.Tasks;
 
 namespace InterfaceMocks
 {
-    public class MockMethod : MockMethodBase
+    /// <summary>
+    /// <see cref="MockMethod"/> is used in an interface mock for methods that have no arguments and a <see cref="Void"/> or <see cref="Task"/> return type.
+    /// </summary>
+    public sealed class MockMethod : MockMethodBase
     {
         private readonly IStickyLastList<Action> _lambdas;
 

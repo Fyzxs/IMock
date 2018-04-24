@@ -1,10 +1,11 @@
-﻿using System;
+﻿using InterfaceMocks.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace InterfaceMocks
 {
-    public class MockMethodWithResponse<TResponse> : MockMethodBase, IMockMethodWithResponse<TResponse>
+    public sealed class MockMethodWithResponse<TResponse> : MockMethodBase, IMockMethodWithResponse<TResponse>
     {
         private readonly IStickyLastList<Func<TResponse>> _funcs;
 

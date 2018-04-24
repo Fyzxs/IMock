@@ -1,25 +1,26 @@
-﻿using System;
+﻿using InterfaceMocks.Exceptions;
 
 namespace InterfaceMocks
 {
     public abstract class MockMethodBase
     {
         private readonly string _name;
+        private readonly IAsserter _asserter;
 
         protected int InvokedCount = 0;
 
-        protected MockMethodBase(string name) => _name = name;
+        protected MockMethodBase(string name) : this(name, new Asserter()) { }
 
-        public void AssertInvoked() => AssertIf(Invoked(), $"{_name} was expected but not invoked.");
+        private MockMethodBase(string name, IAsserter asserter)
+        {
+            _name = name;
+            _asserter = asserter;
+        }
 
-        public void InvokedCountMatches(int count) => AssertIf(count == InvokedCount, $"{_name} [InvokedCount={InvokedCount}] does not match expected [count={count}].");
+        public void AssertInvoked() => _asserter.AssertIf(Invoked(), $"{_name} was expected but not invoked.");
+
+        public void InvokedCountMatches(int count) => _asserter.AssertIf(count == InvokedCount, $"{_name} [InvokedCount={InvokedCount}] does not match expected [count={count}].");
 
         private bool Invoked() => 0 < InvokedCount;
-
-        protected void AssertIf(bool condition, string message)
-        {
-            if (condition) return;
-            throw new Exception(message);
-        }
     }
 }

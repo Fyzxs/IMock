@@ -3,6 +3,7 @@ using InterfaceMocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading.Tasks;
+using InterfaceMocks.Exceptions;
 
 namespace InterfaceMocksTests
 {

@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace InterfaceMocks
 {
+    /// <summary>
+    /// <see cref="T:InterfaceMocks.MockMethodWithParam" /> is used in an interface mock for methods that have arguments and a <see cref="T:System.Void" /> or <see cref="T:System.Threading.Tasks.Task" /> return type.
+    /// </summary>
     public sealed class MockMethodWithParam<TParam> : MockMethodBase, IMockMethodWithParam<TParam>
     {
         private readonly string _name;
@@ -28,7 +31,7 @@ namespace InterfaceMocks
         public void Invoke(TParam value)
         {
             _values.Add(value);
-            InvokedCount++;
+            MethodInvoked();
             _lambdas.Next()();
         }
 
@@ -45,7 +48,7 @@ namespace InterfaceMocks
         public void AssertInvokedWith(TParam expected)
         {
             TParam actual = GetValueInOrderOfExecution();
-            _asserter.AssertIf(actual.Equals(expected), $"Expected {_name} to be invoked with {expected} but was actually invoked with {actual}");
+            _asserter.AssertIf(!actual.Equals(expected), $"Expected {_name} to be invoked with {expected} but was actually invoked with {actual}");
         }
     }
 

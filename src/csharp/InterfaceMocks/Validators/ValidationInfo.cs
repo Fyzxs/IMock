@@ -24,8 +24,8 @@ namespace InterfaceMocks.Validators
 
         public void AssertType(object obj)
         {
-            _asserter.AssertIf(obj != null, $"[name = {_name}] [type = {_type.Name}]");
-            _asserter.AssertIf(obj.GetType() == _type, $"[obj={obj} was not of the expected [type={_type.Name}");
+            AssertIfNull(obj);
+            _asserter.AssertIf(obj.GetType() != _type, $"Expected [name={_name}] to be of [type={_type.Name}] but found [type={obj.GetType().Name}]");
         }
 
         public FieldInfo FieldInfo(object obj)
@@ -34,16 +34,23 @@ namespace InterfaceMocks.Validators
                 .GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
                 .FirstOrDefault(t => NameMatches(t.Name));
 
-            _asserter.AssertIf(fieldInfo != null, $"[name = {_name}] [type = {_type.Name}]");
+            AssertIfNull(fieldInfo);
             return fieldInfo;
         }
 
         public FieldInfo FieldInfo<T>()
         {
-            FieldInfo fieldInfo = typeof(T).GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+            FieldInfo fieldInfo = typeof(T)
+                .GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
                 .FirstOrDefault(t => NameMatches(t.Name));
-            _asserter.AssertIf(fieldInfo != null, $"[name = {_name}] [type = {_type.Name}]");
+
+            AssertIfNull(fieldInfo);
             return fieldInfo;
+        }
+
+        private void AssertIfNull(object obj)
+        {
+            _asserter.AssertIf(obj == null, $"Expected [name={_name}] to be of [type={_type.Name}] but found null");
         }
     }
 }

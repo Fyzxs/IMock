@@ -48,7 +48,7 @@ namespace InterfaceMocks.Validators
 
         private object NextLink(object obj, ValidationInfo info) => GetAllFields(obj.GetType()).First(t => info.NameMatches(t.Name)).GetValue(obj);
 
-        private static IEnumerable<FieldInfo> GetAllFields(Type t)
+        private IEnumerable<FieldInfo> GetAllFields(Type t)
         {
             if (t == null) return Enumerable.Empty<FieldInfo>();
 

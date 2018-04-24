@@ -8,13 +8,13 @@ namespace InterfaceMocks.Exceptions
     internal sealed class Asserter : IAsserter
     {
         /// <summary>
-        /// Thows an <see cref="Exception"/> with <see cref="exceptionMsg"/> as the message if <see cref="condition"/> is not true.
+        /// Thows an <see cref="Exception"/> with <see cref="exceptionMsg"/> as the message if <see cref="condition"/> is true.
         /// </summary>
-        /// <param name="condition">Will throw an <see cref="Exception"/> when this is false.</param>
+        /// <param name="condition">Will throw an <see cref="Exception"/> when this is true.</param>
         /// <param name="exceptionMsg">The message of the <see cref="Exception"/></param>
         public void AssertIf(bool condition, string exceptionMsg)
         {
-            if (condition) return;
+            if (!condition) return;
             throw new Exception(exceptionMsg);
         }
     }

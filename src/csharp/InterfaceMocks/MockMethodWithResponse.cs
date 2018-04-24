@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace InterfaceMocks
 {
+    /// <summary>
+    /// <see cref="T:InterfaceMocks.MockMethodWithResponse" /> is used in an interface mock for methods that have no arguments and return a non-<see cref="Task"/> type.
+    /// </summary>
     public sealed class MockMethodWithResponse<TResponse> : MockMethodBase, IMockMethodWithResponse<TResponse>
     {
         private readonly IStickyLastList<Func<TResponse>> _funcs;
@@ -17,7 +20,7 @@ namespace InterfaceMocks
 
         public TResponse Invoke()
         {
-            InvokedCount++;
+            MethodInvoked();
             return _funcs.Next()();
         }
 
@@ -35,7 +38,6 @@ namespace InterfaceMocks
             }
             return funcs;
         }
-
     }
 
     public interface IMockMethodWithResponse<TResponse>

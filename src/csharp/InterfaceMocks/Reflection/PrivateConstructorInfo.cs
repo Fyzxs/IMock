@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InterfaceMocks.Library;
+using System;
 using System.Reflection;
 
 namespace InterfaceMocks.Reflection

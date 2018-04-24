@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace TestMocks.Reflection
+namespace InterfaceMocks.Reflection
 {
     public class PrivateCtor<T>
     {

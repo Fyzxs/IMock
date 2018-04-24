@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TestMocks.Reflection
+namespace InterfaceMocks.Reflection
 {
     public class TypeArray : Array<Type>
     {

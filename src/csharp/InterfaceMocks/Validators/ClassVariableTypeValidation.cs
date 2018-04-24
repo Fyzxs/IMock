@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TestMocks.Validators
+namespace InterfaceMocks.Validators
 {
     public class ClassVariableTypeValidation
     {

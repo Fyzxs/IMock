@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using FluentAssertions;
 
-namespace TestMocks.Validators
+namespace InterfaceMocks.Validators
 {
     public class ValidationInfo
     {

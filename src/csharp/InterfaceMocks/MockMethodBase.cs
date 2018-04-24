@@ -12,9 +12,9 @@ namespace InterfaceMocks
 
         public void AssertInvoked() => AssertIf(Invoked(), $"{_name} was expected but not invoked.");
 
-        private bool Invoked() => 0 < InvokedCount;
-
         public void InvokedCountMatches(int count) => AssertIf(count == InvokedCount, $"{_name} [InvokedCount={InvokedCount}] does not match expected [count={count}].");
+
+        private bool Invoked() => 0 < InvokedCount;
 
         protected void AssertIf(bool condition, string message)
         {

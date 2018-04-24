@@ -3,6 +3,42 @@ using System.Threading.Tasks;
 
 namespace InterfaceMocks
 {
+    /// <summary>
+    /// <see cref="T:InterfaceMocks.MockMethodWithParamAndResponse" /> is used in an interface mock for methods that have arguments and return a non-<see cref="Task"/> type.
+    /// <example>
+    /// This class is used to mock an interface of the signature <code>TResponse MethodName(TParam param)</code>
+    /// A full example of how this would be used:
+    /// <code>
+    /// public interface ISomeInterface{
+    ///     string MethodName(double value);
+    /// }
+    /// public class MockSomeInterface : ISomeInterface{
+    /// 
+    ///     private MockMethodWithParamAndResponse&lt;double, string> _methodName;
+    /// 
+    ///     private MockTobeMocked(){}
+    /// 
+    ///     public string MethodName(double value) => _methodName.Invoked(value);
+    /// 
+    ///     public class Builder{
+    ///         private MockMethodWithResponse&lt;double, string> _methodName;= new MockMethodWithResponse&lt;double, string>("MockSomeInterface#MethodName");
+    /// 
+    ///         public Builder MethodName(params string[] responseValues){
+    ///             _methodName.UpdateInvocation(responseValues);
+    ///             return this;
+    ///         }
+    ///
+    ///         public MockSomeInterface Build{
+    ///             return new MockSomeInterface{
+    ///                 _methodName = _methodName
+    ///             }
+    ///         }
+    ///     }
+    /// }
+    /// </code>
+    /// This is the style use successfully in multiple projects. The available ReSharper plugin simplifies creating the Mock Object.
+    /// </example>
+    /// </summary>
     public sealed class MockMethodWithParamAndResponse<TParam, TResponse> : MockMethodBase
     {
         private readonly IMockMethodWithParam<TParam> _paramMethod;

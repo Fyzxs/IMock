@@ -6,6 +6,39 @@ namespace InterfaceMocks
 {
     /// <summary>
     /// <see cref="T:InterfaceMocks.MockMethodWithParam" /> is used in an interface mock for methods that have arguments and a <see cref="T:System.Void" /> or <see cref="T:System.Threading.Tasks.Task" /> return type.
+    /// <example>
+    /// This class is used to mock an interface of the signature <code>void MethodName(TParam value)</code>
+    /// A full example of how this would be used:
+    /// <code>
+    /// public interface ISomeInterface{
+    ///     void MethodName(string value);
+    /// }
+    /// public class MockSomeInterface : ISomeInterface{
+    /// 
+    ///     private MockMethodWithParam&lt;string> _methodName;
+    /// 
+    ///     private MockTobeMocked(){}
+    /// 
+    ///     public void MethodName(string value) => _methodName.Invoked(value);
+    /// 
+    ///     public class Builder{
+    ///         private MockMethodWithParam&lt;string> _methodName;= new MockMethodWithParam&lt;string>("MockSomeInterface#MethodName");
+    /// 
+    ///         public Builder MethodName(){
+    ///             _methodName.UpdateInvocation();
+    ///             return this;
+    ///         }
+    ///
+    ///         public MockSomeInterface Build{
+    ///             return new MockSomeInterface{
+    ///                 _methodName = _methodName
+    ///             }
+    ///         }
+    ///     }
+    /// }
+    /// </code>
+    /// This is the style use successfully in multiple projects. The available ReSharper plugin simplifies creating the Mock Object.
+    /// </example>
     /// </summary>
     public sealed class MockMethodWithParam<TParam> : MockMethodBase, IMockMethodWithParam<TParam>
     {

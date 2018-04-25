@@ -97,7 +97,7 @@ namespace InterfaceMocks
     }
 
     /// <summary>
-    /// Interface for methods that have arguments and a <see cref="T:System.Void" /> or <see cref="T:System.Threading.Tasks.Task" /> return type.
+    /// Interface for methods that have arguments <typeparamref name="TParam"/> and a <see cref="T:System.Void" /> or <see cref="T:System.Threading.Tasks.Task" /> return type.
     /// </summary>
     public interface IMockMethodWithParam<TParam>
     {

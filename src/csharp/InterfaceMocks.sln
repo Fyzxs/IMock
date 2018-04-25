@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceMocks", "InterfaceMocks\InterfaceMocks.csproj", "{BEC48F53-6A88-45E8-98A4-7E707E7EE740}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterfaceMocks", "InterfaceMocks\InterfaceMocks.csproj", "{BEC48F53-6A88-45E8-98A4-7E707E7EE740}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceMocksTests", "InterfaceMocksTests\InterfaceMocksTests.csproj", "{549938F2-8C51-4C5E-A8AF-07DA78B03863}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterfaceMocksTests", "InterfaceMocksTests\InterfaceMocksTests.csproj", "{549938F2-8C51-4C5E-A8AF-07DA78B03863}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{658664B2-F3CD-4A37-B5CD-0799D0B35788}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\README.md = ..\..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

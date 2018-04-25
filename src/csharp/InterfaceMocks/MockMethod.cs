@@ -41,7 +41,7 @@ namespace InterfaceMocks
     /// This is the style use successfully in multiple projects. The available ReSharper plugin simplifies creating the Mock Object.
     /// </example>
     /// </summary>
-    public sealed class MockMethod : MockMethodBase
+    public sealed class MockMethod : MockMethodBase, IMockMethod
     {
         private readonly IStickyLastList<Action> _lambdas;
 
@@ -51,31 +51,49 @@ namespace InterfaceMocks
         /// <param name="name"></param>
         public MockMethod(string name) : base(name) => _lambdas = new StickyLastList<Action>(() => throw new TestException(name));
 
-        /// <summary>
-        /// Updates invoking the method to not throw an exception.
-        /// </summary>
+
+        ///<inheritdoc/>
         public void UpdateInvocation() => UpdateInvocation(() => { });
 
-        /// <summary>
-        /// Updates invoking the method to perform the action on subsequent calls.
-        /// </summary>
-        /// <param name="actions">The actions to perform on subsequent method calls.</param>
+        ///<inheritdoc/>
         public void UpdateInvocation(params Action[] actions) => _lambdas.SetTo(actions);
 
-        /// <summary>
-        /// Called when the mocked method is invoked.
-        /// </summary>
+        ///<inheritdoc/>
         public void Invoke()
         {
             _lambdas.Next()();
             MethodInvoked();
         }
 
+        ///<inheritdoc/>
+        public Task InvokeTask() => Task.Run(() => { Invoke(); });
+    }
+
+    /// <summary>
+    /// Interface for methods that have no arguments and a <see cref="T:System.Void" /> or <see cref="T:System.Threading.Tasks.Task" /> return type.
+    /// </summary>
+    public interface IMockMethod
+    {
+        /// <summary>
+        /// Updates invoking the method to not throw an exception.
+        /// </summary>
+        void UpdateInvocation();
+
+        /// <summary>
+        /// Updates invoking the method to perform the action on subsequent calls.
+        /// </summary>
+        /// <param name="actions">The actions to perform on subsequent method calls.</param>
+        void UpdateInvocation(params Action[] actions);
+
+        /// <summary>
+        /// Called when the mocked method is invoked.
+        /// </summary>
+        void Invoke();
+
         /// <summary>
         /// Called when the mocked method is invoked async.
         /// </summary>
         /// <returns>An Awaitable</returns>
-        public Task InvokeTask() => Task.Run(() => { Invoke(); });
+        Task InvokeTask();
     }
-
 }

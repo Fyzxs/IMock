@@ -51,7 +51,7 @@ namespace InterfaceMocks.Validators
         }
 
         /// <summary>
-        /// Validates the variables in the super type <see cref="T"/> specified through the <see cref="Add{T}"/> method.
+        /// Validates the variables in the super type <typeparamref name="T"/> specified through the <see cref="Add{T}"/> method.
         /// </summary>
         /// <param name="classToValidate">The instance to start validation against.</param>
         public void AssertExpectedVariables<T>(object classToValidate)

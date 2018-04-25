@@ -19,7 +19,7 @@ namespace InterfaceMocks.Exceptions
     internal interface IAsserter
     {
         /// <summary>
-        /// Thows an <see cref="Exception"/> with <see cref="exceptionMsg"/> as the message if <see cref="condition"/> is true.
+        /// Thows an <see cref="Exception"/> with <paramref name="exceptionMsg"/> as the message if <paramref name="condition"/> is true.
         /// </summary>
         /// <param name="condition">Will throw an <see cref="Exception"/> when this is true.</param>
         /// <param name="exceptionMsg">The message of the <see cref="Exception"/></param>

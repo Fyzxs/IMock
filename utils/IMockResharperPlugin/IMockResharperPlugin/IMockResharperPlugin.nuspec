@@ -3,7 +3,7 @@
     <metadata>
         <id>Fyzxs.IMockResharperPlugin</id>
         <title>IMock for ReSharper</title> 
-        <version>0.0.2</version>
+        <version>0.0.3</version>
         <authors>Fyzxs</authors>
         <owners>Fyzxs</owners>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -18,7 +18,7 @@
         </dependencies>
     </metadata>
     <files>
-      <file src="bin\Debug\Fyzxs.IMockResharperPlugin.dll" target="dotFiles\" />
-      <file src="bin\Debug\Fyzxs.IMockResharperPlugin.pdb" target="dotFiles\" />
+      <file src="bin\Release\Fyzxs.IMockResharperPlugin.dll" target="dotFiles\" />
+      <file src="bin\Release\Fyzxs.IMockResharperPlugin.pdb" target="dotFiles\" />
     </files>
 </package>

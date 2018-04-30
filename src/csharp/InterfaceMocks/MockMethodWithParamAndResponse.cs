@@ -73,6 +73,7 @@ namespace InterfaceMocks
         /// <inheritdoc />
         public TResponse Invoke(TParam value)
         {
+            MethodInvoked();
             _paramMethod.Invoke(value);
             return _responseMethod.Invoke();
         }

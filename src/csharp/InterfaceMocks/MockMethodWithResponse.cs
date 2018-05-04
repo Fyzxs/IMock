@@ -104,7 +104,6 @@ namespace InterfaceMocks
         /// <summary>
         /// Called when the mocked method is invoked async.
         /// </summary>
-        /// <param name="value">The value the method was invoked with</param>
         /// <returns>The value specified from <see cref="UpdateInvocation(TResponse[])"/> or  <see cref="UpdateInvocation(Func&lt;TResponse>[])"/> as an awaitable</returns>
         Task<TResponse> InvokeTask();
     }

@@ -25,6 +25,22 @@ namespace InterfaceMocksTests
             // Assert
             actual.Should().BeTrue();
         }
+        [TestMethod, TestCategory("unit")]
+        public void Invoke_ShouldFlagInvoked_AndNotExcept()
+        {
+            // Arrange
+            MockMockMethodWithParam<string> mockMockMethodWithParam = new MockMockMethodWithParam<string>.Builder().Invoke().Build();
+            MockMockMethodWithResponse<bool> mockMockMethodWithResponse = new MockMockMethodWithResponse<bool>.Builder().Invoke(true).Build();
+
+            MockMethodWithParamAndResponse<string, bool> subject = new ReflectionObject<MockMethodWithParamAndResponse<string, bool>>("methodName", mockMockMethodWithParam, mockMockMethodWithResponse).Object();
+
+            // Act
+            bool actual = subject.Invoke("expected");
+
+            // Assert
+            subject.AssertInvoked();
+
+        }
 
         [TestMethod, TestCategory("unit")]
         public void Invoke_ShouldCallInvokeOnBothMocks_AndReturnFalse()

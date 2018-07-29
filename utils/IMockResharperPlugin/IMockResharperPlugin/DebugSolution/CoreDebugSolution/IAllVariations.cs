@@ -65,7 +65,7 @@ namespace DebugSolution.Sample
         public Task<string> ParamTypeResponseTaskType(int incoming) => _paramTypeResponseTaskType.InvokeTask(incoming);
         public int ParamTupleResponseType(char c, string yeppers, IFooz longer) => _paramTupleResponseType.Invoke(new Tuple<char, string, IFooz>(c, yeppers, longer));
         public string SameNameDifParams(int one) => _sameNameDifParamsInt.Invoke(one);
-        public string SameNameDifParams(double one2) => _sameNameDifParamsDouble.Invoke(one2);
+        public string SameNameDifParams(double one) => _sameNameDifParamsDouble.Invoke(one);
 
         public class Builder {
             private readonly MockMethod _voidVoid = new MockMethod("MockFoozzing#VoidVoid");
@@ -298,5 +298,9 @@ namespace DebugSolution.Sample
         public void AssertResponseTypeInvoked() => _responseType.AssertInvoked();
         public void AssertResponseTaskGenericInvoked() => _responseTaskGeneric.AssertInvoked();
         public void AssertResponseTaskTypeInvoked() => _responseTaskType.AssertInvoked();
+        public void AssertParamTypeResponseTaskTypeInvokedWith(int incoming) => _paramTypeResponseTaskType.AssertInvokedWith(incoming);
+        public void AssertParamTupleResponseTypeInvokedWith(char c, string yeppers, IFooz longer) => _paramTupleResponseType.AssertInvokedWith(new Tuple<char, string, IFooz>(c, yeppers, longer));
+        public void AssertSameNameDifParamsIntInvokedWith(int one) => _sameNameDifParamsInt.AssertInvokedWith(one);
+        public void AssertSameNameDifParamsDoubleInvokedWith(double one) => _sameNameDifParamsDouble.AssertInvokedWith(one);
     }
 }

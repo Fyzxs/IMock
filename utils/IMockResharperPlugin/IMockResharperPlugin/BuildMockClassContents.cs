@@ -107,6 +107,7 @@ namespace Fyzxs.IMockResharperPlugin
 
             throw new NotSupportedException("You're not supposed to be here");
         }
+
         //TODO turn this into a chain
         private ISignature2 MockAssertMethod(IMethod method, IInterface theInterface)
         {
@@ -118,6 +119,11 @@ namespace Fyzxs.IMockResharperPlugin
             if (method.ReturnType.IsVoid() || method.ReturnType.IsTask())
             {
                 return new MockMethodParamAsserts(method, theInterface);
+            }
+
+            if (!(method.ReturnType.IsVoid() || method.ReturnType.IsTask()) && method.Parameters.Any())
+            {
+                return new MockMethodWithParamAndResponseAsserts(method, theInterface);
             }
 
             if (!(method.ReturnType.IsVoid() || method.ReturnType.IsTask()))
@@ -153,6 +159,28 @@ namespace Fyzxs.IMockResharperPlugin
         {
         }
     }
+    public class MockMethodWithParamAndResponseAsserts : ISignature2
+    {
+        private readonly ISignature2 _mockMethodResponseAsserts;
+        private readonly ISignature2 _mockMethodParamAsserts;
+
+        public MockMethodWithParamAndResponseAsserts(IMethod methodDeclaration, IInterface theInterface) :
+            this(new MockMethodResponseAsserts(methodDeclaration, theInterface), new MockMethodParamAsserts(methodDeclaration, theInterface))
+        { }
+
+        private MockMethodWithParamAndResponseAsserts(ISignature2 mockMethodResponseAsserts, ISignature2 mockMethodParamAsserts)
+        {
+            _mockMethodResponseAsserts = mockMethodResponseAsserts;
+            _mockMethodParamAsserts = mockMethodParamAsserts;
+        }
+
+        public void Signature(IClassLikeDeclaration classDeclaration, CSharpElementFactory dataProviderElementFactory)
+        {
+            _mockMethodParamAsserts.Signature(classDeclaration, dataProviderElementFactory);
+            _mockMethodResponseAsserts.Signature(classDeclaration, dataProviderElementFactory);
+        }
+    }
+
 
     public class MockMethodAsserts : ISignature2
     {

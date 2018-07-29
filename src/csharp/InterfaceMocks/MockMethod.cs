@@ -61,8 +61,8 @@ namespace InterfaceMocks
         ///<inheritdoc/>
         public void Invoke()
         {
-            _lambdas.Next()();
             MethodInvoked();
+            _lambdas.Next()();
         }
 
         ///<inheritdoc/>

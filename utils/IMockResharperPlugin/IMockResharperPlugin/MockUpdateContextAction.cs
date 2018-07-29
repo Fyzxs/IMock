@@ -27,10 +27,9 @@ namespace Fyzxs.IMockResharperPlugin
         {
             IClassLikeDeclaration classDeclaration = _dataProvider.GetSelectedElement<IClassLikeDeclaration>().NotNull();
             IEnumerable<IInterface> interfaces = classDeclaration.SuperTypes.Select(x => x.GetTypeElement()).OfType<IInterface>();
-            IInterface superType = interfaces.First();
             classDeclaration.RemoveDeclarationsRange(classDeclaration.GetAllDeclarationsRange());
 
-            return new BuildMockClassContents().ExecutePsiTransaction(_dataProvider, solution, classDeclaration, superType);
+            return new BuildMockClassContents().ExecutePsiTransaction(_dataProvider, solution, classDeclaration, interfaces);
         }
 
         public override string Text => "Update Mock";

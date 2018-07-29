@@ -5,7 +5,20 @@ using InterfaceMocks;
 
 namespace DebugSolution.Sample
 {
-    public interface IFoozzing<T>
+    public interface IBarringBase<T>
+    {
+        T BarringBaseParamGenericResponseGeneric(T theType);
+    }
+    public interface IBarring<T> : IBarringBase<T>
+    {
+        T BarringParamGenericResponseGeneric(T theType);
+    }
+    public interface IFooBar<T>
+    {
+        T FooBarParamGenericResponseGeneric(T theType);
+    }
+
+    public interface IFoozzing<T> : IBarring<T>, IFooBar<T>
     {
         //BEG MockMethod
         void VoidVoid();
@@ -33,12 +46,15 @@ namespace DebugSolution.Sample
         string SameNameDifParams(double one);
         //END EdgeCases
         //BEG Bug #9
-        void MultipleGenerics(Func<Task<T>> input);
+        void FuncTaskGeneric(Func<Task<T>> input);
         Task<T> FuncTaskGenericResponseTaskGeneric(Func<Task<T>> input);
         //END Bug #9
     }
 
     public partial class MockFoozzing<T> : IFoozzing<T> {
+        private MockMethodWithParamAndResponse<T, T> _barringBaseParamGenericResponseGeneric;
+        private MockMethodWithParamAndResponse<T, T> _barringParamGenericResponseGeneric;
+        private MockMethodWithParamAndResponse<T, T> _fooBarParamGenericResponseGeneric;
         private MockMethod _voidVoid;
         private MockMethod _responseTaskVoid;
         private MockMethodWithParam<double> _paramType;
@@ -54,8 +70,15 @@ namespace DebugSolution.Sample
         private MockMethodWithParamAndResponse<Tuple<char, string, IFooz>, int> _paramTupleResponseType;
         private MockMethodWithParamAndResponse<int, string> _sameNameDifParamsInt;
         private MockMethodWithParamAndResponse<double, string> _sameNameDifParamsDouble;
-        private MockMethodWithParam<Func<Task<T>>> _foo;
+        private MockMethodWithParam<Func<Task<T>>> _funcTaskGeneric;
+        private MockMethodWithParamAndResponse<Func<Task<T>>, T> _funcTaskGenericResponseTaskGeneric;
         private MockFoozzing() { }
+        public T BarringBaseParamGenericResponseGeneric(T theType) => _barringBaseParamGenericResponseGeneric.Invoke(theType);
+        public void AssertBarringBaseParamGenericResponseGenericInvokedWith(T theType) => _barringBaseParamGenericResponseGeneric.AssertInvokedWith(theType);
+        public T BarringParamGenericResponseGeneric(T theType) => _barringParamGenericResponseGeneric.Invoke(theType);
+        public void AssertBarringParamGenericResponseGenericInvokedWith(T theType) => _barringParamGenericResponseGeneric.AssertInvokedWith(theType);
+        public T FooBarParamGenericResponseGeneric(T theType) => _fooBarParamGenericResponseGeneric.Invoke(theType);
+        public void AssertFooBarParamGenericResponseGenericInvokedWith(T theType) => _fooBarParamGenericResponseGeneric.AssertInvokedWith(theType);
         public void VoidVoid() => _voidVoid.Invoke();
         public Task ResponseTaskVoid() => _responseTaskVoid.InvokeTask();
         public void ParamType(double justOne) => _paramType.Invoke(justOne);
@@ -71,9 +94,30 @@ namespace DebugSolution.Sample
         public int ParamTupleResponseType(char c, string yeppers, IFooz longer) => _paramTupleResponseType.Invoke(new Tuple<char, string, IFooz>(c, yeppers, longer));
         public string SameNameDifParams(int one) => _sameNameDifParamsInt.Invoke(one);
         public string SameNameDifParams(double one) => _sameNameDifParamsDouble.Invoke(one);
-        public void Foo(Func<Task<T>> input) => _foo.Invoke(input);
+        public void FuncTaskGeneric(Func<Task<T>> input) => _funcTaskGeneric.Invoke(input);
+        public Task<T> FuncTaskGenericResponseTaskGeneric(Func<Task<T>> input) => _funcTaskGenericResponseTaskGeneric.InvokeTask(input);
+        public void AssertVoidVoidInvoked() => _voidVoid.AssertInvoked();
+        public void AssertResponseTaskVoidInvoked() => _responseTaskVoid.AssertInvoked();
+        public void AssertParamTypeInvokedWith(double justOne) => _paramType.AssertInvokedWith(justOne);
+        public void AssertParamGenericInvokedWith(T justOne) => _paramGeneric.AssertInvokedWith(justOne);
+        public void AssertParamTypeResponseTaskInvokedWith(double justOne) => _paramTypeResponseTask.AssertInvokedWith(justOne);
+        public void AssertParamTupleInvokedWith(string justOne, int singleInt) => _paramTuple.AssertInvokedWith(new Tuple<string, int>(justOne, singleInt));
+        public void AssertParamTypeGenericInvokedWith(string justOne, T oneT) => _paramTypeGeneric.AssertInvokedWith(new Tuple<string, T>(justOne, oneT));
+        public void AssertResponseGenericInvoked() => _responseGeneric.AssertInvoked();
+        public void AssertResponseTypeInvoked() => _responseType.AssertInvoked();
+        public void AssertResponseTaskGenericInvoked() => _responseTaskGeneric.AssertInvoked();
+        public void AssertResponseTaskTypeInvoked() => _responseTaskType.AssertInvoked();
+        public void AssertParamTypeResponseTaskTypeInvokedWith(int incoming) => _paramTypeResponseTaskType.AssertInvokedWith(incoming);
+        public void AssertParamTupleResponseTypeInvokedWith(char c, string yeppers, IFooz longer) => _paramTupleResponseType.AssertInvokedWith(new Tuple<char, string, IFooz>(c, yeppers, longer));
+        public void AssertSameNameDifParamsIntInvokedWith(int one) => _sameNameDifParamsInt.AssertInvokedWith(one);
+        public void AssertSameNameDifParamsDoubleInvokedWith(double one) => _sameNameDifParamsDouble.AssertInvokedWith(one);
+        public void AssertFuncTaskGenericInvokedWith(Func<Task<T>> input) => _funcTaskGeneric.AssertInvokedWith(input);
+        public void AssertFuncTaskGenericResponseTaskGenericInvokedWith(Func<Task<T>> input) => _funcTaskGenericResponseTaskGeneric.AssertInvokedWith(input);
 
         public class Builder {
+            private readonly MockMethodWithParamAndResponse<T, T> _barringBaseParamGenericResponseGeneric = new MockMethodWithParamAndResponse<T, T>("MockBarringBase#BarringBaseParamGenericResponseGeneric");
+            private readonly MockMethodWithParamAndResponse<T, T> _barringParamGenericResponseGeneric = new MockMethodWithParamAndResponse<T, T>("MockBarring#BarringParamGenericResponseGeneric");
+            private readonly MockMethodWithParamAndResponse<T, T> _fooBarParamGenericResponseGeneric = new MockMethodWithParamAndResponse<T, T>("MockFooBar#FooBarParamGenericResponseGeneric");
             private readonly MockMethod _voidVoid = new MockMethod("MockFoozzing#VoidVoid");
             private readonly MockMethod _responseTaskVoid = new MockMethod("MockFoozzing#ResponseTaskVoid");
             private readonly MockMethodWithParam<double> _paramType = new MockMethodWithParam<double>("MockFoozzing#ParamType");
@@ -89,7 +133,8 @@ namespace DebugSolution.Sample
             private readonly MockMethodWithParamAndResponse<Tuple<char, string, IFooz>, int> _paramTupleResponseType = new MockMethodWithParamAndResponse<Tuple<char, string, IFooz>, int>("MockFoozzing#ParamTupleResponseType");
             private readonly MockMethodWithParamAndResponse<int, string> _sameNameDifParamsInt = new MockMethodWithParamAndResponse<int, string>("MockFoozzing#SameNameDifParamsInt");
             private readonly MockMethodWithParamAndResponse<double, string> _sameNameDifParamsDouble = new MockMethodWithParamAndResponse<double, string>("MockFoozzing#SameNameDifParamsDouble");
-            private readonly MockMethodWithParam<Func<Task<T>>> _foo = new MockMethodWithParam<Func<Task<T>>>("MockFoozzing#Foo");
+            private readonly MockMethodWithParam<Func<Task<T>>> _funcTaskGeneric = new MockMethodWithParam<Func<Task<T>>>("MockFoozzing#FuncTaskGeneric");
+            private readonly MockMethodWithParamAndResponse<Func<Task<T>>, T> _funcTaskGenericResponseTaskGeneric = new MockMethodWithParamAndResponse<Func<Task<T>>, T>("MockFoozzing#FuncTaskGenericResponseTaskGeneric");
 
             public MockFoozzing<T> Build()
             {
@@ -110,8 +155,45 @@ namespace DebugSolution.Sample
                     _paramTupleResponseType = _paramTupleResponseType,
                     _sameNameDifParamsInt = _sameNameDifParamsInt,
                     _sameNameDifParamsDouble = _sameNameDifParamsDouble,
-                    _foo = _foo
+                    _funcTaskGeneric = _funcTaskGeneric,
+                    _funcTaskGenericResponseTaskGeneric = _funcTaskGenericResponseTaskGeneric
                 };
+            }
+
+            public Builder BarringBaseParamGenericResponseGeneric(params T[] responseValues)
+            {
+                _barringBaseParamGenericResponseGeneric.UpdateInvocation(responseValues);
+                return this;
+            }
+
+            public Builder BarringBaseParamGenericResponseGeneric(params Func<T>[] responseValues)
+            {
+                _barringBaseParamGenericResponseGeneric.UpdateInvocation(responseValues);
+                return this;
+            }
+
+            public Builder BarringParamGenericResponseGeneric(params T[] responseValues)
+            {
+                _barringParamGenericResponseGeneric.UpdateInvocation(responseValues);
+                return this;
+            }
+
+            public Builder BarringParamGenericResponseGeneric(params Func<T>[] responseValues)
+            {
+                _barringParamGenericResponseGeneric.UpdateInvocation(responseValues);
+                return this;
+            }
+
+            public Builder FooBarParamGenericResponseGeneric(params T[] responseValues)
+            {
+                _fooBarParamGenericResponseGeneric.UpdateInvocation(responseValues);
+                return this;
+            }
+
+            public Builder FooBarParamGenericResponseGeneric(params Func<T>[] responseValues)
+            {
+                _fooBarParamGenericResponseGeneric.UpdateInvocation(responseValues);
+                return this;
             }
 
             public Builder VoidVoid()
@@ -294,34 +376,29 @@ namespace DebugSolution.Sample
                 return this;
             }
 
-            public Builder Foo()
+            public Builder FuncTaskGeneric()
             {
-                _foo.UpdateInvocation();
+                _funcTaskGeneric.UpdateInvocation();
                 return this;
             }
 
-            public Builder Foo(params Action[] actions)
+            public Builder FuncTaskGeneric(params Action[] actions)
             {
-                _foo.UpdateInvocation(actions);
+                _funcTaskGeneric.UpdateInvocation(actions);
+                return this;
+            }
+
+            public Builder FuncTaskGenericResponseTaskGeneric(params T[] responseValues)
+            {
+                _funcTaskGenericResponseTaskGeneric.UpdateInvocation(responseValues);
+                return this;
+            }
+
+            public Builder FuncTaskGenericResponseTaskGeneric(params Func<T>[] responseValues)
+            {
+                _funcTaskGenericResponseTaskGeneric.UpdateInvocation(responseValues);
                 return this;
             }
         }
-
-        public void AssertVoidVoidInvoked() => _voidVoid.AssertInvoked();
-        public void AssertResponseTaskVoidInvoked() => _responseTaskVoid.AssertInvoked();
-        public void AssertParamTypeInvokedWith(double justOne) => _paramType.AssertInvokedWith(justOne);
-        public void AssertParamGenericInvokedWith(T justOne) => _paramGeneric.AssertInvokedWith(justOne);
-        public void AssertParamTypeResponseTaskInvokedWith(double justOne) => _paramTypeResponseTask.AssertInvokedWith(justOne);
-        public void AssertParamTupleInvokedWith(string justOne, int singleInt) => _paramTuple.AssertInvokedWith(new Tuple<string, int>(justOne, singleInt));
-        public void AssertParamTypeGenericInvokedWith(string justOne, T oneT) => _paramTypeGeneric.AssertInvokedWith(new Tuple<string, T>(justOne, oneT));
-        public void AssertResponseGenericInvoked() => _responseGeneric.AssertInvoked();
-        public void AssertResponseTypeInvoked() => _responseType.AssertInvoked();
-        public void AssertResponseTaskGenericInvoked() => _responseTaskGeneric.AssertInvoked();
-        public void AssertResponseTaskTypeInvoked() => _responseTaskType.AssertInvoked();
-        public void AssertParamTypeResponseTaskTypeInvokedWith(int incoming) => _paramTypeResponseTaskType.AssertInvokedWith(incoming);
-        public void AssertParamTupleResponseTypeInvokedWith(char c, string yeppers, IFooz longer) => _paramTupleResponseType.AssertInvokedWith(new Tuple<char, string, IFooz>(c, yeppers, longer));
-        public void AssertSameNameDifParamsIntInvokedWith(int one) => _sameNameDifParamsInt.AssertInvokedWith(one);
-        public void AssertSameNameDifParamsDoubleInvokedWith(double one) => _sameNameDifParamsDouble.AssertInvokedWith(one);
-        public void AssertFooInvokedWith(Func<Task<T>> input) => _foo.AssertInvokedWith(input);
     }
 }

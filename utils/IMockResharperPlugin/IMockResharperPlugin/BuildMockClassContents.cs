@@ -47,6 +47,26 @@ namespace Fyzxs.IMockResharperPlugin
             {
                 ProcessInterface(dataProvider, classDeclaration, theInterface.GetSuperTypes().Select(x => x.GetTypeElement()).OfType<IInterface>().ToArray(), builderClass);
 
+                foreach (IEvent theEvent in theInterface.Events)
+                {
+                    string eventShortName = theEvent.ShortName;
+                    string eventTypePresentableName = theEvent.Type.GetPresentableName(Languages.Instance.GetLanguageByName("CSHARP"));
+                    classDeclaration.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration($"public event {eventTypePresentableName} _{eventShortName};"));
+                    if (theEvent.Type.GetPresentableName(Languages.Instance.GetLanguageByName("CSHARP")) == "EventHandler")
+                    {
+                        classDeclaration.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration($"public void Trigger{eventShortName}() => _{eventShortName}.Invoke(this, EventArgs.Empty);"));
+                    }
+                    else
+                    {
+                        //type.GetScalarType().GetTypeElement().TypeParameters[0]
+                        //ITypeParameter x = theEvent.Type.GetScalarType().GetTypeElement().TypeParameters[0];
+                        //DeclaredTypeBase con = theEvent.Type as DeclaredTypeFromReferenceName;
+                        //classDeclaration.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration($"public void Trigger{eventShortName}" +
+                        //$"({x.ShortName} val) => _{eventShortName}.Invoke(val);"));
+                    }
+
+                }
+
                 foreach (IMethod node in theInterface.Methods)
                 {
                     ISignature methodSig = new MockMethod(node, theInterface);

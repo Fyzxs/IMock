@@ -5,56 +5,72 @@ using InterfaceMocks;
 
 namespace DebugSolution.Sample
 {
-    public interface IBarringBase<T>
+    public interface IEventExample<T>
     {
-        T BarringBaseParamGenericResponseGeneric(T theType);
-    }
-    public interface IBarring<T> : IBarringBase<T>
-    {
-        T BarringParamGenericResponseGeneric(T theType);
-    }
-    public interface IFooBar<T>
-    {
-        T FooBarParamGenericResponseGeneric(T theType);
+        
+        event EventHandler DoEventing;
+        event Action<T> DoActioning;/*
+        event Action<bool> ActionSpecifiedType;
+        */
     }
 
-    public interface IFoozzing<T> : IBarring<T>, IFooBar<T>
+    public interface IActionExample<T>
     {
-        //BEG MockMethod
+        Action<T> ActionGenericResponseActionGeneric(Action<T> input);
+        Action<bool> ActionTypeResponseActionType(Action<bool> input);
+    }
+
+    public interface IEdgeCases
+    {
+        string SameNameDifParams(int one);
+        string SameNameDifParams(double one);
+    }
+    public interface IBugNumberNine<T>
+    {
+        void FuncTaskGeneric(Func<Task<T>> input);
+        Task<T> FuncTaskGenericResponseTaskGeneric(Func<Task<T>> input);
+    }
+
+    public interface IBugs<T> : IBugNumberNine<T>{}
+
+    public interface IMockMethod
+    {
         void VoidVoid();
         Task ResponseTaskVoid();
-        //END MockMethod
-        //BEG MockMethodWithParam
+    }
+    public interface IMockMethodWithParam<T>
+    {
         void ParamType(double justOne);
         void ParamGeneric(T justOne);
         Task ParamTypeResponseTask(double justOne);
         void ParamTuple(string justOne, int singleInt);
         void ParamTypeGeneric(string justOne, T oneT);
-        //END MockMethodWithParam
-        //BEG MockMethodWithResponse
+    }
+
+    public interface IMockMethodWithResponse<T>
+    {
         T ResponseGeneric();
         string ResponseType();
         Task<T> ResponseTaskGeneric();
         Task<double> ResponseTaskType();
-        //END MockMethodWithResponse
-        //BEG MockMethodWithParamAndResponse
+    }
+
+    public interface IMockMethodWithParamAndResponse<T>
+    {
         Task<string> ParamTypeResponseTaskType(int incoming);
         int ParamTupleResponseType(char c, string yeppers, IFooz longer);
-        //END MockMethodWithParamAndResponse
-        //BEG EdgeCases
-        string SameNameDifParams(int one);
-        string SameNameDifParams(double one);
-        //END EdgeCases
-        //BEG Bug #9
-        void FuncTaskGeneric(Func<Task<T>> input);
-        Task<T> FuncTaskGenericResponseTaskGeneric(Func<Task<T>> input);
-        //END Bug #9
+    }
+
+    public interface ITheRestOfThings<T> : IBugs<T>, IEdgeCases, IEventExample<T>, IActionExample<T>
+    { }
+    public interface IMockMethods<T> : IMockMethod, IMockMethodWithParam<T>, IMockMethodWithResponse<T>, IMockMethodWithParamAndResponse<T>
+    { }
+
+    public interface IFoozzing<T> : IMockMethods<T>, ITheRestOfThings<T>
+    {
     }
 
     public partial class MockFoozzing<T> : IFoozzing<T> {
-        private MockMethodWithParamAndResponse<T, T> _barringBaseParamGenericResponseGeneric;
-        private MockMethodWithParamAndResponse<T, T> _barringParamGenericResponseGeneric;
-        private MockMethodWithParamAndResponse<T, T> _fooBarParamGenericResponseGeneric;
         private MockMethod _voidVoid;
         private MockMethod _responseTaskVoid;
         private MockMethodWithParam<double> _paramType;
@@ -68,132 +84,78 @@ namespace DebugSolution.Sample
         private MockMethodWithResponse<double> _responseTaskType;
         private MockMethodWithParamAndResponse<int, string> _paramTypeResponseTaskType;
         private MockMethodWithParamAndResponse<Tuple<char, string, IFooz>, int> _paramTupleResponseType;
-        private MockMethodWithParamAndResponse<int, string> _sameNameDifParamsInt;
-        private MockMethodWithParamAndResponse<double, string> _sameNameDifParamsDouble;
         private MockMethodWithParam<Func<Task<T>>> _funcTaskGeneric;
         private MockMethodWithParamAndResponse<Func<Task<T>>, T> _funcTaskGenericResponseTaskGeneric;
+        private MockMethodWithParamAndResponse<int, string> _sameNameDifParamsInt;
+        private MockMethodWithParamAndResponse<double, string> _sameNameDifParamsDouble;
+        private MockMethodWithParamAndResponse<Action<T>, Action<T>> _actionGenericResponseActionGeneric;
+        private MockMethodWithParamAndResponse<Action<bool>, Action<bool>> _actionTypeResponseActionType;
         private MockFoozzing() { }
-        public T BarringBaseParamGenericResponseGeneric(T theType) => _barringBaseParamGenericResponseGeneric.Invoke(theType);
-        public void AssertBarringBaseParamGenericResponseGenericInvokedWith(T theType) => _barringBaseParamGenericResponseGeneric.AssertInvokedWith(theType);
-        public T BarringParamGenericResponseGeneric(T theType) => _barringParamGenericResponseGeneric.Invoke(theType);
-        public void AssertBarringParamGenericResponseGenericInvokedWith(T theType) => _barringParamGenericResponseGeneric.AssertInvokedWith(theType);
-        public T FooBarParamGenericResponseGeneric(T theType) => _fooBarParamGenericResponseGeneric.Invoke(theType);
-        public void AssertFooBarParamGenericResponseGenericInvokedWith(T theType) => _fooBarParamGenericResponseGeneric.AssertInvokedWith(theType);
         public void VoidVoid() => _voidVoid.Invoke();
         public Task ResponseTaskVoid() => _responseTaskVoid.InvokeTask();
+        public void AssertVoidVoidInvoked() => _voidVoid.AssertInvoked();
+        public void AssertResponseTaskVoidInvoked() => _responseTaskVoid.AssertInvoked();
         public void ParamType(double justOne) => _paramType.Invoke(justOne);
         public void ParamGeneric(T justOne) => _paramGeneric.Invoke(justOne);
         public Task ParamTypeResponseTask(double justOne) => _paramTypeResponseTask.InvokeTask(justOne);
         public void ParamTuple(string justOne, int singleInt) => _paramTuple.Invoke(new Tuple<string, int>(justOne, singleInt));
         public void ParamTypeGeneric(string justOne, T oneT) => _paramTypeGeneric.Invoke(new Tuple<string, T>(justOne, oneT));
-        public T ResponseGeneric() => _responseGeneric.Invoke();
-        public string ResponseType() => _responseType.Invoke();
-        public Task<T> ResponseTaskGeneric() => _responseTaskGeneric.InvokeTask();
-        public Task<double> ResponseTaskType() => _responseTaskType.InvokeTask();
-        public Task<string> ParamTypeResponseTaskType(int incoming) => _paramTypeResponseTaskType.InvokeTask(incoming);
-        public int ParamTupleResponseType(char c, string yeppers, IFooz longer) => _paramTupleResponseType.Invoke(new Tuple<char, string, IFooz>(c, yeppers, longer));
-        public string SameNameDifParams(int one) => _sameNameDifParamsInt.Invoke(one);
-        public string SameNameDifParams(double one) => _sameNameDifParamsDouble.Invoke(one);
-        public void FuncTaskGeneric(Func<Task<T>> input) => _funcTaskGeneric.Invoke(input);
-        public Task<T> FuncTaskGenericResponseTaskGeneric(Func<Task<T>> input) => _funcTaskGenericResponseTaskGeneric.InvokeTask(input);
-        public void AssertVoidVoidInvoked() => _voidVoid.AssertInvoked();
-        public void AssertResponseTaskVoidInvoked() => _responseTaskVoid.AssertInvoked();
         public void AssertParamTypeInvokedWith(double justOne) => _paramType.AssertInvokedWith(justOne);
         public void AssertParamGenericInvokedWith(T justOne) => _paramGeneric.AssertInvokedWith(justOne);
         public void AssertParamTypeResponseTaskInvokedWith(double justOne) => _paramTypeResponseTask.AssertInvokedWith(justOne);
         public void AssertParamTupleInvokedWith(string justOne, int singleInt) => _paramTuple.AssertInvokedWith(new Tuple<string, int>(justOne, singleInt));
         public void AssertParamTypeGenericInvokedWith(string justOne, T oneT) => _paramTypeGeneric.AssertInvokedWith(new Tuple<string, T>(justOne, oneT));
+        public T ResponseGeneric() => _responseGeneric.Invoke();
+        public string ResponseType() => _responseType.Invoke();
+        public Task<T> ResponseTaskGeneric() => _responseTaskGeneric.InvokeTask();
+        public Task<double> ResponseTaskType() => _responseTaskType.InvokeTask();
         public void AssertResponseGenericInvoked() => _responseGeneric.AssertInvoked();
         public void AssertResponseTypeInvoked() => _responseType.AssertInvoked();
         public void AssertResponseTaskGenericInvoked() => _responseTaskGeneric.AssertInvoked();
         public void AssertResponseTaskTypeInvoked() => _responseTaskType.AssertInvoked();
+        public Task<string> ParamTypeResponseTaskType(int incoming) => _paramTypeResponseTaskType.InvokeTask(incoming);
+        public int ParamTupleResponseType(char c, string yeppers, IFooz longer) => _paramTupleResponseType.Invoke(new Tuple<char, string, IFooz>(c, yeppers, longer));
         public void AssertParamTypeResponseTaskTypeInvokedWith(int incoming) => _paramTypeResponseTaskType.AssertInvokedWith(incoming);
         public void AssertParamTupleResponseTypeInvokedWith(char c, string yeppers, IFooz longer) => _paramTupleResponseType.AssertInvokedWith(new Tuple<char, string, IFooz>(c, yeppers, longer));
-        public void AssertSameNameDifParamsIntInvokedWith(int one) => _sameNameDifParamsInt.AssertInvokedWith(one);
-        public void AssertSameNameDifParamsDoubleInvokedWith(double one) => _sameNameDifParamsDouble.AssertInvokedWith(one);
+        public void FuncTaskGeneric(Func<Task<T>> input) => _funcTaskGeneric.Invoke(input);
+        public Task<T> FuncTaskGenericResponseTaskGeneric(Func<Task<T>> input) => _funcTaskGenericResponseTaskGeneric.InvokeTask(input);
         public void AssertFuncTaskGenericInvokedWith(Func<Task<T>> input) => _funcTaskGeneric.AssertInvokedWith(input);
         public void AssertFuncTaskGenericResponseTaskGenericInvokedWith(Func<Task<T>> input) => _funcTaskGenericResponseTaskGeneric.AssertInvokedWith(input);
+        public string SameNameDifParams(int one) => _sameNameDifParamsInt.Invoke(one);
+        public string SameNameDifParams(double one) => _sameNameDifParamsDouble.Invoke(one);
+        public void AssertSameNameDifParamsIntInvokedWith(int one) => _sameNameDifParamsInt.AssertInvokedWith(one);
+        public void AssertSameNameDifParamsDoubleInvokedWith(double one) => _sameNameDifParamsDouble.AssertInvokedWith(one);
+        public event EventHandler _DoEventing;
+        public void TriggerDoEventing() => _DoEventing.Invoke(this, EventArgs.Empty);
+        public Action<T> ActionGenericResponseActionGeneric(Action<T> input) => _actionGenericResponseActionGeneric.Invoke(input);
+        public Action<bool> ActionTypeResponseActionType(Action<bool> input) => _actionTypeResponseActionType.Invoke(input);
+        public void AssertActionGenericResponseActionGenericInvokedWith(Action<T> input) => _actionGenericResponseActionGeneric.AssertInvokedWith(input);
+        public void AssertActionTypeResponseActionTypeInvokedWith(Action<bool> input) => _actionTypeResponseActionType.AssertInvokedWith(input);
 
         public class Builder {
-            private readonly MockMethodWithParamAndResponse<T, T> _barringBaseParamGenericResponseGeneric = new MockMethodWithParamAndResponse<T, T>("MockBarringBase#BarringBaseParamGenericResponseGeneric");
-            private readonly MockMethodWithParamAndResponse<T, T> _barringParamGenericResponseGeneric = new MockMethodWithParamAndResponse<T, T>("MockBarring#BarringParamGenericResponseGeneric");
-            private readonly MockMethodWithParamAndResponse<T, T> _fooBarParamGenericResponseGeneric = new MockMethodWithParamAndResponse<T, T>("MockFooBar#FooBarParamGenericResponseGeneric");
-            private readonly MockMethod _voidVoid = new MockMethod("MockFoozzing#VoidVoid");
-            private readonly MockMethod _responseTaskVoid = new MockMethod("MockFoozzing#ResponseTaskVoid");
-            private readonly MockMethodWithParam<double> _paramType = new MockMethodWithParam<double>("MockFoozzing#ParamType");
-            private readonly MockMethodWithParam<T> _paramGeneric = new MockMethodWithParam<T>("MockFoozzing#ParamGeneric");
-            private readonly MockMethodWithParam<double> _paramTypeResponseTask = new MockMethodWithParam<double>("MockFoozzing#ParamTypeResponseTask");
-            private readonly MockMethodWithParam<Tuple<string, int>> _paramTuple = new MockMethodWithParam<Tuple<string, int>>("MockFoozzing#ParamTuple");
-            private readonly MockMethodWithParam<Tuple<string, T>> _paramTypeGeneric = new MockMethodWithParam<Tuple<string, T>>("MockFoozzing#ParamTypeGeneric");
-            private readonly MockMethodWithResponse<T> _responseGeneric = new MockMethodWithResponse<T>("MockFoozzing#ResponseGeneric");
-            private readonly MockMethodWithResponse<string> _responseType = new MockMethodWithResponse<string>("MockFoozzing#ResponseType");
-            private readonly MockMethodWithResponse<T> _responseTaskGeneric = new MockMethodWithResponse<T>("MockFoozzing#ResponseTaskGeneric");
-            private readonly MockMethodWithResponse<double> _responseTaskType = new MockMethodWithResponse<double>("MockFoozzing#ResponseTaskType");
-            private readonly MockMethodWithParamAndResponse<int, string> _paramTypeResponseTaskType = new MockMethodWithParamAndResponse<int, string>("MockFoozzing#ParamTypeResponseTaskType");
-            private readonly MockMethodWithParamAndResponse<Tuple<char, string, IFooz>, int> _paramTupleResponseType = new MockMethodWithParamAndResponse<Tuple<char, string, IFooz>, int>("MockFoozzing#ParamTupleResponseType");
-            private readonly MockMethodWithParamAndResponse<int, string> _sameNameDifParamsInt = new MockMethodWithParamAndResponse<int, string>("MockFoozzing#SameNameDifParamsInt");
-            private readonly MockMethodWithParamAndResponse<double, string> _sameNameDifParamsDouble = new MockMethodWithParamAndResponse<double, string>("MockFoozzing#SameNameDifParamsDouble");
-            private readonly MockMethodWithParam<Func<Task<T>>> _funcTaskGeneric = new MockMethodWithParam<Func<Task<T>>>("MockFoozzing#FuncTaskGeneric");
-            private readonly MockMethodWithParamAndResponse<Func<Task<T>>, T> _funcTaskGenericResponseTaskGeneric = new MockMethodWithParamAndResponse<Func<Task<T>>, T>("MockFoozzing#FuncTaskGenericResponseTaskGeneric");
+            private readonly MockMethod _voidVoid = new MockMethod("MockMockMethod#VoidVoid");
+            private readonly MockMethod _responseTaskVoid = new MockMethod("MockMockMethod#ResponseTaskVoid");
+            private readonly MockMethodWithParam<double> _paramType = new MockMethodWithParam<double>("MockMockMethodWithParam#ParamType");
+            private readonly MockMethodWithParam<T> _paramGeneric = new MockMethodWithParam<T>("MockMockMethodWithParam#ParamGeneric");
+            private readonly MockMethodWithParam<double> _paramTypeResponseTask = new MockMethodWithParam<double>("MockMockMethodWithParam#ParamTypeResponseTask");
+            private readonly MockMethodWithParam<Tuple<string, int>> _paramTuple = new MockMethodWithParam<Tuple<string, int>>("MockMockMethodWithParam#ParamTuple");
+            private readonly MockMethodWithParam<Tuple<string, T>> _paramTypeGeneric = new MockMethodWithParam<Tuple<string, T>>("MockMockMethodWithParam#ParamTypeGeneric");
+            private readonly MockMethodWithResponse<T> _responseGeneric = new MockMethodWithResponse<T>("MockMockMethodWithResponse#ResponseGeneric");
+            private readonly MockMethodWithResponse<string> _responseType = new MockMethodWithResponse<string>("MockMockMethodWithResponse#ResponseType");
+            private readonly MockMethodWithResponse<T> _responseTaskGeneric = new MockMethodWithResponse<T>("MockMockMethodWithResponse#ResponseTaskGeneric");
+            private readonly MockMethodWithResponse<double> _responseTaskType = new MockMethodWithResponse<double>("MockMockMethodWithResponse#ResponseTaskType");
+            private readonly MockMethodWithParamAndResponse<int, string> _paramTypeResponseTaskType = new MockMethodWithParamAndResponse<int, string>("MockMockMethodWithParamAndResponse#ParamTypeResponseTaskType");
+            private readonly MockMethodWithParamAndResponse<Tuple<char, string, IFooz>, int> _paramTupleResponseType = new MockMethodWithParamAndResponse<Tuple<char, string, IFooz>, int>("MockMockMethodWithParamAndResponse#ParamTupleResponseType");
+            private readonly MockMethodWithParam<Func<Task<T>>> _funcTaskGeneric = new MockMethodWithParam<Func<Task<T>>>("MockBugNumberNine#FuncTaskGeneric");
+            private readonly MockMethodWithParamAndResponse<Func<Task<T>>, T> _funcTaskGenericResponseTaskGeneric = new MockMethodWithParamAndResponse<Func<Task<T>>, T>("MockBugNumberNine#FuncTaskGenericResponseTaskGeneric");
+            private readonly MockMethodWithParamAndResponse<int, string> _sameNameDifParamsInt = new MockMethodWithParamAndResponse<int, string>("MockEdgeCases#SameNameDifParamsInt");
+            private readonly MockMethodWithParamAndResponse<double, string> _sameNameDifParamsDouble = new MockMethodWithParamAndResponse<double, string>("MockEdgeCases#SameNameDifParamsDouble");
+            private readonly MockMethodWithParamAndResponse<Action<T>, Action<T>> _actionGenericResponseActionGeneric = new MockMethodWithParamAndResponse<Action<T>, Action<T>>("MockActionExample#ActionGenericResponseActionGeneric");
+            private readonly MockMethodWithParamAndResponse<Action<bool>, Action<bool>> _actionTypeResponseActionType = new MockMethodWithParamAndResponse<Action<bool>, Action<bool>>("MockActionExample#ActionTypeResponseActionType");
 
             public MockFoozzing<T> Build()
             {
-                return new MockFoozzing<T>
-                {
-                    _voidVoid = _voidVoid,
-                    _responseTaskVoid = _responseTaskVoid,
-                    _paramType = _paramType,
-                    _paramGeneric = _paramGeneric,
-                    _paramTypeResponseTask = _paramTypeResponseTask,
-                    _paramTuple = _paramTuple,
-                    _paramTypeGeneric = _paramTypeGeneric,
-                    _responseGeneric = _responseGeneric,
-                    _responseType = _responseType,
-                    _responseTaskGeneric = _responseTaskGeneric,
-                    _responseTaskType = _responseTaskType,
-                    _paramTypeResponseTaskType = _paramTypeResponseTaskType,
-                    _paramTupleResponseType = _paramTupleResponseType,
-                    _sameNameDifParamsInt = _sameNameDifParamsInt,
-                    _sameNameDifParamsDouble = _sameNameDifParamsDouble,
-                    _funcTaskGeneric = _funcTaskGeneric,
-                    _funcTaskGenericResponseTaskGeneric = _funcTaskGenericResponseTaskGeneric
-                };
-            }
-
-            public Builder BarringBaseParamGenericResponseGeneric(params T[] responseValues)
-            {
-                _barringBaseParamGenericResponseGeneric.UpdateInvocation(responseValues);
-                return this;
-            }
-
-            public Builder BarringBaseParamGenericResponseGeneric(params Func<T>[] responseValues)
-            {
-                _barringBaseParamGenericResponseGeneric.UpdateInvocation(responseValues);
-                return this;
-            }
-
-            public Builder BarringParamGenericResponseGeneric(params T[] responseValues)
-            {
-                _barringParamGenericResponseGeneric.UpdateInvocation(responseValues);
-                return this;
-            }
-
-            public Builder BarringParamGenericResponseGeneric(params Func<T>[] responseValues)
-            {
-                _barringParamGenericResponseGeneric.UpdateInvocation(responseValues);
-                return this;
-            }
-
-            public Builder FooBarParamGenericResponseGeneric(params T[] responseValues)
-            {
-                _fooBarParamGenericResponseGeneric.UpdateInvocation(responseValues);
-                return this;
-            }
-
-            public Builder FooBarParamGenericResponseGeneric(params Func<T>[] responseValues)
-            {
-                _fooBarParamGenericResponseGeneric.UpdateInvocation(responseValues);
-                return this;
+                return new MockFoozzing<T> { };
             }
 
             public Builder VoidVoid()
@@ -352,6 +314,30 @@ namespace DebugSolution.Sample
                 return this;
             }
 
+            public Builder FuncTaskGeneric()
+            {
+                _funcTaskGeneric.UpdateInvocation();
+                return this;
+            }
+
+            public Builder FuncTaskGeneric(params Action[] actions)
+            {
+                _funcTaskGeneric.UpdateInvocation(actions);
+                return this;
+            }
+
+            public Builder FuncTaskGenericResponseTaskGeneric(params T[] responseValues)
+            {
+                _funcTaskGenericResponseTaskGeneric.UpdateInvocation(responseValues);
+                return this;
+            }
+
+            public Builder FuncTaskGenericResponseTaskGeneric(params Func<T>[] responseValues)
+            {
+                _funcTaskGenericResponseTaskGeneric.UpdateInvocation(responseValues);
+                return this;
+            }
+
             public Builder SameNameDifParamsInt(params string[] responseValues)
             {
                 _sameNameDifParamsInt.UpdateInvocation(responseValues);
@@ -376,27 +362,27 @@ namespace DebugSolution.Sample
                 return this;
             }
 
-            public Builder FuncTaskGeneric()
+            public Builder ActionGenericResponseActionGeneric(params Action<T>[] responseValues)
             {
-                _funcTaskGeneric.UpdateInvocation();
+                _actionGenericResponseActionGeneric.UpdateInvocation(responseValues);
                 return this;
             }
 
-            public Builder FuncTaskGeneric(params Action[] actions)
+            public Builder ActionGenericResponseActionGeneric(params Func<Action<T>>[] responseValues)
             {
-                _funcTaskGeneric.UpdateInvocation(actions);
+                _actionGenericResponseActionGeneric.UpdateInvocation(responseValues);
                 return this;
             }
 
-            public Builder FuncTaskGenericResponseTaskGeneric(params T[] responseValues)
+            public Builder ActionTypeResponseActionType(params Action<bool>[] responseValues)
             {
-                _funcTaskGenericResponseTaskGeneric.UpdateInvocation(responseValues);
+                _actionTypeResponseActionType.UpdateInvocation(responseValues);
                 return this;
             }
 
-            public Builder FuncTaskGenericResponseTaskGeneric(params Func<T>[] responseValues)
+            public Builder ActionTypeResponseActionType(params Func<Action<bool>>[] responseValues)
             {
-                _funcTaskGenericResponseTaskGeneric.UpdateInvocation(responseValues);
+                _actionTypeResponseActionType.UpdateInvocation(responseValues);
                 return this;
             }
         }

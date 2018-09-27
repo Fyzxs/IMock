@@ -8,10 +8,10 @@ namespace DebugSolution.Sample
     public interface IEventExample<T>
     {
         
-        event EventHandler DoEventing;
-        event Action<T> DoActioning;/*
-        event Action<bool> ActionSpecifiedType;
-        */
+        //event EventHandler DoEventing;
+        //event Action<T> DoActioning;
+        //event Action<bool> ActionSpecfiedType;
+        
     }
 
     public interface IActionExample<T>
@@ -125,8 +125,6 @@ namespace DebugSolution.Sample
         public string SameNameDifParams(double one) => _sameNameDifParamsDouble.Invoke(one);
         public void AssertSameNameDifParamsIntInvokedWith(int one) => _sameNameDifParamsInt.AssertInvokedWith(one);
         public void AssertSameNameDifParamsDoubleInvokedWith(double one) => _sameNameDifParamsDouble.AssertInvokedWith(one);
-        public event EventHandler _DoEventing;
-        public void TriggerDoEventing() => _DoEventing.Invoke(this, EventArgs.Empty);
         public Action<T> ActionGenericResponseActionGeneric(Action<T> input) => _actionGenericResponseActionGeneric.Invoke(input);
         public Action<bool> ActionTypeResponseActionType(Action<bool> input) => _actionTypeResponseActionType.Invoke(input);
         public void AssertActionGenericResponseActionGenericInvokedWith(Action<T> input) => _actionGenericResponseActionGeneric.AssertInvokedWith(input);
@@ -155,7 +153,28 @@ namespace DebugSolution.Sample
 
             public MockFoozzing<T> Build()
             {
-                return new MockFoozzing<T> { };
+                return new MockFoozzing<T>
+                {
+                    _voidVoid = _voidVoid,
+                    _responseTaskVoid = _responseTaskVoid,
+                    _paramType = _paramType,
+                    _paramGeneric = _paramGeneric,
+                    _paramTypeResponseTask = _paramTypeResponseTask,
+                    _paramTuple = _paramTuple,
+                    _paramTypeGeneric = _paramTypeGeneric,
+                    _responseGeneric = _responseGeneric,
+                    _responseType = _responseType,
+                    _responseTaskGeneric = _responseTaskGeneric,
+                    _responseTaskType = _responseTaskType,
+                    _paramTypeResponseTaskType = _paramTypeResponseTaskType,
+                    _paramTupleResponseType = _paramTupleResponseType,
+                    _funcTaskGeneric = _funcTaskGeneric,
+                    _funcTaskGenericResponseTaskGeneric = _funcTaskGenericResponseTaskGeneric,
+                    _sameNameDifParamsInt = _sameNameDifParamsInt,
+                    _sameNameDifParamsDouble = _sameNameDifParamsDouble,
+                    _actionGenericResponseActionGeneric = _actionGenericResponseActionGeneric,
+                    _actionTypeResponseActionType = _actionTypeResponseActionType,
+                };
             }
 
             public Builder VoidVoid()

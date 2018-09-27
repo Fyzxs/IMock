@@ -22,8 +22,7 @@ namespace Fyzxs.IMockResharperPlugin
             IInterface firstInterface = interfacesArray[0];
             string typeParameters = firstInterface.TypeParameters.AggregateString(",", (builder, parameter) => builder.Append(parameter.ShortName));
             if (firstInterface.TypeParameters.Count != 0) typeParameters = "<" + typeParameters + ">";
-            string interfaceName = firstInterface.ShortName;
-            string className = $"Mock{interfaceName.Substring(1)}";
+            string className = classDeclaration.DeclaredName;
 
             classDeclaration.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration($"private {className}(){{}}"));
 
@@ -89,14 +88,12 @@ namespace Fyzxs.IMockResharperPlugin
             }
         }
 
-        private static IClassLikeDeclaration BuildMethod(ICSharpContextActionDataProvider dataProvider, IInterface theInterface, string className, string typeParameters)
+        private static IClassLikeDeclaration BuildMethod(ICSharpContextActionDataProvider dataProvider, ITypeElement theInterface, string className, string typeParameters)
         {
             IClassLikeDeclaration builderClass = (IClassLikeDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration("public class Builder {}");
-            string allNodes = theInterface.Methods.AggregateString("," + Environment.NewLine, (sb, d) =>
-            {
-                string name = $"_{new MethodName(d, theInterface).CamelCaseUnique()}";
-                return sb.Append($"{name} = {name}");
-            });
+
+            string allNodes = AllNodes(theInterface.GetSuperTypes().Select(x => x.GetTypeElement()).OfType<IInterface>().ToArray());
+            allNodes = allNodes.Replace("," + Environment.NewLine + ",", ",");
             builderClass.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration(
                 $@"public {className}{typeParameters} Build(){{
     return new {className}{typeParameters}{{
@@ -104,6 +101,25 @@ namespace Fyzxs.IMockResharperPlugin
     }};
 }}"));
             return builderClass;
+        }
+
+        private static string AllNodes(ICollection<IInterface> interfacesArray)
+        {
+            string allNodes = "";
+            if (interfacesArray.IsEmpty()) return allNodes;
+
+            foreach (IInterface theInterface in interfacesArray)
+            {
+                allNodes += AllNodes(theInterface.GetSuperTypes().Select(x => x.GetTypeElement()).OfType<IInterface>().ToArray());
+                allNodes += theInterface.Methods.AggregateString("," + Environment.NewLine, (sb, d) =>
+                {
+                    string name = $"_{new MethodName(d, theInterface).CamelCaseUnique()}";
+                    return sb.Append($"{name} = {name}");
+                });
+                allNodes += "," + Environment.NewLine;
+            }
+
+            return allNodes;
         }
 
         //TODO turn this into a chain

@@ -35,7 +35,8 @@ namespace Fyzxs.IMockResharperPlugin
             classDeclaration = (IClassLikeDeclaration)holderDeclaration.AddTypeDeclarationAfter(classDeclaration, theInterface);
 
             //
-            IEnumerable<IInterface> interfaces = _dataProvider.GetSelectedElement<IClassLikeDeclaration>().NotNull().SuperTypes.Select(x => x.GetTypeElement()).OfType<IInterface>();
+            //IEnumerable<IInterface> interfaces = _dataProvider.GetSelectedElement<IClassLikeDeclaration>().NotNull().SuperTypes.Select(x => x.GetTypeElement()).OfType<IInterface>();
+            IEnumerable<IInterface> interfaces = classDeclaration.SuperTypes.Select(x => x.GetTypeElement()).OfType<IInterface>();
             //
             return new BuildMockClassContents().ExecutePsiTransaction(_dataProvider, solution, classDeclaration, interfaces);
         }

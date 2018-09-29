@@ -2,15 +2,15 @@
 <package>
     <metadata>
         <id>Fyzxs.IMockResharperPlugin</id>
-        <title>IMock for ReSharper 2018.2</title> 
-        <version>0.0.6</version>
+        <title>IMock 0.0.7 for ReSharper 2018.2</title> 
+        <version>0.0.7</version>
         <authors>Fyzxs</authors>
         <owners>Fyzxs</owners>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <licenseUrl>https://github.com/Fyzxs/IMock/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/Fyzxs/IMock</projectUrl>
         <description>Plugin to automate creation of the Mock/Builder pair</description>
-        <releaseNotes>• Limited Mock Update showing</releaseNotes>
+        <releaseNotes>• Fixed the Mock Creation</releaseNotes>
         <copyright>Copyright ©2018 Fyzxs</copyright>
         <dependencies>
             <dependency id="Wave" version="[$WAVEID$.0.0]"/>

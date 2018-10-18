@@ -8,6 +8,8 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.TextControl;
 using JetBrains.Util;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Fyzxs.IMockResharperPlugin
 {
@@ -31,7 +33,12 @@ namespace Fyzxs.IMockResharperPlugin
 
             ICSharpTypeAndNamespaceHolderDeclaration holderDeclaration = _dataProvider.PsiFile;
             classDeclaration = (IClassLikeDeclaration)holderDeclaration.AddTypeDeclarationAfter(classDeclaration, theInterface);
-            return new BuildMockClassContents().ExecutePsiTransaction(_dataProvider, solution, classDeclaration, theInterface.DeclaredElement);
+
+            //
+            //IEnumerable<IInterface> interfaces = _dataProvider.GetSelectedElement<IClassLikeDeclaration>().NotNull().SuperTypes.Select(x => x.GetTypeElement()).OfType<IInterface>();
+            IEnumerable<IInterface> interfaces = classDeclaration.SuperTypes.Select(x => x.GetTypeElement()).OfType<IInterface>();
+            //
+            return new BuildMockClassContents().ExecutePsiTransaction(_dataProvider, solution, classDeclaration, interfaces);
         }
 
         public override string Text => "Create Mock";

@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
 using InterfaceMocks;
+using InterfaceMocks.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading.Tasks;
-using InterfaceMocks.Exceptions;
 
 namespace InterfaceMocksTests
 {
@@ -341,6 +341,23 @@ namespace InterfaceMocksTests
 
             // Assert
             actual.Should().NotThrow();
+        }
+
+        [TestMethod, TestCategory("unit")]
+        public void InvokeTask_ShouldTrackInvocationWithExceptionThrown()
+        {
+            // Arrange
+            MockMethodWithParam<string> subject = new MockMethodWithParam<string>("methodName");
+            subject.UpdateInvocation(() => { }, () => throw new Exception("Second Invocation"));
+
+            // Act
+            Func<Task> actual = async () => await subject.InvokeTask("");
+            Func<Task> thrower = async () => await subject.InvokeTask("");
+
+            // Assert
+            actual.Should().NotThrow();
+            thrower.Should().ThrowExactly<Exception>().WithMessage("Second Invocation");
+            subject.AssertInvokedCountMatches(2);
         }
     }
 }

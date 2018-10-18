@@ -159,7 +159,6 @@ namespace InterfaceMocksTests
             mockMockMethodWithResponse.AssertUpdateInvocationFuncInvoked();
         }
 
-
         //todo:Funcational tests which esnures we test the UpdateInvocation + Invoke/InvokeTask temporal pairing that exist in MockMethodWithParamAndResponse
     }
 }

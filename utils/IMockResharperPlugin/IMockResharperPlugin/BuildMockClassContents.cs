@@ -9,62 +9,117 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.TextControl;
 using JetBrains.Util;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Fyzxs.IMockResharperPlugin
 {
     public class BuildMockClassContents
     {
-        public Action<ITextControl> ExecutePsiTransaction(ICSharpContextActionDataProvider dataProvider, ISolution solution, IClassLikeDeclaration classDeclaration, IInterface theInterface)
+        public Action<ITextControl> ExecutePsiTransaction(ICSharpContextActionDataProvider dataProvider, ISolution solution, IClassLikeDeclaration classDeclaration, IEnumerable<IInterface> interfaces)
         {
-            string typeParameters = theInterface.TypeParameters.AggregateString(",", (builder, parameter) => builder.Append(parameter.ShortName));
-            if (theInterface.TypeParameters.Count != 0) typeParameters = "<" + typeParameters + ">";
-            string interfaceName = theInterface.ShortName;
-            string className = $"Mock{interfaceName.Substring(1)}";
+            IInterface[] interfacesArray = interfaces.ToArray();
+            IInterface firstInterface = interfacesArray[0];
+            string typeParameters = firstInterface.TypeParameters.AggregateString(",", (builder, parameter) => builder.Append(parameter.ShortName));
+            if (firstInterface.TypeParameters.Count != 0) typeParameters = "<" + typeParameters + ">";
+            string className = classDeclaration.DeclaredName;
 
             classDeclaration.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration($"private {className}(){{}}"));
-            foreach (IMethod node in theInterface.Methods)
-            {
-                ISignature methodSig = new MockMethod(node, theInterface);
-                classDeclaration.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration(methodSig.Signature()));
-                classDeclaration.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration(MockClassVariable(node, theInterface).Declaration()));
-            }
 
-            IClassLikeDeclaration builderClass = (IClassLikeDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration("public class Builder {}");
-            BuildMethod(dataProvider, theInterface, builderClass, className, typeParameters);
+            IClassLikeDeclaration builderClass = BuildMethod(dataProvider, firstInterface, className, typeParameters);
 
-            foreach (IMethod node in theInterface.Methods)
-            {
+            ProcessInterface(dataProvider, classDeclaration, interfacesArray, builderClass);
 
-                builderClass.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration(MockClassVariable(node, theInterface).BuilderDeclaration()));
-                builderClass.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration(MockBuilderMethod(node, theInterface).Typed()));
-                builderClass.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration(MockBuilderMethod(node, theInterface).Lambdad()));
-            }
             classDeclaration.AddClassMemberDeclaration(builderClass);
 
-            foreach (IMethod node in theInterface.Methods)
-            {
-                ISignature2 methodSig = MockAssertMethod(node, theInterface);
-                methodSig.Signature(classDeclaration, dataProvider.ElementFactory);
-            }
             return textControl =>
             {
                 IntentionTemplateUtil.ExecuteTemplate(solution, textControl, DocumentRange.InvalidRange);
             };
         }
 
-        private static void BuildMethod(ICSharpContextActionDataProvider dataProvider, IInterface theInterface, IClassLikeDeclaration builderClass, string className, string typeParameters)
+        private void ProcessInterface(ICSharpContextActionDataProvider dataProvider, IClassLikeDeclaration classDeclaration, ICollection<IInterface> interfacesArray, IClassLikeDeclaration builderClass)
         {
-            string allNodes = theInterface.Methods.AggregateString("," + Environment.NewLine, (sb, d) =>
+            if (interfacesArray.IsEmpty()) return;
+
+            foreach (IInterface theInterface in interfacesArray)
             {
-                string name = $"_{new MethodName(d, theInterface).CamelCaseUnique()}";
-                return sb.Append($"{name} = {name}");
-            });
+                ProcessInterface(dataProvider, classDeclaration, theInterface.GetSuperTypes().Select(x => x.GetTypeElement()).OfType<IInterface>().ToArray(), builderClass);
+
+                foreach (IEvent theEvent in theInterface.Events)
+                {
+                    string eventShortName = theEvent.ShortName;
+                    string eventTypePresentableName = theEvent.Type.GetPresentableName(Languages.Instance.GetLanguageByName("CSHARP"));
+                    classDeclaration.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration($"public event {eventTypePresentableName} _{eventShortName};"));
+                    if (theEvent.Type.GetPresentableName(Languages.Instance.GetLanguageByName("CSHARP")) == "EventHandler")
+                    {
+                        classDeclaration.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration($"public void Trigger{eventShortName}() => _{eventShortName}.Invoke(this, EventArgs.Empty);"));
+                    }
+                    else
+                    {
+                        //type.GetScalarType().GetTypeElement().TypeParameters[0]
+                        //ITypeParameter x = theEvent.Type.GetScalarType().GetTypeElement().TypeParameters[0];
+                        //DeclaredTypeBase con = theEvent.Type as DeclaredTypeFromReferenceName;
+                        //classDeclaration.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration($"public void Trigger{eventShortName}" +
+                        //$"({x.ShortName} val) => _{eventShortName}.Invoke(val);"));
+                    }
+
+                }
+
+                foreach (IMethod node in theInterface.Methods)
+                {
+                    ISignature methodSig = new MockMethod(node, theInterface);
+                    classDeclaration.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration(methodSig.Signature()));
+                    classDeclaration.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration(MockClassVariable(node, theInterface).Declaration()));
+                }
+
+                foreach (IMethod node in theInterface.Methods)
+                {
+                    builderClass.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration(MockClassVariable(node, theInterface).BuilderDeclaration()));
+                    builderClass.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration(MockBuilderMethod(node, theInterface).Typed()));
+                    builderClass.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration(MockBuilderMethod(node, theInterface).Lambdad()));
+                }
+
+                foreach (IMethod node in theInterface.Methods)
+                {
+                    ISignature2 methodSig = MockAssertMethod(node, theInterface);
+                    methodSig.Signature(classDeclaration, dataProvider.ElementFactory);
+                }
+            }
+        }
+
+        private static IClassLikeDeclaration BuildMethod(ICSharpContextActionDataProvider dataProvider, ITypeElement theInterface, string className, string typeParameters)
+        {
+            IClassLikeDeclaration builderClass = (IClassLikeDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration("public class Builder {}");
+
+            string allNodes = AllNodes(theInterface.GetSuperTypes().Select(x => x.GetTypeElement()).OfType<IInterface>().ToArray());
+            allNodes = allNodes.Replace("," + Environment.NewLine + ",", ",");
             builderClass.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration(
                 $@"public {className}{typeParameters} Build(){{
     return new {className}{typeParameters}{{
             {allNodes}
     }};
 }}"));
+            return builderClass;
+        }
+
+        private static string AllNodes(ICollection<IInterface> interfacesArray)
+        {
+            string allNodes = "";
+            if (interfacesArray.IsEmpty()) return allNodes;
+
+            foreach (IInterface theInterface in interfacesArray)
+            {
+                allNodes += AllNodes(theInterface.GetSuperTypes().Select(x => x.GetTypeElement()).OfType<IInterface>().ToArray());
+                allNodes += theInterface.Methods.AggregateString("," + Environment.NewLine, (sb, d) =>
+                {
+                    string name = $"_{new MethodName(d, theInterface).CamelCaseUnique()}";
+                    return sb.Append($"{name} = {name}");
+                });
+                allNodes += "," + Environment.NewLine;
+            }
+
+            return allNodes;
         }
 
         //TODO turn this into a chain
@@ -107,6 +162,7 @@ namespace Fyzxs.IMockResharperPlugin
 
             throw new NotSupportedException("You're not supposed to be here");
         }
+
         //TODO turn this into a chain
         private ISignature2 MockAssertMethod(IMethod method, IInterface theInterface)
         {
@@ -118,6 +174,11 @@ namespace Fyzxs.IMockResharperPlugin
             if (method.ReturnType.IsVoid() || method.ReturnType.IsTask())
             {
                 return new MockMethodParamAsserts(method, theInterface);
+            }
+
+            if (!(method.ReturnType.IsVoid() || method.ReturnType.IsTask()) && method.Parameters.Any())
+            {
+                return new MockMethodWithParamAndResponseAsserts(method, theInterface);
             }
 
             if (!(method.ReturnType.IsVoid() || method.ReturnType.IsTask()))
@@ -153,6 +214,28 @@ namespace Fyzxs.IMockResharperPlugin
         {
         }
     }
+    public class MockMethodWithParamAndResponseAsserts : ISignature2
+    {
+        private readonly ISignature2 _mockMethodResponseAsserts;
+        private readonly ISignature2 _mockMethodParamAsserts;
+
+        public MockMethodWithParamAndResponseAsserts(IMethod methodDeclaration, IInterface theInterface) :
+            this(new MockMethodResponseAsserts(methodDeclaration, theInterface), new MockMethodParamAsserts(methodDeclaration, theInterface))
+        { }
+
+        private MockMethodWithParamAndResponseAsserts(ISignature2 mockMethodResponseAsserts, ISignature2 mockMethodParamAsserts)
+        {
+            _mockMethodResponseAsserts = mockMethodResponseAsserts;
+            _mockMethodParamAsserts = mockMethodParamAsserts;
+        }
+
+        public void Signature(IClassLikeDeclaration classDeclaration, CSharpElementFactory dataProviderElementFactory)
+        {
+            _mockMethodParamAsserts.Signature(classDeclaration, dataProviderElementFactory);
+            _mockMethodResponseAsserts.Signature(classDeclaration, dataProviderElementFactory);
+        }
+    }
+
 
     public class MockMethodAsserts : ISignature2
     {

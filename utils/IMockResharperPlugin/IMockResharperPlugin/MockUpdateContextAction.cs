@@ -5,7 +5,6 @@ using JetBrains.ReSharper.Feature.Services.ContextActions;
 using JetBrains.ReSharper.Feature.Services.CSharp.Analyses.Bulbs;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Util;
 using JetBrains.TextControl;
 using JetBrains.Util;
 using System;
@@ -28,10 +27,9 @@ namespace Fyzxs.IMockResharperPlugin
         {
             IClassLikeDeclaration classDeclaration = _dataProvider.GetSelectedElement<IClassLikeDeclaration>().NotNull();
             IEnumerable<IInterface> interfaces = classDeclaration.SuperTypes.Select(x => x.GetTypeElement()).OfType<IInterface>();
-            IInterface superType = interfaces.First();
             classDeclaration.RemoveDeclarationsRange(classDeclaration.GetAllDeclarationsRange());
 
-            return new BuildMockClassContents().ExecutePsiTransaction(_dataProvider, solution, classDeclaration, superType);
+            return new BuildMockClassContents().ExecutePsiTransaction(_dataProvider, solution, classDeclaration, interfaces);
         }
 
         public override string Text => "Update Mock";
@@ -40,8 +38,17 @@ namespace Fyzxs.IMockResharperPlugin
         {
             IClassLikeDeclaration element = _dataProvider.GetSelectedElement<IClassLikeDeclaration>();
             if (element == null) return false;
-            if (element.SuperTypes.Any(s => s.IsInterfaceType())) return true;
-            return false;
+            if (element.SuperTypes.IsEmpty()) return false;
+
+            return IsMockClass(element);
+        }
+
+        private bool IsMockClass(IClassLikeDeclaration element)
+        {
+            string elementName = element.DeclaredName;
+            string interfaceMockName = "Mock" + element.SuperTypes.Select(x => x.GetTypeElement()).OfType<IInterface>().First().ShortName.Substring(1);
+
+            return elementName == interfaceMockName;
         }
     }
 }

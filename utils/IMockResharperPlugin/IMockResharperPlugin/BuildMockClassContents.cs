@@ -26,7 +26,7 @@ namespace Fyzxs.IMockResharperPlugin
 
             classDeclaration.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration($"private {className}(){{}}"));
 
-            IClassLikeDeclaration builderClass = BuildMethod(dataProvider, firstInterface, className, typeParameters);
+            IClassLikeDeclaration builderClass = BuildMethod(dataProvider, interfacesArray, className, typeParameters);
 
             ProcessInterface(dataProvider, classDeclaration, interfacesArray, builderClass);
 
@@ -88,11 +88,12 @@ namespace Fyzxs.IMockResharperPlugin
             }
         }
 
-        private static IClassLikeDeclaration BuildMethod(ICSharpContextActionDataProvider dataProvider, ITypeElement theInterface, string className, string typeParameters)
+        private static IClassLikeDeclaration BuildMethod(ICSharpContextActionDataProvider dataProvider, ICollection<IInterface> interfacesArray, string className, string typeParameters)
         {
             IClassLikeDeclaration builderClass = (IClassLikeDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration("public class Builder {}");
+            //List<IInterface> interfaces = theInterface.GetSuperTypes().Select(x => x.GetTypeElement()).OfType<IInterface>().ToList();
 
-            string allNodes = AllNodes(theInterface.GetSuperTypes().Select(x => x.GetTypeElement()).OfType<IInterface>().ToArray());
+            string allNodes = AllNodes(interfacesArray.ToArray());
             allNodes = allNodes.Replace("," + Environment.NewLine + ",", ",");
             builderClass.AddClassMemberDeclaration((IClassMemberDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration(
                 $@"public {className}{typeParameters} Build(){{

@@ -25,6 +25,7 @@ namespace InterfaceFakesTests
             // Assert
             actual.Should().BeTrue();
         }
+
         [TestMethod, TestCategory("unit")]
         public void Invoke_ShouldFlagInvoked_AndNotExcept()
         {
@@ -159,6 +160,6 @@ namespace InterfaceFakesTests
             fakeFakeMethodWithResponse.AssertUpdateInvocationFuncInvoked();
         }
 
-        //todo:Funcational tests which esnures we test the UpdateInvocation + Invoke/InvokeTask temporal pairing that exist in FakeMethodWithParamAndResponse
+        //todo: Functional tests which Ensures we test the UpdateInvocation + Invoke/InvokeTask temporal pairing that exist in FakeMethodWithParamAndResponse
     }
 }

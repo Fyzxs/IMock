@@ -12,10 +12,11 @@ namespace InterfaceFakesTests.Validators
         public void ShouldNotThrowWithValidVariable()
         {
             //Arrange
-            ClassVariableTypeValidation subject = new ClassVariableTypeValidation().Add<string>("_value");
+            ClassVariableTypeValidation subject = new ClassVariableTypeValidation()
+                .FieldShouldBeType<string>("_value");
 
             //Act
-            Action action = () => subject.AssertExpectedVariables(new VariabledClass());
+            Action action = () => subject.AssertFieldsAreExpectedType(new VariabledClass());
 
             //Assert
             action.Should().NotThrow();
@@ -25,10 +26,11 @@ namespace InterfaceFakesTests.Validators
         public void ShouldThrowWithInvalidVariableName()
         {
             //Arrange
-            ClassVariableTypeValidation subject = new ClassVariableTypeValidation().Add<string>("_value2");
+            ClassVariableTypeValidation subject = new ClassVariableTypeValidation()
+                .FieldShouldBeType<string>("_value2");
 
             //Act
-            Action action = () => subject.AssertExpectedVariables(new VariabledClass());
+            Action action = () => subject.AssertFieldsAreExpectedType(new VariabledClass());
 
             //Assert
             action.Should().Throw<Exception>().WithMessage("Expected [name=_value2] to be of [type=string] but found null");
@@ -38,10 +40,11 @@ namespace InterfaceFakesTests.Validators
         public void ShouldThrowWithInvalidVariableType()
         {
             //Arrange
-            ClassVariableTypeValidation subject = new ClassVariableTypeValidation().Add<Action>("_value");
+            ClassVariableTypeValidation subject = new ClassVariableTypeValidation()
+                .FieldShouldBeType<Action>("_value");
 
             //Act
-            Action action = () => subject.AssertExpectedVariables(new VariabledClass());
+            Action action = () => subject.AssertFieldsAreExpectedType(new VariabledClass());
 
             //Assert
             action.Should().Throw<Exception>().WithMessage("Expected [name=_value] to be of [type=Action] but found [type=String]");
@@ -53,10 +56,7 @@ namespace InterfaceFakesTests.Validators
 
             public VariabledClass() : this("string") { }
 
-            private VariabledClass(string value)
-            {
-                _value = value;
-            }
+            private VariabledClass(string value) => _value = value;
         }
     }
 }

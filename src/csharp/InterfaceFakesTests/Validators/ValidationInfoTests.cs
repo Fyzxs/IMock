@@ -21,6 +21,7 @@ namespace InterfaceFakesTests.Validators
             //Assert
             actual.Should().BeTrue();
         }
+
         [TestMethod, TestCategory("unit")]
         public void NameMatches_ShouldReturnFalseGivenNameDoesNotMatches()
         {
@@ -33,6 +34,7 @@ namespace InterfaceFakesTests.Validators
             //Assert
             actual.Should().BeFalse();
         }
+
         [TestMethod, TestCategory("unit")]
         public void AssertType_ShouldThrowExceptionGivenNull()
         {
@@ -46,7 +48,6 @@ namespace InterfaceFakesTests.Validators
             //Assert
             action.Should().Throw<Exception>().WithMessage("Expected [name=_nameHere] to be of [type=String] but found null");
         }
-
 
         [TestMethod, TestCategory("unit")]
         public void AssertType_ShouldThrowExceptionGivenNotExpectedType()
@@ -62,7 +63,6 @@ namespace InterfaceFakesTests.Validators
             action.Should().Throw<Exception>().WithMessage("Expected [name=_nameHere] to be of [type=Example] but found [type=String]");
         }
 
-
         [TestMethod, TestCategory("unit")]
         public void FieldInfo_ShouldReturnFieldsInfo()
         {
@@ -77,7 +77,6 @@ namespace InterfaceFakesTests.Validators
             actual.Name.Should().Be("_nameHere");
         }
 
-
         [TestMethod, TestCategory("unit")]
         public void FieldInfo_ShouldThrowIfFieldNotFound()
         {
@@ -90,8 +89,6 @@ namespace InterfaceFakesTests.Validators
             //Assert
             actual.Should().Throw<Exception>().WithMessage("Expected [name=_notFound] to be of [type=String] but found null");
         }
-
-
 
         [TestMethod, TestCategory("unit")]
         public void FieldInfoT_ShouldReturnFieldsInfo()
@@ -119,8 +116,7 @@ namespace InterfaceFakesTests.Validators
             //Assert
             actual.Should().Throw<Exception>().WithMessage("Expected [name=_notFound] to be of [type=String] but found null");
         }
-
-
+        
         [TestMethod, TestCategory("unit")]
         public void FieldInfoT_ShouldThrowIfFieldNotInClass()
         {

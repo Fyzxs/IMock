@@ -10,7 +10,6 @@ namespace InterfaceFakesTests
     [TestClass]
     public sealed class FakeMethodWithParamTests
     {
-        //**** Invoke ****
 
         [TestMethod, TestCategory("unit")]
         public void Invoke_ShouldThrowExceptionWithMethodNameIfInvocationNotUpdated()
@@ -175,9 +174,6 @@ namespace InterfaceFakesTests
             // Assert
             actual.Should().NotThrow();
         }
-
-
-        //**** InvokeTask ****
 
         [TestMethod, TestCategory("unit")]
         public void InvokeTask_ShouldNotThrowWhenTrueWithMultipleInvokes()

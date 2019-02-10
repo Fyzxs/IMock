@@ -12,11 +12,12 @@ namespace InterfaceFakesTests.Validators
         public void ShouldNotThrowGivenValidChain()
         {
             //Arrange
-            ChainValidation subject = new ChainValidation();
-            subject.Add<LinkA>().Add<LinkB>();
+            ChainValidation subject = new ChainValidation()
+                .NextClassInChain<LinkA>()
+                .NextClassInChain<LinkB>();
 
             //Act
-            Action action = () => subject.AssertExpectedChain(new LinkHead());
+            Action action = () => subject.AssertExpectedChainOrder(new LinkHead());
 
             //Assert
             action.Should().NotThrow();
@@ -26,11 +27,12 @@ namespace InterfaceFakesTests.Validators
         public void ShouldThrowGivenInvalidChain()
         {
             //Arrange
-            ChainValidation subject = new ChainValidation();
-            subject.Add<LinkA>().Add<LinkA>();
+            ChainValidation subject = new ChainValidation()
+                .NextClassInChain<LinkA>()
+                .NextClassInChain<LinkA>();
 
             //Act
-            Action action = () => subject.AssertExpectedChain(new LinkHead());
+            Action action = () => subject.AssertExpectedChainOrder(new LinkHead());
 
             //Assert
             action.Should().Throw<Exception>().WithMessage("Expected [name=_nextAction] to be of [type=LinkA] but found [type=LinkB]");
@@ -40,11 +42,12 @@ namespace InterfaceFakesTests.Validators
         public void ShouldAcceptCustomNames()
         {
             //Arrange
-            ChainValidation subject = new ChainValidation();
-            subject.Add<LinkC>().Add<LinkA>("_someOtherName");
+            ChainValidation subject = new ChainValidation()
+                .NextClassInChain<LinkC>()
+                .NextClassInChain<LinkA>("_someOtherName");
 
             //Act
-            Action action = () => subject.AssertExpectedChain(new LinkCustom());
+            Action action = () => subject.AssertExpectedChainOrder(new LinkCustom());
 
             //Assert
             action.Should().Throw<Exception>().WithMessage("Expected [name=_someOtherName] to be of [type=LinkA] but found [type=LinkB]");
@@ -58,10 +61,7 @@ namespace InterfaceFakesTests.Validators
 
             public LinkHead() : this(new LinkA(new LinkB())) { }
 
-            private LinkHead(ILink nextAction)
-            {
-                _nextAction = nextAction;
-            }
+            private LinkHead(ILink nextAction) => _nextAction = nextAction;
         }
 
         private class LinkCustom : ILink
@@ -70,30 +70,21 @@ namespace InterfaceFakesTests.Validators
 
             public LinkCustom() : this(new LinkC(new LinkB())) { }
 
-            private LinkCustom(ILink nextAction)
-            {
-                _nextAction = nextAction;
-            }
+            private LinkCustom(ILink nextAction) => _nextAction = nextAction;
         }
 
         private class LinkA : ILink
         {
             private readonly ILink _nextAction;
 
-            public LinkA(ILink nextAction)
-            {
-                _nextAction = nextAction;
-            }
+            public LinkA(ILink nextAction) => _nextAction = nextAction;
         }
 
         private class LinkC : ILink
         {
             private readonly ILink _someOtherName;
 
-            public LinkC(ILink nextAction)
-            {
-                _someOtherName = nextAction;
-            }
+            public LinkC(ILink nextAction) => _someOtherName = nextAction;
         }
 
         private class LinkB : ILink

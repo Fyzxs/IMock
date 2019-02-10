@@ -57,6 +57,7 @@ namespace InterfaceFakesTests
             actual2.Should().Be(expected);
             actual3.Should().Be(expected);
         }
+
         [TestMethod, TestCategory("unit")]
         public void Invoke_ShouldReturnValuesInOrderPassedIntoUpdateInvocationWhenInvokedMultipleTimes()
         {

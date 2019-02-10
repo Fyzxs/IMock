@@ -96,8 +96,6 @@ namespace InterfaceFakesTests
             thrower.Should().ThrowExactly<Exception>().WithMessage("Second Invocation");
         }
 
-
-
         [TestMethod, TestCategory("unit")]
         public void InvokeTask_ShouldTrackInvocationWithExceptionThrown()
         {

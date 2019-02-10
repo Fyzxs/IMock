@@ -31,17 +31,21 @@ namespace InterfaceFakes.Validators
         /// <typeparam name="T">The class expected to be next in the chain.</typeparam>
         /// <param name="name">The name of the private variable the instance is held in. Default value of "_nextAction".</param>
         /// <returns>This instance of ChainValidation</returns>
-        public ChainValidation Add<T>(string name = "_nextAction")
+        [Obsolete("Naming of this method is poor please use the better named one")]
+        public ChainValidation NextClassInChain<T>(string name = "_nextAction")
         {
             _validationInfo.Add(new ValidationInfo(name, typeof(T)));
             return this;
         }
 
+        [Obsolete("Use NextClassInChain")]
+        public ChainValidation Add<T>(string name = "_nextAction") => NextClassInChain<T>(name);
+
         /// <summary>
         /// Validates the chain specified through the <see cref="Add{T}"/> method.
         /// </summary>
         /// <param name="headToValidate">The instance to start validation against.</param>
-        public void AssertExpectedChain(object headToValidate)
+        public void AssertExpectedChainOrder(object headToValidate)
         {
             object currentLink = headToValidate;
             foreach (ValidationInfo info in _validationInfo)
@@ -51,6 +55,9 @@ namespace InterfaceFakes.Validators
                 currentLink = nextLink;
             }
         }
+
+        [Obsolete("User AssertExpectedChainOrder")]
+        public void AssertExpectedChain(object headToValidate) => AssertExpectedChainOrder(headToValidate);
 
         private object NextLink(object obj, ValidationInfo info) => GetAllFields(obj.GetType()).First(t => info.NameMatches(t.Name)).GetValue(obj);
 

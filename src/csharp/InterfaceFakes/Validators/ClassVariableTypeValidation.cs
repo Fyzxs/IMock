@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace InterfaceFakes.Validators
 {
@@ -32,35 +33,43 @@ namespace InterfaceFakes.Validators
         /// <typeparam name="T">The class expected to be next in the chain.</typeparam>
         /// <param name="name">The name of the private variable the instance is held in.</param>
         /// <returns>This instance of ChainValidation</returns>
-        public ClassVariableTypeValidation Add<T>(string name)
+        public ClassVariableTypeValidation FieldShouldBeType<T>(string name)
         {
             _validationInfo.Add(new ValidationInfo(name, typeof(T)));
             return this;
         }
 
+        [Obsolete("Use FieldShouldBeType")]
+        public ClassVariableTypeValidation Add<T>(string name) => FieldShouldBeType<T>(name);
+
         /// <summary>
-        /// Validates the variables specified through the <see cref="Add{T}"/> method.
+        /// Validates the class fields specified through the <see cref="FieldShouldBeType{T}"/> method.
         /// </summary>
         /// <param name="classToValidate">The instance to start validation against.</param>
-        public void AssertExpectedVariables(object classToValidate)
+        public void AssertFieldsAreExpectedType(object classToValidate)
         {
             foreach (ValidationInfo info in _validationInfo)
             {
                 info.AssertType(GetObjectToValidate(classToValidate, info));
             }
         }
+        [Obsolete("Use AssertFieldsAreExpectedType")]
+        public void AssertExpectedVariables(object classToValidate) => AssertFieldsAreExpectedType(classToValidate);
 
         /// <summary>
-        /// Validates the variables in the super type <typeparamref name="T"/> specified through the <see cref="Add{T}"/> method.
+        /// Validates the class fields in the super type <typeparamref name="T"/> specified through the <see cref="FieldShouldBeType{T}"/> method.
         /// </summary>
         /// <param name="classToValidate">The instance to start validation against.</param>
-        public void AssertExpectedVariables<T>(object classToValidate)
+        public void AssertFieldsAreExpectedTypeInBaseClass<T>(object classToValidate)
         {
             foreach (ValidationInfo info in _validationInfo)
             {
                 info.AssertType(GetObjectToValidate<T>(classToValidate, info));
             }
         }
+
+        [Obsolete("Use AssertFieldsAreExpectedTypeInBaseClass")]
+        public void AssertExpectedVariables<T>(object classToValidate) => AssertFieldsAreExpectedTypeInBaseClass<T>(classToValidate);
 
         private object GetObjectToValidate(object obj, ValidationInfo validationInfo) =>
             validationInfo.FieldInfo(obj).GetValue(obj);

@@ -13,6 +13,12 @@ namespace InterfaceFakes.Reflection
     /// </summary>
     public sealed class PrivateCtor<T>
     {
+        /// <summary>
+        /// Convertor to specified type T.
+        /// </summary>
+        /// <param name="origin"></param>
+        public static implicit operator T(PrivateCtor<T> origin) => origin.Object();
+
         private readonly PrivateConstructorInfo _privateConstructorInfo;
         private readonly object[] _args;
 
@@ -27,12 +33,6 @@ namespace InterfaceFakes.Reflection
             _args = args;
             _privateConstructorInfo = privateConstructorInfo;
         }
-
-        /// <summary>
-        /// Convertor to specified type T.
-        /// </summary>
-        /// <param name="origin"></param>
-        public static implicit operator T(PrivateCtor<T> origin) => origin.Object();
 
         private T Object() => (T)((ConstructorInfo)_privateConstructorInfo).Invoke(_args);
     }

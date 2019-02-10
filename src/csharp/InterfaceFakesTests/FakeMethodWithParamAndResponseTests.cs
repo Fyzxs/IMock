@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace InterfaceFakesTests
 {
     [TestClass]
-    public class FakeMethodWithParamAndResponseTests
+    public sealed class FakeMethodWithParamAndResponseTests
     {
         [TestMethod, TestCategory("unit")]
         public void Invoke_ShouldCallInvokeOnBothFakes_AndReturnTrue()

@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace InterfaceFakesTests.Library
 {
     [TestClass]
-    public class ArrayTests
+    public sealed class ArrayTests
     {
         [TestMethod, TestCategory("unit")]
         public void ShouldBeArrayOfType()

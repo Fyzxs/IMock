@@ -6,7 +6,7 @@ using System;
 namespace InterfaceFakesTests.Validators
 {
     [TestClass]
-    public class ChainValidationTests
+    public sealed class ChainValidationTests
     {
         [TestMethod, TestCategory("unit")]
         public void ShouldNotThrowGivenValidChain()

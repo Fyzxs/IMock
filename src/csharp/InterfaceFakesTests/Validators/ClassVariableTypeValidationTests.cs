@@ -6,7 +6,7 @@ using System;
 namespace InterfaceFakesTests.Validators
 {
     [TestClass]
-    public class ClassVariableTypeValidationTests
+    public sealed class ClassVariableTypeValidationTests
     {
         [TestMethod, TestCategory("unit")]
         public void ShouldNotThrowWithValidVariable()

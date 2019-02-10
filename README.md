@@ -25,7 +25,7 @@ An usage example for `ISomeInterface`.
 public interface ISomeInterface{
     string MethodName();
 }
-public class FakeSomeInterface : ISomeInterface{
+public sealed partial class FakeSomeInterface : ISomeInterface{
 
     private FakeMethodWithResponse&lt;string> _methodName;
 
@@ -33,7 +33,7 @@ public class FakeSomeInterface : ISomeInterface{
 
     public string MethodName() => _methodName.Invoked();
 
-    public class Builder{
+    public sealed class Builder{
         private FakeMethodWithResponse&lt;string> _methodName;= new FakeMethodWithResponse&lt;string>("FakeSomeInterface#MethodName");
 
         public Builder MethodName(params string[] responseValues){

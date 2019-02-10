@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace InterfaceFakesTests.Reflection
 {
     [TestClass]
-    public class PrivateCtorTests
+    public sealed class PrivateCtorTests
     {
         [TestMethod, TestCategory("unit")]
         public void ShouldBeOfType()

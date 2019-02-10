@@ -6,7 +6,7 @@ using System;
 namespace InterfaceFakesTests.Exceptions
 {
     [TestClass]
-    public class AsserterTests
+    public sealed class AsserterTests
     {
         [TestMethod, TestCategory("unit")]
         public void AssertIf_ShouldNotThrowWhenFalseCondition()

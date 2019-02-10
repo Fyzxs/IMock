@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace InterfaceFakesTests
 {
     [TestClass]
-    public class FakeMethodWithParamTests
+    public sealed class FakeMethodWithParamTests
     {
         //**** Invoke ****
 

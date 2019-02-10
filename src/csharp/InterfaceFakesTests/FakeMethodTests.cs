@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace InterfaceFakesTests
 {
     [TestClass]
-    public class FakeMethodTests
+    public sealed class FakeMethodTests
     {
         [TestMethod, TestCategory("unit")]
         public void Invoke_ShouldThrowExceptionWithMethodNameIfInvocationNotUpdated()

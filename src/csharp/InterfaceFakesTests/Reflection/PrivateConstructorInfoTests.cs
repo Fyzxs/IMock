@@ -6,7 +6,7 @@ using System.Reflection;
 namespace InterfaceFakesTests.Reflection
 {
     [TestClass]
-    public class PrivateConstructorInfoTests
+    public sealed class PrivateConstructorInfoTests
     {
         [TestMethod, TestCategory("unit")]
         public void CtorInfo_ShouldReturnConstructorInfo()

@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace InterfaceFakesTests.Tools
 {
-    public class PrivateConstructorInfo
+    public sealed class PrivateConstructorInfo
     {
         private readonly Type _type;
         private readonly ArgsToTypes _args;

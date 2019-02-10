@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace InterfaceFakesTests.Fakes
 {
-    public partial sealed class FakeFakeMethodWithParam<TParam> : IFakeMethodWithParam<TParam>
+    public sealed partial class FakeFakeMethodWithParam<TParam> : IFakeMethodWithParam<TParam>
     {
-        public class Builder
+        public sealed class Builder
         {
             private readonly FakeMethod _updateInvocationItem = new FakeMethod("FakeMethodWithParam#UpdateInvocation");
             private readonly FakeMethodWithParam<TParam> _invokeItem = new FakeMethodWithParam<TParam>("FakeMethodWithParam#Invoke");

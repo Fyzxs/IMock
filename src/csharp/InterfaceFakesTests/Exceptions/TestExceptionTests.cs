@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace InterfaceFakesTests.Exceptions
 {
     [TestClass]
-    public class TestExceptionTests
+    public sealed class TestExceptionTests
     {
         [TestMethod, TestCategory("unit")]
         public void Message_ShouldHaveNameInMethod()

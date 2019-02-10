@@ -13,7 +13,7 @@ namespace InterfaceFakes
     /// public interface ISomeInterface{
     ///     void MethodName(string value);
     /// }
-    /// public class FakeSomeInterface : ISomeInterface{
+    /// public sealed partial class FakeSomeInterface : ISomeInterface{
     /// 
     ///     private FakeMethodWithParam&lt;string> _methodName;
     /// 
@@ -21,7 +21,7 @@ namespace InterfaceFakes
     /// 
     ///     public void MethodName(string value) => _methodName.Invoked(value);
     /// 
-    ///     public class Builder{
+    ///     public sealed class Builder{
     ///         private FakeMethodWithParam&lt;string> _methodName;= new FakeMethodWithParam&lt;string>("FakeSomeInterface#MethodName");
     /// 
     ///         public Builder MethodName(){

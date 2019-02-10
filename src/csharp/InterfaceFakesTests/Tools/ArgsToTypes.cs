@@ -2,7 +2,7 @@
 
 namespace InterfaceFakesTests.Tools
 {
-    public class ArgsToTypes
+    public sealed class ArgsToTypes
     {
         private readonly object[] _args;
         public ArgsToTypes(params object[] args) => _args = args;

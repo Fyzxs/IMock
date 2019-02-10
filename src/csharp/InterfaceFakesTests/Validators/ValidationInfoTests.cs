@@ -7,7 +7,7 @@ using System.Reflection;
 namespace InterfaceFakesTests.Validators
 {
     [TestClass]
-    public class ValidationInfoTests
+    public sealed class ValidationInfoTests
     {
         [TestMethod, TestCategory("unit")]
         public void NameMatches_ShouldReturnTrueGivenNameMatches()

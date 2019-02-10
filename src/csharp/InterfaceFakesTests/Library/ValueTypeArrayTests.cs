@@ -6,7 +6,7 @@ using System;
 namespace InterfaceFakesTests.Library
 {
     [TestClass]
-    public class ValueTypeArrayTests
+    public sealed class ValueTypeArrayTests
     {
         [TestMethod, TestCategory("unit")]
         public void ShouldBeTypeOfInstances()

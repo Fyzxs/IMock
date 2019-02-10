@@ -6,7 +6,7 @@ namespace InterfaceFakesTests.Fakes
 {
     public sealed partial class FakeFakeMethodWithResponse<TResponse> : IFakeMethodWithResponse<TResponse>
     {
-        public class Builder
+        public sealed class Builder
         {
             private readonly FakeMethodWithParam<TResponse[]> _updateInvocationTResponseItem = new FakeMethodWithParam<TResponse[]>("FakeFakeMethodWithResponse#UpdateInvocation_TResponse");
             private readonly FakeMethodWithParam<Func<TResponse>[]> _updateInvocationFuncItem = new FakeMethodWithParam<Func<TResponse>[]>("FakeFakeMethodWithResponse#UpdateInvocation_Func");

@@ -12,7 +12,7 @@ namespace InterfaceFakes
     /// public interface ISomeInterface{
     ///     string MethodName(double value);
     /// }
-    /// public class FakeSomeInterface : ISomeInterface{
+    /// public sealed partial class FakeSomeInterface : ISomeInterface{
     /// 
     ///     private FakeMethodWithParamAndResponse&lt;double, string> _methodName;
     /// 
@@ -20,7 +20,7 @@ namespace InterfaceFakes
     /// 
     ///     public string MethodName(double value) => _methodName.Invoked(value);
     /// 
-    ///     public class Builder{
+    ///     public sealed class Builder{
     ///         private FakeMethodWithResponse&lt;double, string> _methodName;= new FakeMethodWithResponse&lt;double, string>("FakeSomeInterface#MethodName");
     /// 
     ///         public Builder MethodName(params string[] responseValues){

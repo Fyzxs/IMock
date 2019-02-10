@@ -1,6 +1,6 @@
 ﻿namespace InterfaceFakesTests.Tools
 {
-    public class ReflectionObject<T>
+    public sealed class ReflectionObject<T>
     {
         private readonly PrivateConstructorInfo _privateConstructorInfo;
         private readonly object[] _args;

@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace InterfaceFakesTests.Library
 {
     [TestClass]
-    public class CounterTests
+    public sealed class CounterTests
     {
         [TestMethod, TestCategory("unit")]
         public void Value_ShouldReturnCurrentValue()

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace InterfaceFakesTests.Fakes
 {
-    public class FakeFakeMethodWithParam<TParam> : IFakeMethodWithParam<TParam>
+    public partial sealed class FakeFakeMethodWithParam<TParam> : IFakeMethodWithParam<TParam>
     {
         public class Builder
         {

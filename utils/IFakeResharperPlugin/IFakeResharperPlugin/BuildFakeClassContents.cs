@@ -90,7 +90,7 @@ namespace Fyzxs.IFakeResharperPlugin
 
         private static IClassLikeDeclaration BuildMethod(ICSharpContextActionDataProvider dataProvider, ICollection<IInterface> interfacesArray, string className, string typeParameters)
         {
-            IClassLikeDeclaration builderClass = (IClassLikeDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration("public class Builder {}");
+            IClassLikeDeclaration builderClass = (IClassLikeDeclaration)dataProvider.ElementFactory.CreateTypeMemberDeclaration("public sealed class Builder {}");
             //List<IInterface> interfaces = theInterface.GetSuperTypes().Select(x => x.GetTypeElement()).OfType<IInterface>().ToList();
 
             string allNodes = AllNodes(interfacesArray.ToArray());

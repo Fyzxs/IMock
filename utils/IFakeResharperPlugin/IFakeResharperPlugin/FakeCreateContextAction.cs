@@ -29,7 +29,7 @@ namespace Fyzxs.IFakeResharperPlugin
             if (typeElement.TypeParameters.Count != 0) typeParameters = "<" + typeParameters + ">";
             string interfaceName = typeElement.ShortName;
             string className = $"Fake{interfaceName.Substring(1)}";
-            IClassLikeDeclaration classDeclaration = (IClassLikeDeclaration)_dataProvider.ElementFactory.CreateTypeMemberDeclaration($"public partial class {className}{typeParameters} : {interfaceName}{typeParameters} {{}}");
+            IClassLikeDeclaration classDeclaration = (IClassLikeDeclaration)_dataProvider.ElementFactory.CreateTypeMemberDeclaration($"public sealed partial class {className}{typeParameters} : {interfaceName}{typeParameters} {{}}");
 
             ICSharpTypeAndNamespaceHolderDeclaration holderDeclaration = _dataProvider.PsiFile;
             classDeclaration = (IClassLikeDeclaration)holderDeclaration.AddTypeDeclarationAfter(classDeclaration, theInterface);

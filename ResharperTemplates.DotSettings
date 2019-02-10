@@ -5,7 +5,7 @@
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B0DB80C7D9718A43A6087140260A2B0A/Text/@EntryValue">$CLASS$ subject = new PrivateCtor&lt;$CLASS$&gt;($PARAMS$);</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B0DB80C7D9718A43A6087140260A2B0A/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B0DB80C7D9718A43A6087140260A2B0A/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B0DB80C7D9718A43A6087140260A2B0A/Categories/=MockTemplates/@EntryIndexedValue">MockTemplates</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B0DB80C7D9718A43A6087140260A2B0A/Categories/=FakeTemplates/@EntryIndexedValue">FakeTemplates</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B0DB80C7D9718A43A6087140260A2B0A/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B0DB80C7D9718A43A6087140260A2B0A/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B0DB80C7D9718A43A6087140260A2B0A/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
@@ -14,140 +14,13 @@
 	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B0DB80C7D9718A43A6087140260A2B0A/Field/=CLASS/Order/@EntryValue">0</s:Int64>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B0DB80C7D9718A43A6087140260A2B0A/Field/=PARAMS/@KeyIndexDefined">True</s:Boolean>
 	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B0DB80C7D9718A43A6087140260A2B0A/Field/=PARAMS/Order/@EntryValue">1</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20AC5750D2800D419B53DBF2FEFD441C/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20AC5750D2800D419B53DBF2FEFD441C/Shortcut/@EntryValue">bMockInterface</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20AC5750D2800D419B53DBF2FEFD441C/Description/@EntryValue">generates mock for a interface.</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20AC5750D2800D419B53DBF2FEFD441C/Text/@EntryValue">public class Mock$CLASS$ : I$CLASS$&#xD;
-{&#xD;
-	public class Builder {&#xD;
-		public Mock$CLASS$ Build()&#xD;
-		{&#xD;
-			return new Mock$CLASS$ { };&#xD;
-		}&#xD;
-	}&#xD;
-&#xD;
-	private Mock$CLASS$() { }&#xD;
-}</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20AC5750D2800D419B53DBF2FEFD441C/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20AC5750D2800D419B53DBF2FEFD441C/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20AC5750D2800D419B53DBF2FEFD441C/Categories/=MockTemplates/@EntryIndexedValue">MockTemplates</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20AC5750D2800D419B53DBF2FEFD441C/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20AC5750D2800D419B53DBF2FEFD441C/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20AC5750D2800D419B53DBF2FEFD441C/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20AC5750D2800D419B53DBF2FEFD441C/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20AC5750D2800D419B53DBF2FEFD441C/Field/=CLASS/@KeyIndexDefined">True</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=20AC5750D2800D419B53DBF2FEFD441C/Field/=CLASS/Order/@EntryValue">0</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Shortcut/@EntryValue">bMockMethod</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Description/@EntryValue">generate mock for method with no params or response. For use in builder. </s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Text/@EntryValue">private readonly MockMethod _$FUNCTION_NAME$ = new MockMethod("Mock$CLASS$#$FUNCTION_NAME_CAP$");&#xD;
-&#xD;
-public Builder $FUNCTION_NAME_CAP$() {&#xD;
-	_$FUNCTION_NAME$.UpdateInvocation();&#xD;
-	return this;&#xD;
-}</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Categories/=MockTemplates/@EntryIndexedValue">MockTemplates</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Field/=FUNCTION_005FNAME/@KeyIndexDefined">True</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Field/=FUNCTION_005FNAME/Order/@EntryValue">0</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Field/=CLASS/@KeyIndexDefined">True</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Field/=CLASS/Order/@EntryValue">1</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Field/=FUNCTION_005FNAME_005FCAP/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Field/=FUNCTION_005FNAME_005FCAP/Expression/@EntryValue">capitalize(FUNCTION_NAME)</s:String>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Field/=FUNCTION_005FNAME_005FCAP/InitialRange/@EntryValue">-1</s:Int64>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3A9D4F627D7C614CBE8DB6C81470304B/Field/=FUNCTION_005FNAME_005FCAP/Order/@EntryValue">2</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Shortcut/@EntryValue">bMockMethodWithParam</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Description/@EntryValue">generate mock for method with parameters and no response. For use in builder. </s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Text/@EntryValue">private readonly MockMethodWithParam&lt;$PARAM_TYPE$&gt; _$FUNCTION_NAME$ = new MockMethodWithParam&lt;$PARAM_TYPE$&gt;("Mock$CLASS$#$FUNCTION_NAME_CAP$");&#xD;
-&#xD;
-public Builder $FUNCTION_NAME_CAP$() {&#xD;
-	_$FUNCTION_NAME$.UpdateInvocation();&#xD;
-	return this;&#xD;
-}</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Categories/=MockTemplates/@EntryIndexedValue">MockTemplates</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Field/=PARAM_005FTYPE/@KeyIndexDefined">True</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Field/=PARAM_005FTYPE/Order/@EntryValue">0</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Field/=FUNCTION_005FNAME/@KeyIndexDefined">True</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Field/=FUNCTION_005FNAME/Order/@EntryValue">1</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Field/=CLASS/@KeyIndexDefined">True</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Field/=CLASS/Order/@EntryValue">2</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Field/=FUNCTION_005FNAME_005FCAP/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Field/=FUNCTION_005FNAME_005FCAP/Expression/@EntryValue">capitalize(FUNCTION_NAME)</s:String>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Field/=FUNCTION_005FNAME_005FCAP/InitialRange/@EntryValue">-1</s:Int64>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F5FCEBDABE3AFC478E587B53B132AD1E/Field/=FUNCTION_005FNAME_005FCAP/Order/@EntryValue">3</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Shortcut/@EntryValue">bMockMethodWithParamAndResponse</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Description/@EntryValue">generate mock for method with parameters and response. For use in builder. </s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Text/@EntryValue">private readonly MockMethodWithParamAndResponse&lt;$PARAM_TYPE$,$RESPONSE_TYPE$&gt; _$FUNCTION_NAME$ = new MockMethodWithParamAndResponse&lt;$PARAM_TYPE$,$RESPONSE_TYPE$&gt;("Mock$CLASS$#$FUNCTION_NAME_CAP$");&#xD;
-&#xD;
-public Builder $FUNCTION_NAME_CAP$($RESPONSE_TYPE$ expected) {&#xD;
-	_$FUNCTION_NAME$.UpdateInvocation(expected);&#xD;
-	return this;&#xD;
-}</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Categories/=MockTemplates/@EntryIndexedValue">MockTemplates</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Field/=PARAM_005FTYPE/@KeyIndexDefined">True</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Field/=PARAM_005FTYPE/Order/@EntryValue">0</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Field/=RESPONSE_005FTYPE/@KeyIndexDefined">True</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Field/=RESPONSE_005FTYPE/Order/@EntryValue">1</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Field/=FUNCTION_005FNAME/@KeyIndexDefined">True</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Field/=FUNCTION_005FNAME/Order/@EntryValue">2</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Field/=CLASS/@KeyIndexDefined">True</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Field/=CLASS/Order/@EntryValue">3</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Field/=FUNCTION_005FNAME_005FCAP/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Field/=FUNCTION_005FNAME_005FCAP/Expression/@EntryValue">capitalize(FUNCTION_NAME)</s:String>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Field/=FUNCTION_005FNAME_005FCAP/InitialRange/@EntryValue">-1</s:Int64>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=64D392093ED2E74B957DD139D5B10853/Field/=FUNCTION_005FNAME_005FCAP/Order/@EntryValue">4</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Shortcut/@EntryValue">bMockMethodWithResponse</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Description/@EntryValue">generate mock for method with a response and no params. For use in builder. </s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Text/@EntryValue">private readonly MockMethodWithResponse&lt;$RESPONSE_TYPE$&gt; _$FUNCTION_NAME$ = new MockMethodWithResponse&lt;$RESPONSE_TYPE$&gt;("Mock$CLASS$#$FUNCTION_NAME_CAP$");&#xD;
-&#xD;
-public Builder $FUNCTION_NAME_CAP$($RESPONSE_TYPE$ expected) {&#xD;
-	_$FUNCTION_NAME$.UpdateInvocation(expected);&#xD;
-	return this;&#xD;
-}</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Categories/=MockTemplates/@EntryIndexedValue">MockTemplates</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Field/=RESPONSE_005FTYPE/@KeyIndexDefined">True</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Field/=RESPONSE_005FTYPE/Order/@EntryValue">0</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Field/=FUNCTION_005FNAME/@KeyIndexDefined">True</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Field/=FUNCTION_005FNAME/Order/@EntryValue">1</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Field/=CLASS/@KeyIndexDefined">True</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Field/=CLASS/Order/@EntryValue">2</s:Int64>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Field/=FUNCTION_005FNAME_005FCAP/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Field/=FUNCTION_005FNAME_005FCAP/Expression/@EntryValue">capitalize(FUNCTION_NAME)</s:String>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Field/=FUNCTION_005FNAME_005FCAP/InitialRange/@EntryValue">-1</s:Int64>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=99A6EBB20F9E47439FECD56C560D0C30/Field/=FUNCTION_005FNAME_005FCAP/Order/@EntryValue">3</s:Int64>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=842515C8AEE8C5478FC075CC567CD811/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=842515C8AEE8C5478FC075CC567CD811/Shortcut/@EntryValue">mv</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=842515C8AEE8C5478FC075CC567CD811/Description/@EntryValue">create a mock variable for use in a test.</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=842515C8AEE8C5478FC075CC567CD811/Text/@EntryValue">Mock$CLASS$ mock$VARIABLE_NAME$ = new Mock$CLASS$.Builder()$ALLOWED_FUNCTIONS$.Build();</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=842515C8AEE8C5478FC075CC567CD811/Shortcut/@EntryValue">fv</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=842515C8AEE8C5478FC075CC567CD811/Description/@EntryValue">create a fake variable for use in a test.</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=842515C8AEE8C5478FC075CC567CD811/Text/@EntryValue">Fake$CLASS$ fake$VARIABLE_NAME$ = new Fake$CLASS$.Builder()$ALLOWED_FUNCTIONS$.Build();</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=842515C8AEE8C5478FC075CC567CD811/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=842515C8AEE8C5478FC075CC567CD811/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=842515C8AEE8C5478FC075CC567CD811/Categories/=MockTemplates/@EntryIndexedValue">MockTemplates</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=842515C8AEE8C5478FC075CC567CD811/Categories/=FakeTemplates/@EntryIndexedValue">FakeTemplates</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=842515C8AEE8C5478FC075CC567CD811/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=842515C8AEE8C5478FC075CC567CD811/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=842515C8AEE8C5478FC075CC567CD811/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
@@ -173,7 +46,7 @@ public void $METHOD_NAME$_Should$TEST$()&#xD;
 }</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=725672439A4B0A45898C4DD8F94D97F3/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=725672439A4B0A45898C4DD8F94D97F3/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=725672439A4B0A45898C4DD8F94D97F3/Categories/=MockTemplates/@EntryIndexedValue">MockTemplates</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=725672439A4B0A45898C4DD8F94D97F3/Categories/=FakeTemplates/@EntryIndexedValue">FakeTemplates</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=725672439A4B0A45898C4DD8F94D97F3/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=725672439A4B0A45898C4DD8F94D97F3/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=725672439A4B0A45898C4DD8F94D97F3/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
@@ -201,10 +74,7 @@ public void ShouldHaveExpectedOrder()&#xD;
 }</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5699491E4B4283418F2BFFA7BE41D322/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5699491E4B4283418F2BFFA7BE41D322/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5699491E4B4283418F2BFFA7BE41D322/Categories/=custom_002Dbuilders/@EntryIndexedValue">custom-builders</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5699491E4B4283418F2BFFA7BE41D322/Categories/=Custom_002DC_0023/@EntryIndexedValue">Custom-C#</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5699491E4B4283418F2BFFA7BE41D322/Categories/=MockTemplates/@EntryIndexedValue">MockTemplates</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5699491E4B4283418F2BFFA7BE41D322/Categories/=Imported_00204_002F18_002F2018/@EntryIndexedValue">Imported 4/18/2018</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5699491E4B4283418F2BFFA7BE41D322/Categories/=FakeTemplates/@EntryIndexedValue">FakeTemplates</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5699491E4B4283418F2BFFA7BE41D322/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5699491E4B4283418F2BFFA7BE41D322/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5699491E4B4283418F2BFFA7BE41D322/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
@@ -231,10 +101,7 @@ public void ShouldValidateTheVariables()&#xD;
 }</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=91AF867C07911E42826288E2D62DFC0A/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=91AF867C07911E42826288E2D62DFC0A/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=91AF867C07911E42826288E2D62DFC0A/Categories/=custom_002Dbuilders/@EntryIndexedValue">custom-builders</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=91AF867C07911E42826288E2D62DFC0A/Categories/=Custom_002DC_0023/@EntryIndexedValue">Custom-C#</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=91AF867C07911E42826288E2D62DFC0A/Categories/=MockTemplates/@EntryIndexedValue">MockTemplates</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=91AF867C07911E42826288E2D62DFC0A/Categories/=Imported_00204_002F18_002F2018/@EntryIndexedValue">Imported 4/18/2018</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=91AF867C07911E42826288E2D62DFC0A/Categories/=FakeTemplates/@EntryIndexedValue">FakeTemplates</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=91AF867C07911E42826288E2D62DFC0A/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=91AF867C07911E42826288E2D62DFC0A/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=91AF867C07911E42826288E2D62DFC0A/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
@@ -254,9 +121,7 @@ public void ShouldValidateTheVariables()&#xD;
 </s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C4F4B5077F446543913E2D5F68AF0BAD/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C4F4B5077F446543913E2D5F68AF0BAD/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C4F4B5077F446543913E2D5F68AF0BAD/Categories/=custom_002Dbuilders/@EntryIndexedValue">custom-builders</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C4F4B5077F446543913E2D5F68AF0BAD/Categories/=Imported_00204_002F18_002F2018/@EntryIndexedValue">Imported 4/18/2018</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C4F4B5077F446543913E2D5F68AF0BAD/Categories/=MockTemplates/@EntryIndexedValue">MockTemplates</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C4F4B5077F446543913E2D5F68AF0BAD/Categories/=FakeTemplates/@EntryIndexedValue">FakeTemplates</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C4F4B5077F446543913E2D5F68AF0BAD/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C4F4B5077F446543913E2D5F68AF0BAD/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C4F4B5077F446543913E2D5F68AF0BAD/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>

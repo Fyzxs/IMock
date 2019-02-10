@@ -1,7 +1,7 @@
 ﻿using FizzBuzzExample.Actions;
 using FizzBuzzExample.Library.Texts;
 using FizzBuzzExampleTests.Fluent;
-using FizzBuzzExampleTests.Mocks;
+using FizzBuzzExampleTests.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FizzBuzzExampleTests.Actions
@@ -13,12 +13,12 @@ namespace FizzBuzzExampleTests.Actions
         public void ShouldReturnBuzzTextGivenEvenlyDivisibleByFive()
         {
             //Arrange
-            MockInt mockInt = new MockInt.Builder().RawValue(5).Build();
-            MockResponseAction mockResponseAction = new MockResponseAction.Builder().Build();
-            BuzzResponseAction subject = new BuzzResponseAction(mockResponseAction);
+            FakeInt fakeInt = new FakeInt.Builder().RawValue(5).Build();
+            FakeResponseAction fakeResponseAction = new FakeResponseAction.Builder().Build();
+            BuzzResponseAction subject = new BuzzResponseAction(fakeResponseAction);
 
             //Act
-            Text actual = subject.Act(mockInt);
+            Text actual = subject.Act(fakeInt);
 
             //Assert
             actual.Should().Be("Buzz");
@@ -27,16 +27,16 @@ namespace FizzBuzzExampleTests.Actions
         public void ShouldReturnNextActionGivenNotEvenlyDivisibleByFive()
         {
             //Arrange
-            MockText mockText = new MockText.Builder().Build();
-            MockInt mockInt = new MockInt.Builder().RawValue(5 + 1).Build();
-            MockResponseAction mockResponseAction = new MockResponseAction.Builder().Act(mockText).Build();
-            BuzzResponseAction subject = new BuzzResponseAction(mockResponseAction);
+            FakeText fakeText = new FakeText.Builder().Build();
+            FakeInt fakeInt = new FakeInt.Builder().RawValue(5 + 1).Build();
+            FakeResponseAction fakeResponseAction = new FakeResponseAction.Builder().Act(fakeText).Build();
+            BuzzResponseAction subject = new BuzzResponseAction(fakeResponseAction);
 
             //Act
-            Text actual = subject.Act(mockInt);
+            Text actual = subject.Act(fakeInt);
 
             //Assert
-            actual.Should().BeSameAs(mockText);
+            actual.Should().BeSameAs(fakeText);
         }
     }
 }

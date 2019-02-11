@@ -97,12 +97,12 @@ namespace InterfaceFakes
         /// <param name="funcs">Array of values to return</param>
         void UpdateInvocation(params Func<TResponse>[] funcs);
         /// <summary>
-        /// Called when the fakeed method is invoked.
+        /// Called when the faked method is invoked.
         /// </summary>
         /// <returns>The value specified from <see cref="UpdateInvocation(TResponse[])"/> or  <see cref="UpdateInvocation(Func&lt;TResponse>[])"/></returns>
         TResponse Invoke();
         /// <summary>
-        /// Called when the fakeed method is invoked async.
+        /// Called when the faked method is invoked async.
         /// </summary>
         /// <returns>The value specified from <see cref="UpdateInvocation(TResponse[])"/> or  <see cref="UpdateInvocation(Func&lt;TResponse>[])"/> as an awaitable</returns>
         Task<TResponse> InvokeTask();

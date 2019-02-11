@@ -9,8 +9,9 @@ Examples Platform or languages:
 The C# version is actively used for UWP projects where normal mocking frameworks can not be used. It's also used on other projects due to the simplicity over mocking frameworks.
 
 ### VSTS Badges
-Build: [![Build status](https://fyzxs.visualstudio.com/IFake/_apis/build/status/InterfaceFakes)](https://fyzxs.visualstudio.com/IFake/_build/latest?definitionId=4)
-Nuget : [![InterfaceFakes package in IFakeArtifacts feed in Azure Artifacts](https://fyzxs.feeds.visualstudio.com/_apis/public/Packaging/Feeds/8b20e113-93ce-44d9-83e5-7e3dd6153ea1/Packages/700d0907-bb91-4135-b82e-0d08d5247b22/Badge)](https://fyzxs.visualstudio.com/IFake/_packaging?_a=package&feed=8b20e113-93ce-44d9-83e5-7e3dd6153ea1&package=700d0907-bb91-4135-b82e-0d08d5247b22&preferRelease=true)
+[![Build status](https://fyzxs.visualstudio.com/IFake/_apis/build/status/InterfaceFakes)](https://fyzxs.visualstudio.com/IFake/_build/latest?definitionId=4)
+
+[![InterfaceFakes package in IFakeArtifacts feed in Azure Artifacts](https://fyzxs.feeds.visualstudio.com/_apis/public/Packaging/Feeds/8b20e113-93ce-44d9-83e5-7e3dd6153ea1/Packages/700d0907-bb91-4135-b82e-0d08d5247b22/Badge)](https://fyzxs.visualstudio.com/IFake/_packaging?_a=package&feed=8b20e113-93ce-44d9-83e5-7e3dd6153ea1&package=700d0907-bb91-4135-b82e-0d08d5247b22&preferRelease=true)
 
 
 #### What does this do?

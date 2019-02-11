@@ -111,12 +111,12 @@ namespace InterfaceFakes
         /// <param name="actions">The actions to perform on subsequent method calls.</param>
         void UpdateInvocation(params Action[] actions);
         /// <summary>
-        /// Called when the fakeed method is invoked.
+        /// Called when the faked method is invoked.
         /// </summary>
         /// <param name="value">The value the method was invoked with</param>
         void Invoke(TParam value);
         /// <summary>
-        /// Called when the fakeed method is invoked async.
+        /// Called when the faked method is invoked async.
         /// </summary>
         /// <param name="value">The value the method was invoked with</param>
         /// <returns>An Awaitable</returns>

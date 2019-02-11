@@ -86,12 +86,12 @@ namespace InterfaceFakes
         void UpdateInvocation(params Action[] actions);
 
         /// <summary>
-        /// Called when the fakeed method is invoked.
+        /// Called when the faked method is invoked.
         /// </summary>
         void Invoke();
 
         /// <summary>
-        /// Called when the fakeed method is invoked async.
+        /// Called when the faked method is invoked async.
         /// </summary>
         /// <returns>An Awaitable</returns>
         Task InvokeTask();

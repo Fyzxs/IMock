@@ -26,12 +26,12 @@ namespace InterfaceFakes
         }
 
         /// <summary>
-        /// Assert that the fakeed method has been invoked.
+        /// Assert that the faked method has been invoked.
         /// </summary>
         public void AssertInvoked() => _asserter.AssertIf(0 == _invokedCounter.Value(), $"{_name} was expected but not invoked.");
 
         /// <summary>
-        /// Assert the fakeed method has been invoked the expected number of times.
+        /// Assert the faked method has been invoked the expected number of times.
         /// </summary>
         /// <param name="expectedInvokeCount">Expected invoke count</param>
         public void AssertInvokedCountMatches(int expectedInvokeCount) => _asserter.AssertIf(expectedInvokeCount != _invokedCounter.Value(), $"{_name} [InvokedCount={_invokedCounter.Value()}] does not match expected [count={expectedInvokeCount}].");

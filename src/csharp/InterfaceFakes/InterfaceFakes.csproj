@@ -7,4 +7,12 @@
     <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
     <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\workspace\github\fyzxs\IFake\src\csharp\InterfaceFakes\InterfaceFakes.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\workspace\github\fyzxs\IFake\src\csharp\InterfaceFakes\InterfaceFakes.xml</DocumentationFile>
+  </PropertyGroup>
 </Project>

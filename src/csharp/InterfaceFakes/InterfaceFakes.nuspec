@@ -16,6 +16,6 @@
   <files>
     <file src="../../../LICENSE" target="LICENSE" />
     <file src="bin/Release/netstandard2.0/InterfaceFakes.dll" target="lib\netstandard2.0\InterfaceFakes.dll" />
-    <file src="../../../InterfaceFakes.xml" target="lib\netstandard2.0\InterfaceFakes.xml" />
+    <file src="bin/Release/netstandard2.0/InterfaceFakes.xml" target="lib\netstandard2.0\InterfaceFakes.xml" />
   </files>
 </package>

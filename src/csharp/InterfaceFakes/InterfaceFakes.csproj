@@ -6,6 +6,8 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IncludeBuildOutput>true</IncludeBuildOutput>
   </PropertyGroup>
 
 </Project>

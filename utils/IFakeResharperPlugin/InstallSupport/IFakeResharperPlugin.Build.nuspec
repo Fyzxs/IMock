@@ -2,7 +2,7 @@
 <package>
     <metadata>
         <id>Fyzxs.IFakeResharperPlugin</id>
-        <title>IFake $version$ for ReSharper 2018.2</title> 
+        <title>IFake $version$ for ReSharper</title> 
         <version>$version$</version>
         <authors>Quinn "Fyzxs" Gil</authors>
         <owners>Quinn "Fyzxs" Gil</owners>

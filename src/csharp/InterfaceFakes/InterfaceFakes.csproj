@@ -9,20 +9,10 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\workspace\github\fyzxs\IFake\src\csharp\InterfaceFakes\InterfaceFakes.xml</DocumentationFile>
+    <DocumentationFile>$(OutputPath)InterfaceFakes.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\workspace\github\fyzxs\IFake\src\csharp\InterfaceFakes\InterfaceFakes.xml</DocumentationFile>
+    <DocumentationFile>$(OutputPath)InterfaceFakes.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="InterfaceFakes.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="InterfaceFakes.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
 </Project>

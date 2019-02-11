@@ -13,4 +13,8 @@
     <releaseNotes>Made method names of Validators more informative.</releaseNotes>
     <copyright>Copyright (c) 2019</copyright>
   </metadata>
+  <files>
+    <file src="../../../LICENSE" target="LICENSE" />
+    <file src="bin/Release/netstandard2.0/InterfaceFakes.dll" target="lib\netstandard2.0\InterfaceFakes.dll" />
+  </files>
 </package>

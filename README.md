@@ -1,9 +1,9 @@
 **IFake Framework**
-* [![Build status](https://fyzxs.visualstudio.com/IFake/_apis/build/status/InterfaceFakes)](https://fyzxs.visualstudio.com/IFake/_build/latest?definitionId=4)
-* [![InterfaceFakes package in IFakeArtifacts feed in Azure Artifacts](https://fyzxs.feeds.visualstudio.com/_apis/public/Packaging/Feeds/8b20e113-93ce-44d9-83e5-7e3dd6153ea1/Packages/700d0907-bb91-4135-b82e-0d08d5247b22/Badge)](https://fyzxs.visualstudio.com/IFake/_packaging?_a=package&feed=8b20e113-93ce-44d9-83e5-7e3dd6153ea1&package=700d0907-bb91-4135-b82e-0d08d5247b22&preferRelease=true)
+* ![Build status](https://fyzxs.visualstudio.com/IFake/_apis/build/status/InterfaceFakes) ![GitHub Release](https://fyzxs.vsrm.visualstudio.com/_apis/public/Release/badge/de1edd3b-7499-47c7-937f-39d941f079bd/1/2)
+* ![Nuget version](https://fyzxs.feeds.visualstudio.com/_apis/public/Packaging/Feeds/8b20e113-93ce-44d9-83e5-7e3dd6153ea1/Packages/700d0907-bb91-4135-b82e-0d08d5247b22/Badge) ![Nuget Deploy](https://fyzxs.vsrm.visualstudio.com/_apis/public/Release/badge/de1edd3b-7499-47c7-937f-39d941f079bd/1/1)
 
 **ReSharper Plugin**
-* [![Build status](https://fyzxs.visualstudio.com/IFake/_apis/build/status/IFake_ReSharper_Plugin)](https://fyzxs.visualstudio.com/IFake/_build/latest?definitionId=5)
+* ![Build status](https://fyzxs.visualstudio.com/IFake/_apis/build/status/IFake_ReSharper_Plugin)
 * Plugin - *Coming Soon*
 
 

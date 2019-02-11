@@ -2,16 +2,16 @@
 <package>
     <metadata>
         <id>Fyzxs.IFakeResharperPlugin</id>
-        <title>IFake 0.1.0 for ReSharper 2018.2</title> 
-        <version>0.1.0</version>
-        <authors>Fyzxs</authors>
-        <owners>Fyzxs</owners>
+        <title>IFake $version$ for ReSharper 2018.2</title> 
+        <version>$version$</version>
+        <authors>Quinn "Fyzxs" Gil</authors>
+        <owners>Quinn "Fyzxs" Gil</owners>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <licenseUrl>https://github.com/Fyzxs/IFake/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/Fyzxs/IFake</projectUrl>
         <description>Plugin to automate creation of the Fake/Builder pair</description>
         <releaseNotes>• Converted to Fakes</releaseNotes>
-        <copyright>Copyright ©2019 Fyzxs</copyright>
+        <copyright>Copyright © 2019 Fyzxs</copyright>
         <dependencies>
             <dependency id="Wave" version="[$WAVEID$.0.0]"/>
         </dependencies>

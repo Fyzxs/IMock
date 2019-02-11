@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>InterfaceFakes</id>
+    <version>$version$</version>
+    <title>IFake - Interface Fakes</title>
+    <authors>Quinn Gil</authors>
+    <owners>Quinn Gil</owners>
+    <licenseUrl>https://github.com/Fyzxs/IFake/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Fyzxs/IFake</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A simple Faking Framework / Pattern that works in (almost) all languages</description>
+    <releaseNotes>Made method names of Validators more informative.</releaseNotes>
+    <copyright>Copyright (c) 2019</copyright>
+  </metadata>
+</package>

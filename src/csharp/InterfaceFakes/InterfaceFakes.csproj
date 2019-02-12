@@ -7,7 +7,6 @@
     <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <IncludeBuildOutput>true</IncludeBuildOutput>
     <PackageId>Fyzxs.InterfaceFakes</PackageId>
     <Title>IFake - Interface Fakes</Title>

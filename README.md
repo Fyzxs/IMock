@@ -3,9 +3,11 @@
 * ![Nuget version](https://fyzxs.feeds.visualstudio.com/_apis/public/Packaging/Feeds/8b20e113-93ce-44d9-83e5-7e3dd6153ea1/Packages/700d0907-bb91-4135-b82e-0d08d5247b22/Badge)
 
 **Release Deployments**
-* Nuget     :![Nuget Deploy](https://fyzxs.vsrm.visualstudio.com/_apis/public/Release/badge/de1edd3b-7499-47c7-937f-39d941f079bd/1/1)
-* Binaries  : ![Nuget Deploy](https://fyzxs.vsrm.visualstudio.com/_apis/public/Release/badge/de1edd3b-7499-47c7-937f-39d941f079bd/1/2)
-* ReSharper : ![Nuget Deploy](https://fyzxs.vsrm.visualstudio.com/_apis/public/Release/badge/de1edd3b-7499-47c7-937f-39d941f079bd/1/3)
+* Nuget Feed : ![Nuget Feed](https://fyzxs.vsrm.visualstudio.com/_apis/public/Release/badge/de1edd3b-7499-47c7-937f-39d941f079bd/1/6)
+* Nuget Pkg  : ![Nuget Package](https://fyzxs.vsrm.visualstudio.com/_apis/public/Release/badge/de1edd3b-7499-47c7-937f-39d941f079bd/1/1)
+* Binary Zip : ![Binary Zip](https://fyzxs.vsrm.visualstudio.com/_apis/public/Release/badge/de1edd3b-7499-47c7-937f-39d941f079bd/1/2)
+* R# Plugin  : ![Resharper Plugin](https://fyzxs.vsrm.visualstudio.com/_apis/public/Release/badge/de1edd3b-7499-47c7-937f-39d941f079bd/1/3)
+
 
 # Welcome to IFake!
 

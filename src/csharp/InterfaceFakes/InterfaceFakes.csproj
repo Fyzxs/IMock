@@ -6,8 +6,16 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <IncludeBuildOutput>true</IncludeBuildOutput>
+    <PackageId>Fyzxs.InterfaceFakes</PackageId>
+    <Title>IFake - Interface Fakes</Title>
+    <authors>Quinn "Fyzxs" Gil</authors>
+    <description>A simple Faking Framework / Pattern for C#</description>
+    <copyright>Copyright (c) 2019</copyright>
+    <packagelicenseUrl>https://github.com/Fyzxs/IFake/blob/master/LICENSE</packagelicenseUrl>
+    <RepositoryUrl>https://github.com/Fyzxs/IFake</RepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
   </PropertyGroup>
-
 </Project>

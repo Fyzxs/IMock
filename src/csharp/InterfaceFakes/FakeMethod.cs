@@ -43,7 +43,7 @@ namespace InterfaceFakes
     /// </summary>
     public sealed class FakeMethod : FakeMethodBase, IFakeMethod
     {
-        private readonly IStickyLastList<Action> _lambdas;
+        private readonly IStickyLastCollection<Action> _lambdas;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FakeMethod"/> class.

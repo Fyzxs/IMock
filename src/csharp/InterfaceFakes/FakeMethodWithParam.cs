@@ -43,8 +43,8 @@ namespace InterfaceFakes
     public sealed class FakeMethodWithParam<TParam> : FakeMethodBase, IFakeMethodWithParam<TParam>
     {
         private readonly string _name;
-        private readonly IStickyLastList<Action> _lambdas;
-        private readonly IStickyLastList<TParam> _values;
+        private readonly IStickyLastCollection<Action> _lambdas;
+        private readonly IStickyLastCollection<TParam> _values;
         private readonly IAsserter _asserter;
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace InterfaceFakes
         /// </summary>
         /// <param name="name">Name to identify in exception messages</param>
         public FakeMethodWithParam(string name) : this(name, new StickyLastList<Action>(() => throw new TestException(name)), new StickyLastList<TParam>(), new Asserter()) { }
-        private FakeMethodWithParam(string name, IStickyLastList<Action> lambdas, IStickyLastList<TParam> values, IAsserter asserter) : base(name)
+        private FakeMethodWithParam(string name, IStickyLastCollection<Action> lambdas, IStickyLastCollection<TParam> values, IAsserter asserter) : base(name)
         {
             _name = name;
             _lambdas = lambdas;

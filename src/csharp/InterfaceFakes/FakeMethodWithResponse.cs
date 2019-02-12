@@ -43,7 +43,7 @@ namespace InterfaceFakes
     /// </summary>
     public sealed class FakeMethodWithResponse<TResponse> : FakeMethodBase, IFakeMethodWithResponse<TResponse>
     {
-        private readonly IStickyLastList<Func<TResponse>> _funcs;
+        private readonly IStickyLastCollection<Func<TResponse>> _funcs;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FakeMethodWithParam{TParam}"/>.

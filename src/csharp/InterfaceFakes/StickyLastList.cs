@@ -3,8 +3,12 @@ using System.Linq;
 
 namespace InterfaceFakes
 {
-    /// <inheritdoc/>
-    public sealed class StickyLastList<T> : IStickyLastList<T>
+    /// <summary>
+    /// A list that will continue to return the last item once the end is reached.
+    /// </summary>
+    /// <typeparam name="T">The type the collection holds</typeparam>
+    ///
+    internal sealed class StickyLastList<T> : IStickyLastCollection<T>
     {
         private readonly IList<T> _items;
         private int _actionIndex;
@@ -43,7 +47,7 @@ namespace InterfaceFakes
     /// A collection that will continue to return the last item once the end is reached.
     /// </summary>
     /// <typeparam name="T">The type the collection holds</typeparam>
-    public interface IStickyLastList<T>
+    internal interface IStickyLastCollection<T>
     {
         /// <summary>
         /// Sets the collection to the provided objects.

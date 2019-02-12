@@ -59,7 +59,7 @@ namespace InterfaceFakes.Validators
         }
 
         /// <summary>
-        /// Obsolete - Use  <see cref="AssertExpectedChainOrder{T}"/>
+        /// Obsolete - Use  <see cref="AssertExpectedChainOrder"/>
         /// </summary>
         [Obsolete("Use AssertExpectedChainOrder")]
         public void AssertExpectedChain(object headToValidate) => AssertExpectedChainOrder(headToValidate);

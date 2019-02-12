@@ -389,14 +389,6 @@
     <Compile Include="ZoneMarker.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\InstallSupport\IFakeResharperPlugin.nuspec">
-      <Link>IFakeResharperPlugin.nuspec</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Hunspellx64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -470,13 +462,6 @@
     <Error Condition="!Exists('..\packages\JetBrains.ReSharper.SDK.Internal.183.0.20190127.84934\build\net461\JetBrains.ReSharper.SDK.Internal.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\JetBrains.ReSharper.SDK.Internal.183.0.20190127.84934\build\net461\JetBrains.ReSharper.SDK.Internal.targets'))" />
   </Target>
   <Import Project="..\packages\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.2.0.20151217.1\build\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.Targets" Condition="Exists('..\packages\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.2.0.20151217.1\build\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.Targets')" />
-  <Target Name="AfterBuild" Condition="'$(Configuration)' == 'Release'">
-    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
-      <Output TaskParameter="Assemblies" ItemName="AssemblyVersion" />
-    </GetAssemblyIdentity>
-    <Message Text="Releasing %(AssemblyVersion.Version) to $(OutputPath)" Importance="high" />
-    <Exec Command="$(ProjectDir)\..\InstallSupport\nuget.build.bat %(AssemblyVersion.Version)" WorkingDirectory="$(OutputPath)" />
-  </Target>
   <Import Project="..\packages\JetBrains.Platform.Interop.dotMemoryUnit.Framework.183.0.20190124.112739\build\net461\JetBrains.Platform.Interop.dotMemoryUnit.Framework.targets" Condition="Exists('..\packages\JetBrains.Platform.Interop.dotMemoryUnit.Framework.183.0.20190124.112739\build\net461\JetBrains.Platform.Interop.dotMemoryUnit.Framework.targets')" />
   <Import Project="..\packages\JetBrains.Platform.Core.Shell.183.0.20190124.112411\build\net461\JetBrains.Platform.Core.Shell.targets" Condition="Exists('..\packages\JetBrains.Platform.Core.Shell.183.0.20190124.112411\build\net461\JetBrains.Platform.Core.Shell.targets')" />
   <Import Project="..\packages\JetBrains.Platform.Interop.CommandLine.183.0.20190124.112739\build\net461\JetBrains.Platform.Interop.CommandLine.targets" Condition="Exists('..\packages\JetBrains.Platform.Interop.CommandLine.183.0.20190124.112739\build\net461\JetBrains.Platform.Interop.CommandLine.targets')" />

@@ -4,6 +4,7 @@ using InterfaceFakesTests.Fakes;
 using InterfaceFakesTests.Tools;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
+using InterfaceFakes.Validators;
 
 namespace InterfaceFakesTests
 {
@@ -158,6 +159,22 @@ namespace InterfaceFakesTests
             // Assert
             fakeFakeMethodWithParam.AssertUpdateInvocationInvoked();
             fakeFakeMethodWithResponse.AssertUpdateInvocationFuncInvoked();
+        }
+
+        [TestMethod, TestCategory("functional")]
+        public void ShouldValidateTheVariables()
+        {
+            //Arrange
+            ClassVariableTypeValidation classVariableTypeValidation = new ClassVariableTypeValidation()
+                .FieldShouldBeType<FakeMethodWithParam<string>>("_paramMethod")
+                .FieldShouldBeType<FakeMethodWithResponse<bool>>("_responseMethod");
+
+            //Act
+            FakeMethodWithParamAndResponse<string, bool> subject
+                = new FakeMethodWithParamAndResponse<string, bool>("hah");
+
+            //Assert
+            classVariableTypeValidation.AssertFieldsAreExpectedType(subject);
         }
 
         //todo: Functional tests which Ensures we test the UpdateInvocation + Invoke/InvokeTask temporal pairing that exist in FakeMethodWithParamAndResponse

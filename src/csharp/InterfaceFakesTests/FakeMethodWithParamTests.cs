@@ -10,8 +10,7 @@ namespace InterfaceFakesTests
     [TestClass]
     public sealed class FakeMethodWithParamTests
     {
-
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public void Invoke_ShouldThrowExceptionWithMethodNameIfInvocationNotUpdated()
         {
             // Arrange
@@ -25,7 +24,7 @@ namespace InterfaceFakesTests
             actual.Should().ThrowExactly<TestException>().WithMessage("If you want to use methodName, configure via Builder.");
         }
 
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public void Invoke_ShouldNotThrowExceptionIfInvocationUpdated()
         {
             // Arrange
@@ -40,7 +39,7 @@ namespace InterfaceFakesTests
             actual.Should().NotThrow();
         }
 
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public void AssertInvokedWith_ShouldThrowWhenFalse_WithInvoke()
         {
             // Arrange
@@ -55,7 +54,7 @@ namespace InterfaceFakesTests
             actual.Should().Throw<Exception>().WithMessage("Expected methodName to be invoked with expected but was actually invoked with Not expected");
         }
 
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public void AssertInvokedWith_ShouldNotThrowWhenTrue_WithInvoke()
         {
             // Arrange
@@ -70,7 +69,7 @@ namespace InterfaceFakesTests
             actual.Should().NotThrow();
         }
 
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public void AssertCustom_ShouldThrowWhenFalse_WithInvoke()
         {
             // Arrange
@@ -85,7 +84,7 @@ namespace InterfaceFakesTests
             actual.Should().Throw<Exception>();
         }
 
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public void AssertCustom_ShouldNotThrowWhenTrue_WithInvoke()
         {
             // Arrange
@@ -100,7 +99,7 @@ namespace InterfaceFakesTests
             actual.Should().NotThrow();
         }
 
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public void Invoke_ShouldThrowExceptionWhenUpdateInvocationSetUpForThat()
         {
             // Arrange
@@ -116,27 +115,7 @@ namespace InterfaceFakesTests
             actual.Should().ThrowExactly<Exception>().WithMessage("I throw this");
         }
 
-        [TestMethod, TestCategory("unit")]
-        public void AssertInvokedWith_ShouldAssertInOrderOfInvocation_WithInvoke()
-        {
-            // Arrange
-            string expected1 = "expected1";
-            string expected2 = "expected2";
-            FakeMethodWithParam<string> subject = new FakeMethodWithParam<string>("methodName");
-            subject.UpdateInvocation();
-            subject.Invoke(expected1);
-            subject.Invoke(expected2);
-
-            // Act
-            Action actual = () => subject.AssertInvokedWith(expected1);
-            Action actual2 = () => subject.AssertInvokedWith(expected2);
-
-            // Assert
-            actual.Should().NotThrow();
-            actual2.Should().NotThrow();
-        }
-
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public void CustomAssert_ShouldAssertInOrderOfInvocation_WithInvoke()
         {
             // Arrange
@@ -156,7 +135,7 @@ namespace InterfaceFakesTests
             actual2.Should().NotThrow();
         }
 
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public void Invoke_ShouldNotThrowWhenTrueWithMultipleInvokes()
         {
             // Arrange
@@ -175,7 +154,7 @@ namespace InterfaceFakesTests
             actual.Should().NotThrow();
         }
 
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public void InvokeTask_ShouldNotThrowWhenTrueWithMultipleInvokes()
         {
             // Arrange
@@ -194,7 +173,7 @@ namespace InterfaceFakesTests
             actual.Should().NotThrow();
         }
 
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public async Task AssertInvokedWith_ShouldAssertInOrderOfInvocation_WithInvokeTask()
         {
             // Arrange
@@ -214,7 +193,71 @@ namespace InterfaceFakesTests
             actual2.Should().NotThrow();
         }
 
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
+        public void AssertInvokedWith_ShouldAssertInOrderOfInvocation_WithInvoke()
+        {
+            // Arrange
+            string expected1 = "expected1";
+            string expected2 = "expected2";
+            FakeMethodWithParam<string> subject = new FakeMethodWithParam<string>("methodName");
+            subject.UpdateInvocation();
+            subject.Invoke(expected1);
+            subject.Invoke(expected2);
+
+            // Act
+            Action actual = () => subject.AssertInvokedWith(expected1);
+            Action actual2 = () => subject.AssertInvokedWith(expected2);
+
+            // Assert
+            actual.Should().NotThrow();
+            actual2.Should().NotThrow();
+        }
+
+        [TestMethod][TestCategory("unit")]
+        public async Task AssertInvokedWith_ShouldThrowWhenFalse_WithInvokeTask()
+        {
+            // Arrange
+            FakeMethodWithParam<string> subject = new FakeMethodWithParam<string>("methodName");
+            subject.UpdateInvocation();
+            await subject.InvokeTask("Not expected");
+
+            // Act
+            Action actual = () => subject.AssertInvokedWith("expected");
+
+            // Assert
+            actual.Should().Throw<Exception>().WithMessage("Expected methodName to be invoked with expected but was actually invoked with Not expected");
+        }
+
+        [TestMethod][TestCategory("unit")]
+        public async Task AssertInvokedWith_ShouldNotThrowWhenTrue_WithInvokeTask()
+        {
+            // Arrange
+            FakeMethodWithParam<string> subject = new FakeMethodWithParam<string>("methodName");
+            subject.UpdateInvocation();
+            await subject.InvokeTask("expected");
+
+            // Act
+            Action actual = () => subject.AssertInvokedWith("expected");
+
+            // Assert
+            actual.Should().NotThrow();
+        }
+
+        [TestMethod][TestCategory("unit")]
+        public void AssertInvokedWith_ShouldThrowWhenNotInvoked()
+        {
+            // Arrange
+            FakeMethodWithParam<string> subject = new FakeMethodWithParam<string>("methodName");
+            subject.UpdateInvocation();
+
+            // Act
+            Action actual = () => subject.AssertInvokedWith("expected");
+
+            // Assert
+            actual.Should().Throw<Exception>().WithMessage("methodName was expected but not invoked.");
+        }
+
+        [TestMethod][TestCategory("unit")]
         public async Task CustomAssert_ShouldAssertInOrderOfInvocation_WithInvokeTask()
         {
             // Arrange
@@ -234,7 +277,7 @@ namespace InterfaceFakesTests
             actual2.Should().NotThrow();
         }
 
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public void InvokeTask_ShouldThrowExceptionWhenUpdateInvocationSetUpForThat()
         {
             // Arrange
@@ -250,7 +293,7 @@ namespace InterfaceFakesTests
             actual.Should().ThrowExactly<Exception>().WithMessage("I throw this");
         }
 
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public async Task AssertCustom_ShouldThrowWhenFalse_WithInvokeTask()
         {
             // Arrange
@@ -265,7 +308,7 @@ namespace InterfaceFakesTests
             actual.Should().Throw<Exception>();
         }
 
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public async Task AssertCustom_ShouldNotThrowWhenTrue_WithInvokeTask()
         {
             // Arrange
@@ -280,7 +323,7 @@ namespace InterfaceFakesTests
             actual.Should().NotThrow();
         }
 
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public void InvokeTask_ShouldThrowExceptionWithMethodNameIfInvocationNotUpdated()
         {
             // Arrange
@@ -294,7 +337,7 @@ namespace InterfaceFakesTests
             actual.Should().ThrowExactly<TestException>().WithMessage("If you want to use methodName, configure via Builder.");
         }
 
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public void InvokeTask_ShouldNotThrowExceptionIfInvocationUpdated()
         {
             // Arrange
@@ -309,37 +352,7 @@ namespace InterfaceFakesTests
             actual.Should().NotThrow();
         }
 
-        [TestMethod, TestCategory("unit")]
-        public async Task AssertInvokedWith_ShouldThrowWhenFalse_WithInvokeTask()
-        {
-            // Arrange
-            FakeMethodWithParam<string> subject = new FakeMethodWithParam<string>("methodName");
-            subject.UpdateInvocation();
-            await subject.InvokeTask("Not expected");
-
-            // Act
-            Action actual = () => subject.AssertInvokedWith("expected");
-
-            // Assert
-            actual.Should().Throw<Exception>().WithMessage("Expected methodName to be invoked with expected but was actually invoked with Not expected");
-        }
-
-        [TestMethod, TestCategory("unit")]
-        public async Task AssertInvokedWith_ShouldNotThrowWhenTrue_WithInvokeTask()
-        {
-            // Arrange
-            FakeMethodWithParam<string> subject = new FakeMethodWithParam<string>("methodName");
-            subject.UpdateInvocation();
-            await subject.InvokeTask("expected");
-
-            // Act
-            Action actual = () => subject.AssertInvokedWith("expected");
-
-            // Assert
-            actual.Should().NotThrow();
-        }
-
-        [TestMethod, TestCategory("unit")]
+        [TestMethod][TestCategory("unit")]
         public void InvokeTask_ShouldTrackInvocationWithExceptionThrown()
         {
             // Arrange

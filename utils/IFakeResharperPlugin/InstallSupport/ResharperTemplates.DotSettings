@@ -63,14 +63,14 @@ public void ShouldHaveExpectedOrder()&#xD;
 {&#xD;
     //Arrange&#xD;
     ChainValidation chainValidation = new ChainValidation()&#xD;
-        .Add&lt;$FIRST_ACTION$&gt;()&#xD;
-        .Add&lt;$CLASS_TO_TEST$.NoOp&gt;();&#xD;
+        .NextClassInChain&lt;$FIRST_ACTION$&gt;()&#xD;
+        .NextClassInChain&lt;$CLASS_TO_TEST$.NoOp&gt;();&#xD;
 &#xD;
     //Act&#xD;
     $CLASS_TO_TEST$ subject = new $CLASS_TO_TEST$();&#xD;
 &#xD;
     //Assert&#xD;
-    chainValidation.AssertExpectedChain(subject);&#xD;
+    chainValidation.AssertExpectedChainOrder(subject);&#xD;
 }</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5699491E4B4283418F2BFFA7BE41D322/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=5699491E4B4283418F2BFFA7BE41D322/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
@@ -91,13 +91,13 @@ public void ShouldValidateTheVariables()&#xD;
 {&#xD;
     //Arrange&#xD;
     ClassVariableTypeValidation classVariableTypeValidation = new ClassVariableTypeValidation()&#xD;
-        .Add&lt;$FIRST_VARIABLE$&gt;("_$VARIABLE_NAME$");&#xD;
+        .FieldShouldBeType&lt;$FIRST_VARIABLE$&gt;("_$VARIABLE_NAME$");&#xD;
 &#xD;
     //Act&#xD;
     $CLASS_TO_TEST$ subject = new $CLASS_TO_TEST$($null$);&#xD;
 &#xD;
     //Assert&#xD;
-    classVariableTypeValidation.AssertExpectedVariables(subject);&#xD;
+    classVariableTypeValidation.AssertFieldsAreExpectedType(subject);&#xD;
 }</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=91AF867C07911E42826288E2D62DFC0A/Reformat/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=91AF867C07911E42826288E2D62DFC0A/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>

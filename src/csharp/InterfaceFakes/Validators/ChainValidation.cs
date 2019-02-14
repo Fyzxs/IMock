@@ -38,12 +38,6 @@ namespace InterfaceFakes.Validators
         }
 
         /// <summary>
-        /// Obsolete - Use  <see cref="NextClassInChain{T}"/>
-        /// </summary>
-        [Obsolete("Use NextClassInChain")]
-        public ChainValidation Add<T>(string name = "_nextAction") => NextClassInChain<T>(name);
-
-        /// <summary>
         /// Validates the chain specified through the <see cref="NextClassInChain{T}"/> method.
         /// </summary>
         /// <param name="headToValidate">The instance to start validation against.</param>
@@ -57,12 +51,6 @@ namespace InterfaceFakes.Validators
                 currentLink = nextLink;
             }
         }
-
-        /// <summary>
-        /// Obsolete - Use  <see cref="AssertExpectedChainOrder"/>
-        /// </summary>
-        [Obsolete("Use AssertExpectedChainOrder")]
-        public void AssertExpectedChain(object headToValidate) => AssertExpectedChainOrder(headToValidate);
 
         private object NextLink(object obj, ValidationInfo info) => GetAllFields(obj.GetType()).First(t => info.NameMatches(t.Name)).GetValue(obj);
 

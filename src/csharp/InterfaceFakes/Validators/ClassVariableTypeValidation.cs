@@ -39,9 +39,6 @@ namespace InterfaceFakes.Validators
             return this;
         }
 
-        [Obsolete("Use FieldShouldBeType")]
-        public ClassVariableTypeValidation Add<T>(string name) => FieldShouldBeType<T>(name);
-
         /// <summary>
         /// Validates the class fields specified through the <see cref="FieldShouldBeType{T}"/> method.
         /// </summary>
@@ -53,8 +50,6 @@ namespace InterfaceFakes.Validators
                 info.AssertType(GetObjectToValidate(classToValidate, info));
             }
         }
-        [Obsolete("Use AssertFieldsAreExpectedType")]
-        public void AssertExpectedVariables(object classToValidate) => AssertFieldsAreExpectedType(classToValidate);
 
         /// <summary>
         /// Validates the class fields in the super type <typeparamref name="T"/> specified through the <see cref="FieldShouldBeType{T}"/> method.
@@ -68,13 +63,8 @@ namespace InterfaceFakes.Validators
             }
         }
 
-        [Obsolete("Use AssertFieldsAreExpectedTypeInBaseClass")]
-        public void AssertExpectedVariables<T>(object classToValidate) => AssertFieldsAreExpectedTypeInBaseClass<T>(classToValidate);
+        private object GetObjectToValidate(object obj, ValidationInfo validationInfo) => validationInfo.FieldInfo(obj).GetValue(obj);
 
-        private object GetObjectToValidate(object obj, ValidationInfo validationInfo) =>
-            validationInfo.FieldInfo(obj).GetValue(obj);
-
-        private object GetObjectToValidate<T>(object obj, ValidationInfo validationInfo) =>
-            validationInfo.FieldInfo<T>().GetValue(obj);
+        private object GetObjectToValidate<T>(object obj, ValidationInfo validationInfo) => validationInfo.FieldInfo<T>().GetValue(obj);
     }
 }

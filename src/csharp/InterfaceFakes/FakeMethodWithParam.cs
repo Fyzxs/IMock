@@ -52,6 +52,7 @@ namespace InterfaceFakes
         /// </summary>
         /// <param name="name">Name to identify in exception messages</param>
         public FakeMethodWithParam(string name) : this(name, new StickyLastList<Action>(() => throw new TestException(name)), new StickyLastList<TParam>(), new Asserter()) { }
+
         private FakeMethodWithParam(string name, IStickyLastCollection<Action> lambdas, IStickyLastCollection<TParam> values, IAsserter asserter) : base(name)
         {
             _name = name;

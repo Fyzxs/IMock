@@ -4,7 +4,7 @@
 ## Continuous Integration
 | Server | Status |
 |--------------|--------------|
-| Azure DevOps | ![Build status](https://fyzxs.visualstudio.com/IFake/_apis/build/status/InterfaceFakes_Universal) |
+| Azure DevOps | ![Build status](https://fyzxs.visualstudio.com/GitHub/_apis/build/status/InterfaceFakes_Universal) |
 
 ## Releases
 | Product | Status | More Info | 

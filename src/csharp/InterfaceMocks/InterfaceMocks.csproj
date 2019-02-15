@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <IncludeBuildOutput>true</IncludeBuildOutput>
+    <PackageId>Fyzxs.InterfaceMocks</PackageId>
+    <Title>IMock - Interface Mocks</Title>
+    <authors>Quinn "Fyzxs" Gil</authors>
+    <description>A simple Faking Framework / Pattern for C#</description>
+    <packagelicenseUrl>https://github.com/Fyzxs/IMock/blob/master/LICENSE</packagelicenseUrl>
+    <RepositoryUrl>https://github.com/Fyzxs/IMock</RepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+  </PropertyGroup>
+</Project>

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzzExample", "FizzBuzz
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzzExampleTests", "FizzBuzzTests\FizzBuzzExampleTests.csproj", "{5DE88D5B-C2B3-4978-B38B-3BA6325D04B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterfaceFakes", "..\..\src\csharp\InterfaceFakes\InterfaceFakes.csproj", "{278F2BC2-FFE1-4B79-B1ED-3743A08D4801}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterfaceMocks", "..\..\src\csharp\InterfaceMocks\InterfaceMocks.csproj", "{278F2BC2-FFE1-4B79-B1ED-3743A08D4801}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

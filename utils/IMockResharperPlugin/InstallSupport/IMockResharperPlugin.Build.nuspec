@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+    <metadata>
+        <id>Fyzxs.IMockResharperPlugin</id>
+        <title>IMock $version$ for ReSharper</title> 
+        <version>$version$</version>
+        <authors>Quinn "Fyzxs" Gil</authors>
+        <owners>Quinn "Fyzxs" Gil</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <licenseUrl>https://github.com/Fyzxs/IMock/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/Fyzxs/IMock</projectUrl>
+        <description>Plugin to automate creation of the Mock/Builder pair</description>
+        <releaseNotes>• Converted to Mocks</releaseNotes>
+        <copyright>Copyright © 2019 Fyzxs</copyright>
+        <dependencies>
+            <dependency id="Wave" version="[$WAVEID$.0.0]"/>
+        </dependencies>
+    </metadata>
+    <files>
+      <file src="..\IMockResharperPlugin\bin\Release\Fyzxs.IMockResharperPlugin.dll" target="dotFiles\" />
+      <file src="..\IMockResharperPlugin\bin\Release\Fyzxs.IMockResharperPlugin.pdb" target="dotFiles\" />
+      <file src="ResharperTemplates.DotSettings" target="dotFiles\Extensions\Fyzxs.IMockResharperPlugin\settings\" />
+    </files>
+</package>

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\csharp\InterfaceFakes\InterfaceFakes.csproj" />
+    <ProjectReference Include="..\..\..\src\csharp\InterfaceMocks\InterfaceMocks.csproj" />
     <ProjectReference Include="..\FizzBuzz\FizzBuzzExample.csproj" />
   </ItemGroup>
 

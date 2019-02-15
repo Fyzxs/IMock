@@ -229,8 +229,8 @@ UpgradeLog*.htm
 *.bim.layout
 *.bim_*.settings
 
-# Microsoft Fakes
-FakesAssemblies/
+# Microsoft Mocks
+MocksAssemblies/
 
 # GhostDoc plugin setting file
 *.GhostDoc.xml
@@ -260,7 +260,7 @@ _Pvt_Extensions
 paket-files/
 
 # FAKE - F# Make
-.fake/
+.mock/
 
 # JetBrains Rider
 .idea/

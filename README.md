@@ -1,4 +1,5 @@
 ![Build status](https://fyzxs.visualstudio.com/GitHub/_apis/build/status/InterfaceMocks_Universal)
+[![nuget](https://img.shields.io/nuget/v/Fyzxs.InterfaceMocks.svg)](https://www.nuget.org/packages/Fyzxs.InterfaceMocks/)
 
 # Welcome to IMock!
 

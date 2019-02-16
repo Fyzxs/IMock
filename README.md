@@ -1,4 +1,4 @@
-![Build status](https://fyzxs.visualstudio.com/GitHub/_apis/build/status/InterfaceMocks_Universal) |
+![Build status](https://fyzxs.visualstudio.com/GitHub/_apis/build/status/InterfaceMocks_Universal)
 
 # Welcome to IMock!
 

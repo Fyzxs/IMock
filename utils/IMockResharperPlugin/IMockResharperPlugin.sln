@@ -1,15 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMockResharperPlugin", "IMockResharperPlugin\IMockResharperPlugin.csproj", "{BB2B42E0-4D6D-4380-AD8E-BC3D6C83F9B7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{DDFEA074-6CA6-4B2A-BFED-49262B33BD91}"
-	ProjectSection(SolutionItems) = preProject
-		InstallSupport\IMockResharperPlugin.nuspec = InstallSupport\IMockResharperPlugin.nuspec
-		InstallSupport\nuget.build.bat = InstallSupport\nuget.build.bat
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

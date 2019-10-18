@@ -70,7 +70,8 @@ namespace DebugSolution.Sample
     {
     }
 
-    public partial class MockFoozzing<T> : IFoozzing<T> {
+    public sealed partial class MockFoozzing<T> : IFoozzing<T>
+    {
         private MockMethod _voidVoid;
         private MockMethod _responseTaskVoid;
         private MockMethodWithParam<double> _paramType;
@@ -90,7 +91,11 @@ namespace DebugSolution.Sample
         private MockMethodWithParamAndResponse<double, string> _sameNameDifParamsDouble;
         private MockMethodWithParamAndResponse<Action<T>, Action<T>> _actionGenericResponseActionGeneric;
         private MockMethodWithParamAndResponse<Action<bool>, Action<bool>> _actionTypeResponseActionType;
-        private MockFoozzing() { }
+
+        private MockFoozzing()
+        {
+        }
+
         public void VoidVoid() => _voidVoid.Invoke();
         public Task ResponseTaskVoid() => _responseTaskVoid.InvokeTask();
         public void AssertVoidVoidInvoked() => _voidVoid.AssertInvoked();
@@ -130,7 +135,8 @@ namespace DebugSolution.Sample
         public void AssertActionGenericResponseActionGenericInvokedWith(Action<T> input) => _actionGenericResponseActionGeneric.AssertInvokedWith(input);
         public void AssertActionTypeResponseActionTypeInvokedWith(Action<bool> input) => _actionTypeResponseActionType.AssertInvokedWith(input);
 
-        public class Builder {
+        public sealed class Builder
+        {
             private readonly MockMethod _voidVoid = new MockMethod("MockMockMethod#VoidVoid");
             private readonly MockMethod _responseTaskVoid = new MockMethod("MockMockMethod#ResponseTaskVoid");
             private readonly MockMethodWithParam<double> _paramType = new MockMethodWithParam<double>("MockMockMethodWithParam#ParamType");
@@ -174,6 +180,7 @@ namespace DebugSolution.Sample
                     _sameNameDifParamsDouble = _sameNameDifParamsDouble,
                     _actionGenericResponseActionGeneric = _actionGenericResponseActionGeneric,
                     _actionTypeResponseActionType = _actionTypeResponseActionType,
+                    ,
                 };
             }
 

@@ -94,7 +94,11 @@ namespace CoreDebugSolution
         private MockMethodWithParamAndResponse<Action<T>, Action<T>> _actionGenericResponseActionGeneric;
         private MockMethodWithParamAndResponse<Action<bool>, Action<bool>> _actionTypeResponseActionType;
         private MockMethod _needsMe;
-        private MockFromMe() { }
+
+        private MockFromMe()
+        {
+        }
+
         public void VoidVoid() => _voidVoid.Invoke();
         public Task ResponseTaskVoid() => _responseTaskVoid.InvokeTask();
         public void AssertVoidVoidInvoked() => _voidVoid.AssertInvoked();
@@ -136,7 +140,8 @@ namespace CoreDebugSolution
         public void NeedsMe() => _needsMe.Invoke();
         public void AssertNeedsMeInvoked() => _needsMe.AssertInvoked();
 
-        public class Builder {
+        public sealed class Builder
+        {
             private readonly MockMethod _voidVoid = new MockMethod("MockMockMethod#VoidVoid");
             private readonly MockMethod _responseTaskVoid = new MockMethod("MockMockMethod#ResponseTaskVoid");
             private readonly MockMethodWithParam<double> _paramType = new MockMethodWithParam<double>("MockMockMethodWithParam#ParamType");

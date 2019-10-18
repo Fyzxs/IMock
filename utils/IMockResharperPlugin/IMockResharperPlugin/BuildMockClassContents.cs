@@ -11,6 +11,7 @@ using JetBrains.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Util.Extension;
 
 namespace Fyzxs.IMockResharperPlugin
 {
@@ -112,12 +113,16 @@ namespace Fyzxs.IMockResharperPlugin
             foreach (IInterface theInterface in interfacesArray)
             {
                 allNodes += AllNodes(theInterface.GetSuperTypes().Select(x => x.GetTypeElement()).OfType<IInterface>().ToArray());
+                
                 allNodes += theInterface.Methods.AggregateString("," + Environment.NewLine, (sb, d) =>
                 {
                     string name = $"_{new MethodName(d, theInterface).CamelCaseUnique()}";
                     return sb.Append($"{name} = {name}");
                 });
-                allNodes += "," + Environment.NewLine;
+                if (theInterface.Methods.Any())
+                {
+                    allNodes += "," + Environment.NewLine;
+                }
             }
 
             return allNodes;
@@ -217,23 +222,23 @@ namespace Fyzxs.IMockResharperPlugin
     }
     public class MockMethodWithParamAndResponseAsserts : ISignature2
     {
-        private readonly ISignature2 _MockMethodResponseAsserts;
-        private readonly ISignature2 _MockMethodParamAsserts;
+        private readonly ISignature2 _mockMethodResponseAsserts;
+        private readonly ISignature2 _mockMethodParamAsserts;
 
         public MockMethodWithParamAndResponseAsserts(IMethod methodDeclaration, IInterface theInterface) :
             this(new MockMethodResponseAsserts(methodDeclaration, theInterface), new MockMethodParamAsserts(methodDeclaration, theInterface))
         { }
 
-        private MockMethodWithParamAndResponseAsserts(ISignature2 MockMethodResponseAsserts, ISignature2 MockMethodParamAsserts)
+        private MockMethodWithParamAndResponseAsserts(ISignature2 mockMethodResponseAsserts, ISignature2 mockMethodParamAsserts)
         {
-            _MockMethodResponseAsserts = MockMethodResponseAsserts;
-            _MockMethodParamAsserts = MockMethodParamAsserts;
+            _mockMethodResponseAsserts = mockMethodResponseAsserts;
+            _mockMethodParamAsserts = mockMethodParamAsserts;
         }
 
         public void Signature(IClassLikeDeclaration classDeclaration, CSharpElementFactory dataProviderElementFactory)
         {
-            _MockMethodParamAsserts.Signature(classDeclaration, dataProviderElementFactory);
-            _MockMethodResponseAsserts.Signature(classDeclaration, dataProviderElementFactory);
+            _mockMethodParamAsserts.Signature(classDeclaration, dataProviderElementFactory);
+            _mockMethodResponseAsserts.Signature(classDeclaration, dataProviderElementFactory);
         }
     }
 

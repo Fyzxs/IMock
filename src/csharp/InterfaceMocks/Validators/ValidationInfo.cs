@@ -48,7 +48,7 @@ namespace InterfaceMocks.Validators
             return fieldInfo;
         }
 
-        private void AssertIfNull(object obj)
+        public void AssertIfNull(object obj)
         {
             _asserter.AssertIf(obj == null, $"Expected [name={_name}] to be of [type={_type.Name}] but found null");
         }

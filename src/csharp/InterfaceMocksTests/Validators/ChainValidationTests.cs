@@ -53,6 +53,21 @@ namespace InterfaceMocksTests.Validators
             action.Should().Throw<Exception>().WithMessage("Expected [name=_someOtherName] to be of [type=LinkA] but found [type=LinkB]");
         }
 
+        [TestMethod, TestCategory("unit")]
+        public void ShouldThrowMeaningfulExceptionGivenInvalidChain()
+        {
+            //Arrange
+            ChainValidation subject = new ChainValidation()
+                .NextClassInChain<LinkA>("Not_The_Field_Name")
+                .NextClassInChain<LinkA>();
+
+            //Act
+            Action action = () => subject.AssertExpectedChainOrder(new LinkHead());
+
+            //Assert
+            action.Should().Throw<Exception>().WithMessage("Expected [name=Not_The_Field_Name] to be of [type=LinkA] but found null");
+        }
+
         private interface ILink { }
 
         private class LinkHead : ILink

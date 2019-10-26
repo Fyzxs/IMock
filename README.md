@@ -80,3 +80,24 @@ To generate the `MockSomeInterface` classes easily for C# a ReSharper plugin has
 This plugin adds `Create Mock` and `Update Mock` to the `Alt+Enter` Context Action menu. We've found it saves a lot of time; though doing it some time manually will help provide a better understanding. Things being black magic is unfortunate.
 
 Currently the plugin is not available on the ReSharper extensions marketplace. The nupkg files are included with the project.
+Manual Install Steps for ReSharper plugin
+* Download Plugin
+* * Go to releases page
+* * * https://github.com/Fyzxs/IMock/releases
+* * Download the correct Fyzxs.IMockResharperPlugin version
+* * * Latest should map to latest ReSharper plugin
+* Configure ReSharper
+* * Menu : Extensions > ReSharper > Extension Manager
+* * Click 'Options'
+* * Check 'prerelease'
+* * Add Location
+* * * Where the Fyzxs.IMockResharperPlugin downloaded to
+* * Click 'Save'
+* * Close 'Extension Manager' window
+* Install Plugin
+* * Menu : Extensions > ReSharper > Extension Manager
+* * Search 'IMock'
+* * Click 'IMock ... ' Install
+* * Check "I have read..."
+* * Click 'Install' (next to close)
+* * Follow Prompts

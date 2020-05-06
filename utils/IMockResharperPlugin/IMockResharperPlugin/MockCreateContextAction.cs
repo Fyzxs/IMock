@@ -24,7 +24,8 @@ namespace Fyzxs.IMockResharperPlugin
 
         protected override Action<ITextControl> ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
         {
-            IInterfaceDeclaration theInterface = _dataProvider.GetSelectedElement<IInterfaceDeclaration>().NotNull();
+            IInterfaceDeclaration theInterface = _dataProvider.GetSelectedElement<IInterfaceDeclaration>();
+            if(theInterface == null) throw new Exception("they took away the NotNull... now I have to throw. theInterface");
             IInterface typeElement = theInterface.DeclaredElement;
             string typeParameters = typeElement.TypeParameters.AggregateString(",", (builder, parameter) => builder.Append(parameter.ShortName));
             if (typeElement.TypeParameters.Count != 0) typeParameters = "<" + typeParameters + ">";

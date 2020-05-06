@@ -26,7 +26,8 @@ namespace Fyzxs.IMockResharperPlugin
 
         protected override Action<ITextControl> ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
         {
-            IClassLikeDeclaration classDeclaration = _dataProvider.GetSelectedElement<IClassLikeDeclaration>().NotNull();
+            IClassLikeDeclaration classDeclaration = _dataProvider.GetSelectedElement<IClassLikeDeclaration>();
+            if (classDeclaration == null) throw new Exception("they took away the NotNull... now I have to throw. classDeclaration");
             IEnumerable<IInterface> interfaces = classDeclaration.SuperTypes.Select(x => x.GetTypeElement()).OfType<IInterface>();
             classDeclaration.RemoveDeclarationsRange(classDeclaration.GetAllDeclarationsRange());
 

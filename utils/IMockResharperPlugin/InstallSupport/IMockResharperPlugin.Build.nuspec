@@ -10,8 +10,8 @@
         <licenseUrl>https://github.com/Fyzxs/IMock/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/Fyzxs/IMock</projectUrl>
         <description>Plugin to automate creation of the Mock/Builder pair</description>
-        <releaseNotes>• Converted to Mocks</releaseNotes>
-        <copyright>Copyright © 2019 Fyzxs</copyright>
+        <releaseNotes></releaseNotes>
+        <copyright>Copyright © $COPYRIGHTYEAR$ Fyzxs</copyright>
         <dependencies>
             <dependency id="Wave" version="[$WAVEID$.0.0]"/>
         </dependencies>

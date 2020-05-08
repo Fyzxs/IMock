@@ -52,7 +52,7 @@ namespace InterfaceMocks.Validators
         }
 
         /// <summary>
-        /// Validates the class fields specified through the <see cref="FieldShouldBeType{T}"/> method.
+        /// Validates the class fields specified through <see cref="FieldShouldBeType{T}(string)"/> or <see cref="FieldShouldBeType{T}(string, object)"/>.
         /// </summary>
         /// <param name="classToValidate">The instance to start validation against.</param>
         public void AssertFieldsAreExpectedType(object classToValidate)
@@ -65,7 +65,7 @@ namespace InterfaceMocks.Validators
         }
 
         /// <summary>
-        /// Validates the class fields in the super type <typeparamref name="T"/> specified through the <see cref="FieldShouldBeType{T}"/> method.
+        /// Validates the class fields in the super type <typeparamref name="T"/> specified through <see cref="FieldShouldBeType{T}(string)"/> or <see cref="FieldShouldBeType{T}(string, object)"/>.
         /// </summary>
         /// <param name="classToValidate">The instance to start validation against.</param>
         public void AssertFieldsAreExpectedTypeInBaseClass<T>(object classToValidate)

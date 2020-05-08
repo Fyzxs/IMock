@@ -68,6 +68,7 @@ namespace InterfaceMocksTests.Validators
             action.Should().Throw<Exception>().WithMessage("Expected field [name=Not_The_Field_Name] to be of [type=LinkA] but a field [name=Not_The_Field_Name] was not found.");
         }
 
+        // ReSharper disable NotAccessedField.Local
         private interface ILink { }
 
         private class LinkHead : ILink
@@ -104,5 +105,6 @@ namespace InterfaceMocksTests.Validators
 
         private class LinkB : ILink
         { }
+        // ReSharper restore NotAccessedField.Local
     }
 }

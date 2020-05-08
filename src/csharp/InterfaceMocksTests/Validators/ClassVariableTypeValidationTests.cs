@@ -168,6 +168,9 @@ namespace InterfaceMocksTests.Validators
                 "Field [name=_eo] is not the same reference as expected and does not '#Equals()' actual. [expected=InterfaceMocksTests.Validators.ClassVariableTypeValidationTests+EquatableObject] [actual  =InterfaceMocksTests.Validators.ClassVariableTypeValidationTests+EquatableObject]");
         }
 
+        // ReSharper disable NotAccessedField.Local
+        // ReSharper disable PossibleNullReferenceException
+#pragma warning disable 659
         private sealed class ExampleObject
         {
             private readonly VariabledClass _variable;
@@ -215,4 +218,7 @@ namespace InterfaceMocksTests.Validators
             public DerivedClass():base("string"){}
         }
     }
+#pragma warning restore 659
+    // ReSharper restore NotAccessedField.Local
+    // ReSharper restore PossibleNullReferenceException
 }

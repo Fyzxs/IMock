@@ -140,6 +140,7 @@ namespace InterfaceMocksTests.Validators
                 _nameHere = value;
             }
 
+            // ReSharper disable once UnusedMember.Local
             public string Getter() => _nameHere;
         }
 

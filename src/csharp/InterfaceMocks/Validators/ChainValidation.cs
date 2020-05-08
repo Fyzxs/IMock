@@ -56,6 +56,7 @@ namespace InterfaceMocks.Validators
         {
             FieldInfo fieldInfo = GetAllFields(obj.GetType()).FirstOrDefault(t => info.NameMatches(t.Name));
             info.AssertIfNull(fieldInfo);
+            // ReSharper disable once PossibleNullReferenceException
             return fieldInfo.GetValue(obj);
         }
 

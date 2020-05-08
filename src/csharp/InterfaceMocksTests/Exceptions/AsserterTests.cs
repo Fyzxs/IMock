@@ -31,7 +31,7 @@ namespace InterfaceMocksTests.Exceptions
             Action action = () => subject.AssertIf(true, "Asserted");
 
             //Assert
-            action.Should().Throw<Exception>().WithMessage("Asserted");
+            action.Should().Throw<AsserterException>().WithMessage("Asserted");
         }
     }
 }

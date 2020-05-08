@@ -9,7 +9,7 @@ namespace InterfaceMocks.Exceptions
         public void AssertIf(bool condition, string exceptionMsg)
         {
             if (!condition) return;
-            throw new Exception(exceptionMsg);
+            throw new AsserterException(exceptionMsg);
         }
     }
 

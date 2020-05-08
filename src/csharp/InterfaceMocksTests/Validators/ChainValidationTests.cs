@@ -65,7 +65,7 @@ namespace InterfaceMocksTests.Validators
             Action action = () => subject.AssertExpectedChainOrder(new LinkHead());
 
             //Assert
-            action.Should().Throw<Exception>().WithMessage("Expected [name=Not_The_Field_Name] to be of [type=LinkA] but found null");
+            action.Should().Throw<Exception>().WithMessage("Expected field [name=Not_The_Field_Name] to be of [type=LinkA] but a field [name=Not_The_Field_Name] was not found.");
         }
 
         private interface ILink { }

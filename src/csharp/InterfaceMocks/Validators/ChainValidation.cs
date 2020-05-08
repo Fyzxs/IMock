@@ -47,7 +47,7 @@ namespace InterfaceMocks.Validators
             foreach (ValidationInfo info in _validationInfo)
             {
                 object nextLink = NextLink(currentLink, info);
-                info.AssertType(nextLink);
+                info.Assert(nextLink);
                 currentLink = nextLink;
             }
         }

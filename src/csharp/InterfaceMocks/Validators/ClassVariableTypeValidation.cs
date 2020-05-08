@@ -39,6 +39,19 @@ namespace InterfaceMocks.Validators
         }
 
         /// <summary>
+        /// Adds the next class of the chain to be validated.
+        /// </summary>
+        /// <typeparam name="T">The class expected to be next in the chain.</typeparam>
+        /// <param name="name">The name of the private variable the instance is held in.</param>
+        /// <param name="expectedValue">The value to be asserted against for this field.</param>
+        /// <returns>This instance of ChainValidation</returns>
+        public ClassVariableTypeValidation FieldShouldBeType<T>(string name, object expectedValue)
+        {
+            _validationInfo.Add(new ValidationInfo(name, typeof(T), expectedValue));
+            return this;
+        }
+
+        /// <summary>
         /// Validates the class fields specified through the <see cref="FieldShouldBeType{T}"/> method.
         /// </summary>
         /// <param name="classToValidate">The instance to start validation against.</param>
@@ -46,7 +59,8 @@ namespace InterfaceMocks.Validators
         {
             foreach (ValidationInfo info in _validationInfo)
             {
-                info.AssertType(GetObjectToValidate(classToValidate, info));
+                object objectToValidate = GetObjectToValidate(classToValidate, info);
+                info.Assert(objectToValidate);
             }
         }
 
@@ -58,7 +72,7 @@ namespace InterfaceMocks.Validators
         {
             foreach (ValidationInfo info in _validationInfo)
             {
-                info.AssertType(GetObjectToValidate<T>(classToValidate, info));
+                info.Assert(GetObjectToValidate<T>(classToValidate, info));
             }
         }
 

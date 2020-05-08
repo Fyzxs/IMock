@@ -3,6 +3,7 @@ using InterfaceMocks.Validators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Reflection;
+using InterfaceMocks.Exceptions;
 
 namespace InterfaceMocksTests.Validators
 {
@@ -43,10 +44,10 @@ namespace InterfaceMocksTests.Validators
             ValidationInfo subject = new ValidationInfo("_nameHere", typeof(string));
 
             //Act
-            Action action = () => subject.AssertType(null);
+            Action action = () => subject.Assert(null);
 
             //Assert
-            action.Should().Throw<Exception>().WithMessage("Expected [name=_nameHere] to be of [type=String] but found null");
+            action.Should().Throw<AsserterException>().WithMessage("Expected field [name=_nameHere] to be of [type=String] but a field [name=_nameHere] was not found.");
         }
 
         [TestMethod, TestCategory("unit")]
@@ -57,10 +58,10 @@ namespace InterfaceMocksTests.Validators
             ValidationInfo subject = new ValidationInfo("_nameHere", typeof(Example));
 
             //Act
-            Action action = () => subject.AssertType("");
+            Action action = () => subject.Assert("");
 
             //Assert
-            action.Should().Throw<Exception>().WithMessage("Expected [name=_nameHere] to be of [type=Example] but found [type=String]");
+            action.Should().Throw<AsserterException>().WithMessage("Expected [name=_nameHere] to be of [type=Example] but found [type=String]");
         }
 
         [TestMethod, TestCategory("unit")]
@@ -87,7 +88,7 @@ namespace InterfaceMocksTests.Validators
             Action actual = () => subject.FieldInfo(new Example("blort"));
 
             //Assert
-            actual.Should().Throw<Exception>().WithMessage("Expected [name=_notFound] to be of [type=String] but found null");
+            actual.Should().Throw<AsserterException>().WithMessage("Expected field [name=_notFound] to be of [type=String] but a field [name=_notFound] was not found.");
         }
 
         [TestMethod, TestCategory("unit")]
@@ -114,7 +115,7 @@ namespace InterfaceMocksTests.Validators
             Action actual = () => subject.FieldInfo<Example>();
 
             //Assert
-            actual.Should().Throw<Exception>().WithMessage("Expected [name=_notFound] to be of [type=String] but found null");
+            actual.Should().Throw<AsserterException>().WithMessage("Expected field [name=_notFound] to be of [type=String] but a field [name=_notFound] was not found.");
         }
         
         [TestMethod, TestCategory("unit")]
@@ -127,7 +128,7 @@ namespace InterfaceMocksTests.Validators
             Action actual = () => subject.FieldInfo<ExampleChild>();
 
             //Assert
-            actual.Should().Throw<Exception>().WithMessage("Expected [name=_nameHere] to be of [type=String] but found null");
+            actual.Should().Throw<AsserterException>().WithMessage("Expected field [name=_nameHere] to be of [type=String] but a field [name=_nameHere] was not found.");
         }
 
         private class Example

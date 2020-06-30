@@ -101,4 +101,3 @@ Manual Install Steps for ReSharper plugin
 * * Check "I have read..."
 * * Click 'Install' (next to close)
 * * Follow Prompts
-

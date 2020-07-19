@@ -10,7 +10,7 @@ namespace InterfaceMocksTests
     [TestClass]
     public sealed class MockMethodWithParamTests
     {
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void Invoke_ShouldThrowExceptionWithMethodNameIfInvocationNotUpdated()
         {
             // Arrange
@@ -24,7 +24,7 @@ namespace InterfaceMocksTests
             actual.Should().ThrowExactly<TestException>().WithMessage("If you want to use methodName, configure via Builder.");
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void Invoke_ShouldNotThrowExceptionIfInvocationUpdated()
         {
             // Arrange
@@ -39,7 +39,7 @@ namespace InterfaceMocksTests
             actual.Should().NotThrow();
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void AssertInvokedWith_ShouldThrowWhenFalse_WithInvoke()
         {
             // Arrange
@@ -54,7 +54,7 @@ namespace InterfaceMocksTests
             actual.Should().Throw<Exception>().WithMessage("Expected methodName to be invoked with expected but was actually invoked with Not expected");
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void AssertInvokedWith_ShouldNotThrowWhenTrue_WithInvoke()
         {
             // Arrange
@@ -69,7 +69,7 @@ namespace InterfaceMocksTests
             actual.Should().NotThrow();
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void AssertCustom_ShouldThrowWhenFalse_WithInvoke()
         {
             // Arrange
@@ -84,7 +84,7 @@ namespace InterfaceMocksTests
             actual.Should().Throw<Exception>();
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void AssertCustom_ShouldNotThrowWhenTrue_WithInvoke()
         {
             // Arrange
@@ -99,7 +99,7 @@ namespace InterfaceMocksTests
             actual.Should().NotThrow();
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void Invoke_ShouldThrowExceptionWhenUpdateInvocationSetUpForThat()
         {
             // Arrange
@@ -115,7 +115,7 @@ namespace InterfaceMocksTests
             actual.Should().ThrowExactly<Exception>().WithMessage("I throw this");
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void CustomAssert_ShouldAssertInOrderOfInvocation_WithInvoke()
         {
             // Arrange
@@ -135,7 +135,7 @@ namespace InterfaceMocksTests
             actual2.Should().NotThrow();
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void Invoke_ShouldNotThrowWhenTrueWithMultipleInvokes()
         {
             // Arrange
@@ -154,7 +154,7 @@ namespace InterfaceMocksTests
             actual.Should().NotThrow();
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void InvokeTask_ShouldNotThrowWhenTrueWithMultipleInvokes()
         {
             // Arrange
@@ -173,7 +173,7 @@ namespace InterfaceMocksTests
             actual.Should().NotThrow();
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public async Task AssertInvokedWith_ShouldAssertInOrderOfInvocation_WithInvokeTask()
         {
             // Arrange
@@ -193,7 +193,7 @@ namespace InterfaceMocksTests
             actual2.Should().NotThrow();
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void AssertInvokedWith_ShouldAssertInOrderOfInvocation_WithInvoke()
         {
             // Arrange
@@ -213,7 +213,7 @@ namespace InterfaceMocksTests
             actual2.Should().NotThrow();
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public async Task AssertInvokedWith_ShouldThrowWhenFalse_WithInvokeTask()
         {
             // Arrange
@@ -228,7 +228,7 @@ namespace InterfaceMocksTests
             actual.Should().Throw<Exception>().WithMessage("Expected methodName to be invoked with expected but was actually invoked with Not expected");
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public async Task AssertInvokedWith_ShouldNotThrowWhenTrue_WithInvokeTask()
         {
             // Arrange
@@ -243,7 +243,7 @@ namespace InterfaceMocksTests
             actual.Should().NotThrow();
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void AssertInvokedWith_ShouldThrowWhenNotInvoked()
         {
             // Arrange
@@ -257,7 +257,7 @@ namespace InterfaceMocksTests
             actual.Should().Throw<Exception>().WithMessage("methodName was expected but not invoked.");
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public async Task CustomAssert_ShouldAssertInOrderOfInvocation_WithInvokeTask()
         {
             // Arrange
@@ -277,7 +277,7 @@ namespace InterfaceMocksTests
             actual2.Should().NotThrow();
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void InvokeTask_ShouldThrowExceptionWhenUpdateInvocationSetUpForThat()
         {
             // Arrange
@@ -293,7 +293,7 @@ namespace InterfaceMocksTests
             actual.Should().ThrowExactly<Exception>().WithMessage("I throw this");
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public async Task AssertCustom_ShouldThrowWhenFalse_WithInvokeTask()
         {
             // Arrange
@@ -308,7 +308,7 @@ namespace InterfaceMocksTests
             actual.Should().Throw<Exception>();
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public async Task AssertCustom_ShouldNotThrowWhenTrue_WithInvokeTask()
         {
             // Arrange
@@ -323,7 +323,7 @@ namespace InterfaceMocksTests
             actual.Should().NotThrow();
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void InvokeTask_ShouldThrowExceptionWithMethodNameIfInvocationNotUpdated()
         {
             // Arrange
@@ -337,7 +337,7 @@ namespace InterfaceMocksTests
             actual.Should().ThrowExactly<TestException>().WithMessage("If you want to use methodName, configure via Builder.");
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void InvokeTask_ShouldNotThrowExceptionIfInvocationUpdated()
         {
             // Arrange
@@ -352,7 +352,7 @@ namespace InterfaceMocksTests
             actual.Should().NotThrow();
         }
 
-        [TestMethod][TestCategory("unit")]
+        [TestMethod, TestCategory("unit")]
         public void InvokeTask_ShouldTrackInvocationWithExceptionThrown()
         {
             // Arrange

@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MicroObjectMocksResharperPlugin")]
-[assembly: AssemblyCopyright("Copyright © Fyzxs 2019")]
+[assembly: AssemblyCopyright("Copyright © Fyzxs 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

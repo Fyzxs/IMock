@@ -1,7 +1,6 @@
 ﻿using Fyzxs.IMockResharperPlugin.MockClassVariables;
 using JetBrains.DocumentModel;
 using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Feature.Services.CSharp.Analyses.Bulbs;
 using JetBrains.ReSharper.Intentions.Util;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp;
@@ -11,7 +10,7 @@ using JetBrains.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Util.Extension;
+using JetBrains.ReSharper.Feature.Services.CSharp.ContextActions;
 
 namespace Fyzxs.IMockResharperPlugin
 {

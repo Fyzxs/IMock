@@ -2,7 +2,6 @@
 using JetBrains.Application.Progress;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Feature.Services.ContextActions;
-using JetBrains.ReSharper.Feature.Services.CSharp.Analyses.Bulbs;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.TextControl;
@@ -10,7 +9,7 @@ using JetBrains.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Diagnostics;
+using JetBrains.ReSharper.Feature.Services.CSharp.ContextActions;
 
 namespace Fyzxs.IMockResharperPlugin
 {
